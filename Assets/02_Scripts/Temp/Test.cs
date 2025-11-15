@@ -27,7 +27,7 @@ namespace _02_Scripts.Temp
         public void GoNextDayClicked()
         {
             Debug.Log($"GoNextDayClicked");
-            StartCoroutine(_gameManager.SkipToNextDayStart());
+            _gameManager.SkipToNextDay();
         }
     }
 }

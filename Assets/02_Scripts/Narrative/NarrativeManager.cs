@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _02_Scripts.Core;
 using _02_Scripts.Core.Managers;
 using _02_Scripts.Narrative.Data;
+using _02_Scripts.Narrative.Entities;
 using UnityEngine;
 
 namespace _02_Scripts.Narrative
@@ -33,6 +35,16 @@ namespace _02_Scripts.Narrative
         {
             _gameManager = GameManager.Instance;
             _dialogueManager = DialogueManager.Instance;
+            Initialize();
+        }
+
+        void Initialize()
+        {
+            foreach (var storyData in stories)
+            {
+                Story story = new Story(storyData);
+                _storyInstances[storyData.gameTimestamp] = story;
+            }
         }
 
         void OnEnable()
@@ -48,57 +60,56 @@ namespace _02_Scripts.Narrative
             }
             if (_gameManager != null)
             {
-                _gameManager.OnDayChanged += CheckAndProgressNarrativeByDate;
+                _gameManager.OnGameStart += ProgressMainStoryWithFade;
                 _gameManager.OnTimeChanged += CheckAndProgressNarrativeByTimeStamp;
             }
-        }
-
-        public void CheckAndProgressNarrativeByDate(int day)
-        {
-            GameTimestamp gameTimestamp = new GameTimestamp(day, 0, 0);
-            if (!IsNarrativeExists(gameTimestamp)) return;
-            ProgressMainStoryByDate(gameTimestamp);
         }
 
         public void CheckAndProgressNarrativeByTimeStamp(GameTimestamp timestamp)
         {
             if (!IsNarrativeExists(timestamp)) return;
-            ProgressMainStoryByDate(timestamp);
+            StartCoroutine(ProgressMainStoryByDate(timestamp));
         }
 
-        public void ProgressMainStoryByDate(GameTimestamp timestamp)
+        public void ProgressMainStoryWithFade(GameTimestamp gameTimestamp)
         {
-            if(_dialogueManager == null) _dialogueManager = DialogueManager.Instance;
+            StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStoryByDate(gameTimestamp)));
+        }
 
+        public IEnumerator ProgressMainStoryByDate(GameTimestamp timestamp)
+        {
+            if (_storyInstances.Count == 0)
+            {
+                Initialize();
+            }
+            if (_dialogueManager == null)
+            {
+                _dialogueManager = DialogueManager.Instance;
+            }
             if (!_storyInstances.TryGetValue(timestamp, out Story story))
             {
-                StoryData storyData = stories.FirstOrDefault(s => s.gameTimestamp.Equals(timestamp));
-                if (storyData == null)
-                {
-                    return;
-                }
-
-                story = new Story(storyData);
-                _storyInstances[timestamp] = story;
+                yield break;
             }
-
             if (story.HasBeenPlayed)
             {
-                return;
+                yield break;
             }
             story.SetPlayed();
             _dialogueManager.StartDialogue(story);
+            yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive);
         }
+
 
         private bool IsNarrativeExists(GameTimestamp timestamp)
         {
-            return stories.Any(story => story.gameTimestamp.Equals(timestamp));
+            return _storyInstances.ContainsKey(timestamp);
         }
+
         void OnDisable()
         {
             if (_gameManager != null)
             {
-                _gameManager.OnDayChanged -= CheckAndProgressNarrativeByDate;
+                _gameManager.OnGameStart -= ProgressMainStoryWithFade;
                 _gameManager.OnTimeChanged -= CheckAndProgressNarrativeByTimeStamp;
             }
         }

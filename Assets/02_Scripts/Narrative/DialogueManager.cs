@@ -24,6 +24,7 @@ namespace _02_Scripts.Narrative
         private string _currentSentence;
         private bool _isTyping;
         private bool _isDialogueActive;
+        public bool IsDialogueActive => _isDialogueActive;
         void Awake()
         {
             if (Instance == null)

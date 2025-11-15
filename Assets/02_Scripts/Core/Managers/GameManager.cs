@@ -20,6 +20,7 @@ namespace _02_Scripts.Core.Managers
 
         public event Action<GameTimestamp> OnTimeChanged;
         public event Action<int> OnDayChanged;
+        public event Action<GameTimestamp> OnGameStart;
         public void PauseTime() => IsTimePaused = true;
         public void ResumeTime() => IsTimePaused = false;
         private float _timeOfDayInMinutes;
@@ -40,10 +41,7 @@ namespace _02_Scripts.Core.Managers
 
         void Start()
         {
-            CurrentDay = 1;
-            OnDayChanged.Invoke(CurrentDay);
-            _timeOfDayInMinutes = 0;
-            UpdateTimeProperties();
+            GameStart();
         }
 
         void Update()
@@ -87,15 +85,36 @@ namespace _02_Scripts.Core.Managers
             OnDayChanged?.Invoke(CurrentDay);
         }
 
-        public IEnumerator SkipToNextDayStart()
+        public void SkipToNextDay()
+        {
+            StartCoroutine(ExecuteWithFade(SkipDayRoutine()));
+        }
+
+        public IEnumerator ExecuteWithFade(IEnumerator work)
         {
             PauseTime();
             yield return FadeRoutine(1f);
+            yield return work;
             yield return FadeRoutine(0f);
+            ResumeTime();
+        }
+
+        private void GameStart()
+        {
+            PauseTime();
+            CurrentDay = 1;
+            _timeOfDayInMinutes = 0;
+            UpdateTimeProperties();
+            OnGameStart?.Invoke(GetGameTimestamp());
+            ResumeTime();
+        }
+
+
+        private IEnumerator SkipDayRoutine()
+        {
             AdvanceNextDay(true);
             UpdateTimeProperties();
-            ResumeTime();
-
+            yield return null;
         }
 
         private void UpdateTimeProperties()
@@ -132,6 +151,5 @@ namespace _02_Scripts.Core.Managers
             canvasGroup.alpha = targetAlpha;
             canvasGroup.blocksRaycasts = targetAlpha > 0.5f;
         }
-
     }
 }

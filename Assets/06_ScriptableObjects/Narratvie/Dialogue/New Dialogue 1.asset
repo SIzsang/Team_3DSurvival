@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueType: 0
   dialogueLines:
-  - Character: {fileID: 11400000, guid: 6df57b888e95c724fac1dc5eaf074549, type: 2}
+  - Character: {fileID: 0}
     text: "Narrative Test2\uC785\uB2C8\uB2E4"
