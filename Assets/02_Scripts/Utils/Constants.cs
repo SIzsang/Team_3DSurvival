@@ -7,5 +7,10 @@ namespace _02_Scripts.Utils
             public const string PreviousSceneKey = "forggeting.PreviousScenePath";
             public const string BootstrapscenePath = "Assets/Scenes/Initialization.unity";
         }
+
+        public static class Game
+        {
+            public const float MinutesInADay = 1440f;
+        }
     }
 }
