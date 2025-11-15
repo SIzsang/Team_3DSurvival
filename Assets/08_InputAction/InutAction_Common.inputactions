@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "InutAction_Common",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "e841aaa3-35e1-4d1a-8c12-eee83ea517c7",
+            "actions": [
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "78812da4-d1d2-4cc3-ad29-58c770fbe594",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "64dd433c-bef9-42e5-9fb3-638c50ec14e6",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
