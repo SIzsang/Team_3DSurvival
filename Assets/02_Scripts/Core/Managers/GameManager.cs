@@ -22,14 +22,11 @@ namespace _02_Scripts.Core.Managers
         public event Action<int> OnDayChanged;
         public void PauseTime() => IsTimePaused = true;
         public void ResumeTime() => IsTimePaused = false;
-
-
         private float _timeOfDayInMinutes;
 
 
         void Awake()
         {
-            
             if (Instance == null)
             {
                 Instance = this;
@@ -44,6 +41,7 @@ namespace _02_Scripts.Core.Managers
         void Start()
         {
             CurrentDay = 1;
+            OnDayChanged.Invoke(CurrentDay);
             _timeOfDayInMinutes = 0;
             UpdateTimeProperties();
         }
@@ -60,7 +58,6 @@ namespace _02_Scripts.Core.Managers
             {
                 AdvanceNextDay();
             }
-
             UpdateTimeProperties();
         }
 
@@ -72,13 +69,21 @@ namespace _02_Scripts.Core.Managers
 
         public GameTimestamp GetGameTimestamp()
         {
-            return new GameTimestamp(CurrentDay, CurrentHour);
+            return new GameTimestamp(CurrentDay, CurrentHour, CurrentMinute);
         }
 
-        public void AdvanceNextDay()
+        public void AdvanceNextDay(bool isSkip = false)
         {
             CurrentDay++;
-            _timeOfDayInMinutes -= Constants.Game.MinutesInADay;
+            if (isSkip)
+            {
+                _timeOfDayInMinutes = 0f;
+            }
+            else
+            {
+                _timeOfDayInMinutes -= Constants.Game.MinutesInADay;
+            }
+
             OnDayChanged?.Invoke(CurrentDay);
         }
 
@@ -87,8 +92,7 @@ namespace _02_Scripts.Core.Managers
             PauseTime();
             yield return FadeRoutine(1f);
             yield return FadeRoutine(0f);
-            CurrentDay++;
-            _timeOfDayInMinutes = 0;
+            AdvanceNextDay(true);
             UpdateTimeProperties();
             ResumeTime();
 
@@ -99,11 +103,15 @@ namespace _02_Scripts.Core.Managers
             int newHour = (int)(_timeOfDayInMinutes / 60);
             int newMinute = (int)(_timeOfDayInMinutes % 60);
 
-            if (newHour != CurrentHour || newMinute != CurrentMinute)
+            if (newHour != CurrentHour)
             {
                 CurrentHour = newHour;
                 CurrentMinute = newMinute;
                 OnTimeChanged?.Invoke(GetGameTimestamp());
+            }
+            else if (newMinute != CurrentMinute)
+            {
+                CurrentMinute = newMinute;
             }
         }
 

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb263597cbd240c7aa7060b9fe2a1610, type: 3}
-  m_Name: New Dialogue
+  m_Name: New Dialogue 1
   m_EditorClassIdentifier: 
   dialogueType: 0
   dialogueLines:
-  - text: 
-  - text: 
+  - Character: {fileID: 11400000, guid: 6df57b888e95c724fac1dc5eaf074549, type: 2}
+    text: "Narrative Test2\uC785\uB2C8\uB2E4"
