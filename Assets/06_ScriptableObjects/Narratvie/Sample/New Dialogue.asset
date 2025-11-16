@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb263597cbd240c7aa7060b9fe2a1610, type: 3}
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
-  dialogueType: 0
+  dialogueType: 1
   dialogueLines:
-  - text: 
-  - text: 
+  - Character: {fileID: 11400000, guid: 6df57b888e95c724fac1dc5eaf074549, type: 2}
+    text: "Narrative Test\uC785\uB2C8"

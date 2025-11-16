@@ -1,11 +1,10 @@
 using _02_Scripts.Core.Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _02_Scripts.Temp
 {
-    public class Test : MonoBehaviour
+    public class TimeManipulationSample : MonoBehaviour
     {
         private GameManager _gameManager;
 
@@ -27,7 +26,7 @@ namespace _02_Scripts.Temp
         public void GoNextDayClicked()
         {
             Debug.Log($"GoNextDayClicked");
-            StartCoroutine(_gameManager.SkipToNextDayStart());
+            _gameManager.SkipToNextDay();
         }
     }
 }
