@@ -24,11 +24,12 @@ public class PlayerBehaviour : MonoBehaviour
     // 데이터 분리되면 그걸로 쓰기
     [ Header( "Player Moving Stat" ) ]
     [ SerializeField ] private float speed;
-
     [ SerializeField ] private float dashSpeedMultiplier = 1.5f;
-
     [ SerializeField ] private float jumpForce;
-
+    
+    
+    
+    
     private void Awake()
     {
         player = GetComponent< Player >();
@@ -55,7 +56,9 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 moveDir = ( forward * inputDir.y + right * inputDir.x ).normalized;
 
         float moveSpeed = speed;
-        moveSpeed = moveSpeed * dashSpeedMultiplier;
+        
+        // 스태미나 생기면 따로 speed 데리고 와야하는 거 만들어야함.
+        moveSpeed = moveSpeed * (isDashing? dashSpeedMultiplier : 1.0f);
         
         Vector3 newPosition = rb.position + moveDir * ( moveSpeed * Time.deltaTime );
 
@@ -71,9 +74,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void SetDashState(bool isDashing)
+    public void SetDashState(bool _isDashing)
     {
-        
+        isDashing = _isDashing;
     }
     
     

@@ -20,6 +20,8 @@ public class PlayerInputHandler : MonoBehaviour
         
         inputBinder?.BindInputEvent( nameof( EPlayerInputActionName.Move ), OnMove );
         inputBinder?.BindInputEvent(nameof(EPlayerInputActionName.Jump), OnJump  );
+        inputBinder?.BindInputEvent(nameof(EPlayerInputActionName.Dash), OnDash );
+        
         
     }
 
@@ -36,11 +38,21 @@ public class PlayerInputHandler : MonoBehaviour
 
     void OnAttack( InputAction.CallbackContext context )
     {
+        if ( context.phase == InputActionPhase.Started )
+        {
+            // 애니메이션 타이밍에 맞게 때리려면
+            // 공격 애니메이션 재생?
+        }
     }
 
     // InteractionDetector 로 이동 필요
     void OnInteraction( InputAction.CallbackContext context )
     {
+        if ( context.phase == InputActionPhase.Started )
+        {
+            // InteractionDetector
+        }
+            
     }
 
 
@@ -48,11 +60,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if ( context.phase == InputActionPhase.Performed )
         {
-            
+            behaviour.SetDashState(true);
         }
         else if(context.phase == InputActionPhase.Canceled )
         {
-            
+            behaviour.SetDashState( false );
         }
     }
 }
