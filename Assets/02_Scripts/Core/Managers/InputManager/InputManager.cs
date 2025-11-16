@@ -25,7 +25,9 @@ public class InputManager : MonoBehaviour
         if ( instance == null )
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            
+            // BootstrapScene 이미 Dontdestroy 오브젝트안에 들어가있음
+            //DontDestroyOnLoad(this);
 
             Init();
         }

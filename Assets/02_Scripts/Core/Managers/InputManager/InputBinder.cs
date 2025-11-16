@@ -17,6 +17,8 @@ public class InputBinder : MonoBehaviour
 
     public string CurrenMapName => playerInput.currentActionMap.name;
 
+    // MonoBehaviour가 아니어도 될 것 같음...
+    // 일단 고!
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -42,6 +44,16 @@ public class InputBinder : MonoBehaviour
             inputAction.canceled += action;
 
             nowBindingActions.Add((inputAction, action));
+        }
+    }
+
+    public void BindInputEvent( string actionName, Action< InputAction.CallbackContext > action )
+    {
+        if ( actionMaps.TryGetAction( nameof(EInputMapName.Default), actionName, out InputAction inputAction ) )
+        {
+            inputAction.started += action;
+            inputAction.performed += action;
+            inputAction.canceled += action;
         }
     }
     
@@ -94,12 +106,12 @@ public class InputBinder : MonoBehaviour
 
     public void OnUnloadScene(Scene scene)
     {
-        foreach (var bindingAction in nowBindingActions)
+        for ( int i = nowBindingActions.Count - 1; i >= 0; i-- )
         {
-            bindingAction.Item1.started -= bindingAction.Item2;
-            bindingAction.Item1.performed -= bindingAction.Item2;
-            bindingAction.Item1.canceled -= bindingAction.Item2;
-            nowBindingActions.Remove(bindingAction);
+            nowBindingActions[i].Item1.started -= nowBindingActions[i].Item2;
+            nowBindingActions[i].Item1.performed -= nowBindingActions[i].Item2;
+            nowBindingActions[i].Item1.canceled -= nowBindingActions[i].Item2;
+            nowBindingActions.Remove(nowBindingActions[i]);
         }
     }
 }
