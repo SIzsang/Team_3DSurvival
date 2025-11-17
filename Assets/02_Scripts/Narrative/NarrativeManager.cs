@@ -15,6 +15,7 @@ namespace _02_Scripts.Narrative
         private DialogueManager _dialogueManager;
 
         [SerializeField]private List<StoryData> stories;
+        [SerializeField] private bool isMainNarrativeOn = false;
 
         private readonly Dictionary<GameTimestamp, Story> _storyByDate = new Dictionary<GameTimestamp, Story>();
         // private readonly Dictionary<GameTimestamp, Story> _storyByInteraction = new Dictionary<GameTimestamp, Story>();
@@ -112,6 +113,7 @@ namespace _02_Scripts.Narrative
         /// <param name="gameTimestamp">진행할 스토리의 타임스탬프입니다.</param>
         public void ProgressMainStoryWithFade(GameTimestamp gameTimestamp)
         {
+            if (!isMainNarrativeOn) return;
             StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStoryByDate(gameTimestamp)));
         }
 
@@ -123,6 +125,7 @@ namespace _02_Scripts.Narrative
         /// <returns>코루틴 실행을 위한 IEnumerator를 반환합니다.</returns>
         public IEnumerator ProgressMainStoryByDate(GameTimestamp timestamp)
         {
+
             if (_storyByDate.Count == 0)
             {
                 Initialize();
