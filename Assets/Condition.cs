@@ -7,16 +7,16 @@ public class Condition : MonoBehaviour
     public float startValue; //시작값
     public float maxValue; //최대값
     public float passiveValue; //자동 회복
-    public Image uibar; //ui
+    public Image uiBar; //ui
     
     void Start()
     {
-        curValue = maxValue;
+        curValue = maxValue; //무엇을 적어야할까?
     }
     
     void Update()
     {
-        uibar.fillAmount = GetPercentage();
+        uiBar.fillAmount = GetPercentage();
     }
     
     float GetPercentage()
