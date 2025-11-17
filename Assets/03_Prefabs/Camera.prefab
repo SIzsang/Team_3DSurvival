@@ -24,12 +24,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2313640807472643943}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5071150925523379125}
+  m_Father: {fileID: 3043284619490408497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3834148851018364471
 GameObject:
@@ -61,6 +61,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3302768359575395561}
+  - {fileID: 415166104643458154}
   m_Father: {fileID: 5071150925523379125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3873430192427041966
@@ -96,7 +97,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3043284619490408497}
-  - {fileID: 415166104643458154}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3659863676360185372
@@ -129,8 +129,10 @@ MonoBehaviour:
   lookSensitivity: 0.2
   container: {fileID: 0}
   wallCheckTransform: {fileID: 0}
+  camTransform: {fileID: 0}
   minXLook: -50
   maxXLook: 30
+  thirdPersonPosition: {x: 0, y: 3, z: -6.5}
 --- !u!114 &8035464291075482344
 MonoBehaviour:
   m_ObjectHideFlags: 0

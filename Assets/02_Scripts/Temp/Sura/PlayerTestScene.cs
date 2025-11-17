@@ -12,6 +12,7 @@ public class PlayerTestScene : MonoBehaviour
         cameraManager?.SetTarget(player.transform);
         
         InputManager.Instance.EnableInput(EInputActionAssetName.Camera);
+        InputManager.Instance.HideCursor();
     }
 
 }

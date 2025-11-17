@@ -10,23 +10,38 @@ public class Player : MonoBehaviour
 
     public PlayerAnimationController PlayerAnimator => playerAnimator;
     private PlayerAnimationController playerAnimator;
-    
+
     public InteractionDetector InteractionDetector => interactionDetector;
     private InteractionDetector interactionDetector;
 
+    public AttackDetector AttackDetector => attackDetector;
+    private AttackDetector attackDetector;
 
-    
+
     public Vector3 Forward => behaviour.Forward;
 
     private void Awake()
     {
-        inputHandler = GetComponent< PlayerInputHandler >();
-        behaviour = GetComponent< PlayerBehaviour >();
-        playerAnimator = GetComponent< PlayerAnimationController >();
+        inputHandler = GetComponent<PlayerInputHandler>();
+        behaviour = GetComponent<PlayerBehaviour>();
+        playerAnimator = GetComponent<PlayerAnimationController>();
+        interactionDetector = GetComponent<InteractionDetector>();
+        attackDetector = GetComponent<AttackDetector>();
 
-        inputHandler.Init( this );
-        
+        inputHandler.Init(this);
+    }
+
+
+    public void OnInteraction()
+    {
+        if (interactionDetector.CurrentTarget != null)
+            interactionDetector.CurrentTarget.OnInteract();
+    }
+
+    public void OnAttack()
+    {
+        Debug.Log("때림");
+        if (attackDetector.CurrentTarget != null)
+            attackDetector.CurrentTarget.TakeDamage();
     }
 }
-
-

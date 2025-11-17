@@ -10,6 +10,7 @@ public class CameraInputHandler : MonoBehaviour
 
     public void Init()
     {
+        behaviour = GetComponent<CameraBehaviour>();
         BindInputs();
     }
 
@@ -26,6 +27,7 @@ public class CameraInputHandler : MonoBehaviour
 
     void OnLook(InputAction.CallbackContext context)
     {
+        behaviour?.UpdateLookInput(context.ReadValue<Vector2>());
         //Debug.Log(context.ReadValue<Vector2>());
     }
 

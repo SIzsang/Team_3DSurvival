@@ -13,13 +13,19 @@ public class CameraBehaviour : MonoBehaviour
     [SerializeField] private Transform wallCheckTransform;
     [SerializeField] private Transform camTransform;
 
-    public Transform Target => target;
-    private Transform target;
+    public Transform FollowingTarget => _followingTarget;
+    private Transform _followingTarget;
+    
+    public Vector3 Forward => camTransform.forward;
     
     [SerializeField] private float minXLook = -50;
     [SerializeField] private float maxXLook = 30;
     
     [SerializeField] private Vector3 thirdPersonPosition = new Vector3(0, 3.0f, -6.5f);
+    
+    
+    private float camCurRotX;
+    private float camCurRotY;
     
     private void LateUpdate()
     {
@@ -30,8 +36,8 @@ public class CameraBehaviour : MonoBehaviour
 
     public void SetTarget(Transform _target)
     {
-        target = _target;
-        container.transform.localPosition = thirdPersonPosition;
+        _followingTarget = _target;
+        camTransform.localPosition = thirdPersonPosition;
     }
 
     public void CheckObstacle()
@@ -57,24 +63,36 @@ public class CameraBehaviour : MonoBehaviour
     
     public void RotateCamera()
     {
-        // container.transform.localEulerAngles = new Vector3(0, camCurRotY, 0);
-        // wallCheckCotainer.transform.localEulerAngles = new Vector3(0, camCurRotY, 0);
-        //
+        
+        container.transform.localEulerAngles = new Vector3(0, camCurRotY, 0);
+        //wallCheckTransform.transform.localEulerAngles = new Vector3(0, camCurRotY, 0);
+        
+        container.localEulerAngles = new Vector3(-camCurRotX, container.localEulerAngles.y, 0);
         // if (isThirdPerson)
         // {
-        //     container.localEulerAngles = new Vector3(-camCurRotX, container.localEulerAngles.y, 0);
+        //    
         //     wallCheckCotainer.localEulerAngles = new Vector3(container.localEulerAngles.x, container.localEulerAngles.y, 0);
-        // }
-        // else
-        // {
-        //     // containerX.transform.eulerAngles = new Vector3(-camCurRotX, containerX.transform.eulerAngles.y, containerX.transform.eulerAngles.z);
-        //     // wallCheckContainerX.transform.eulerAngles = new Vector3(-camCurRotX, containerX.transform.eulerAngles.y, containerX.transform.eulerAngles.z);
         // }
     }
 
     public void MoveCamera()
     {
-        this.transform.position = target.transform.position;
+        this.transform.position = _followingTarget.transform.position;
     }
+    
+    
+    public void UpdateLookInput(Vector2 delta)
+    {
+        camCurRotX += delta.y * lookSensitivity;
+
+        camCurRotX = Mathf.Clamp(camCurRotX, minXLook, maxXLook);
+
+        camCurRotY += delta.x * lookSensitivity;
+        //
+        // Vector3 forward = Quaternion.Euler(0, camCurRotY, 0) * Vector3.forward;
+        // return forward;
+    }
+    
+
 
 }

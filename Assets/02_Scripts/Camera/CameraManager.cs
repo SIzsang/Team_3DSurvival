@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
     CameraInputHandler inputHandler;
     CameraBehaviour behaviour;
 
-    private Transform Target => behaviour?.Target;
+    private Transform FollowingTarget => behaviour?.FollowingTarget;
 
     private void Awake()
     {

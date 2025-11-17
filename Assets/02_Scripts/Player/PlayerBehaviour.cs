@@ -29,6 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     
     
+    private Vector2 inputDir;
     
     private void Awake()
     {
@@ -42,7 +43,6 @@ public class PlayerBehaviour : MonoBehaviour
         Move();
     }
 
-    private Vector2 inputDir;
     
     public void SetInputDirection( Vector2 _inputDir )
     {
