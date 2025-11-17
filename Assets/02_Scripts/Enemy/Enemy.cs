@@ -115,13 +115,15 @@ public class Enemy : MonoBehaviour
 	{
 		NavMeshHit hit;
 
-		NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
+		NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * 
+			Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
 
 		int i = 0;
 
 		while (Vector3.Distance(transform.position, hit.position) < detectDistance)
 		{
-			NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
+			NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * 
+				Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
 			i++;
 			if (i == 30) break;
 		}
