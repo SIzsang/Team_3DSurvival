@@ -47,7 +47,9 @@ public class InputManager : MonoBehaviour
             if ( Enum.TryParse( binder.gameObject.name, out EInputActionAssetName result ) )
             {
                 if ( inputBinders.ContainsKey( result ) ) continue;
+                binder.SetEnableInput(true);
                 inputBinders.Add( result, binder );
+                
             }
         }
     }
