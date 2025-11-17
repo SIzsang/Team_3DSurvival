@@ -21,4 +21,4 @@ MonoBehaviour:
   canAtk: 1
   AtkValue: 10
   consumables: []
-  equipPrefab: {fileID: 0}
+  equipPrefab: {fileID: 5675870974208443932, guid: f4753d5107cfec240a408ee5eff3c97c, type: 3}
