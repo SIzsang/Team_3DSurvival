@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
 using UnityEngine;
 
-public class ResourceObject : MonoBehaviour//, IInteractable
+public class ResourceObject : MonoBehaviour, IInteractable
 {
     public ItemData giveItem;
     public int quantityPerHithit;
@@ -22,6 +22,7 @@ public class ResourceObject : MonoBehaviour//, IInteractable
     //        testTime = 0;
     //    }
     //}
+
     private void Awake()
     {
         lastPosition = transform.position;
@@ -36,14 +37,22 @@ public class ResourceObject : MonoBehaviour//, IInteractable
         gameManager.OnDaytimeStart -= Respown;
     }
 
-    public void OnInteract(Vector3 hitPoint, Vector3 hitNomal)
+    public void OnInteract()
     {
         for (int i = 0; i < quantityPerHithit; i++)
         {
             if (capacity <= 0) break;
             {
                 capacity-=1;
-                Instantiate(giveItem.dropPrefab, Vector3.up + hitPoint, Quaternion.LookRotation(hitNomal, Vector3.up));
+                Vector3 randomOffset = new Vector3(
+                    Random.Range(-0.5f, 0.5f),// 좌우 
+                     0,                       // 높이
+                    Random.Range(-0.5f, 0.5f) // 앞뒤
+                );
+
+                Vector3 spawnPos = transform.position + randomOffset + Vector3.up;
+
+                Instantiate(giveItem.dropPrefab, spawnPos, Quaternion.identity);
             }
         }
         Destroy(this.gameObject);
@@ -54,4 +63,5 @@ public class ResourceObject : MonoBehaviour//, IInteractable
         Vector3 position = lastPosition;
         Instantiate(gameObject, position, Quaternion.identity);
     }
+
 }
