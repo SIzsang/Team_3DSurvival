@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe8ed3680d526949b36c81e10376f9a, type: 3}
   m_Name: Item_Armor
   m_EditorClassIdentifier: 
-  displayName: "\uB098\uBB34"
-  description: "\uADF8\uB0E5 \uB098\uBB34\uC785\uB2C8\uB2E4."
-  type: 2
+  displayName: "\uAC11\uC637"
+  description: "\uB098\uBB34\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uAC11\uC637\uC785\uB2C8\uB2E4."
+  type: 0
   dropPrefab: {fileID: 0}
-  CanStack: 1
+  CanStack: 0
   maxStackAmount: 99
   canAtk: 0
   AtkValue: 0
   consumables: []
-  equipPrefab: {fileID: 0}
+  equipPrefab: {fileID: 8152239362794339666, guid: c82bb9b4da72dfa4ea7f1e53999bcf26, type: 3}
