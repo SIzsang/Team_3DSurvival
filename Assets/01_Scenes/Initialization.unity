@@ -531,7 +531,7 @@ MonoBehaviour:
   minutesPerSecond: 10
   fadeDuration: 1
   canvasGroup: {fileID: 447148828}
-  isMainNarrativeOn: 1
+  isMainNarrativeOn: 0
 --- !u!114 &668669117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stories:
   - {fileID: 11400000, guid: 013ea26f426fec6419f030ad888af3aa, type: 2}
-  isMainNarrativeOn: 1
+  isMainNarrativeOn: 0
 --- !u!114 &668669118
 MonoBehaviour:
   m_ObjectHideFlags: 0
