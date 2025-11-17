@@ -29,6 +29,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Narrative",
+            "id": "e1e359bf-31d6-490d-b363-2c13145d4a9f",
+            "actions": [
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "393bde13-df98-4607-9e08-481f8ce238a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4c3ac291-9c52-4a46-8afa-5fb3c7529220",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2262c19e-3f71-49e4-8a62-f036ac1c7bb0",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

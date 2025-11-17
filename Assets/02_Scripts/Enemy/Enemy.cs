@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+
+public interface ICombatable
+{
+
+	void TakePhysicalDamage(int damage)
+	{
+
+	}
+
+}
 public enum AIState
 {
 	Idle,
 	Wandering,
 	Attacking
 }
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour,ICombatable
 {
 	[Header("Stats")]
 	public int health;
@@ -36,6 +47,7 @@ public class Enemy : MonoBehaviour
 
 	private float playerDistance;
 	public GameObject Player;
+	public GameObject enemyPrefab;
 
 	public float fieldOfView = 120f;
 
@@ -176,5 +188,25 @@ public class Enemy : MonoBehaviour
 
 		return angle < fieldOfView;
 	}
+
+
+	public void SpawnEnemy()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			Vector2 pos2D = Random.insideUnitCircle.normalized * Random.Range(10.0f, 20.0f);
+			Vector3 pos3D = new Vector3(pos2D.x, 0, pos2D.y);
+
+			if (Application.isPlaying)
+			{
+				Quaternion rot = Quaternion.LookRotation(Player.transform.position - pos3D);
+				Instantiate(enemyPrefab, pos3D, rot);
+			}
+
+
+		}
+	}
+
+
 
 }
