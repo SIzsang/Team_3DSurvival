@@ -531,6 +531,7 @@ MonoBehaviour:
   minutesPerSecond: 10
   fadeDuration: 1
   canvasGroup: {fileID: 447148828}
+  isMainNarrativeOn: 1
 --- !u!114 &668669117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,8 +545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stories:
-  - {fileID: 11400000, guid: 7a249a24912990e4f97ca0927cfa5fcf, type: 2}
   - {fileID: 11400000, guid: 013ea26f426fec6419f030ad888af3aa, type: 2}
+  isMainNarrativeOn: 1
 --- !u!114 &668669118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1029687474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -771,7 +772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1104500576
 RectTransform:
   m_ObjectHideFlags: 0

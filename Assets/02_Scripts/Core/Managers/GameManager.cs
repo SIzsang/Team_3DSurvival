@@ -12,6 +12,7 @@ namespace _02_Scripts.Core.Managers
         [SerializeField] private float minutesPerSecond;
         [SerializeField] private float fadeDuration = 1f;
         [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private bool isMainNarrativeOn = false;
 
         public bool IsTimePaused { get; private set; }
         public int CurrentDay { get; private set; }
@@ -134,6 +135,10 @@ namespace _02_Scripts.Core.Managers
             _timeOfDayInMinutes = 0;
             UpdateTimeProperties();
             OnGameStart?.Invoke(GetGameTimestamp());
+            if(!isMainNarrativeOn)
+            {
+                StartCoroutine(FadeRoutine(0f));
+            }
             ResumeTime();
         }
 
