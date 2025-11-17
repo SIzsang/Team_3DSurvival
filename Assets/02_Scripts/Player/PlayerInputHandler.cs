@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void Init( Player _player )
     {
         player = _player;
-        behaviour = player.Behaviour;
+        behaviour = GetComponent<PlayerBehaviour>();
         BindInputs();
     }
 

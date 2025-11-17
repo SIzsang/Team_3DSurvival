@@ -47,6 +47,7 @@ public abstract class RayDetector<T> : MonoBehaviour
             
             case EInteractionDetectorShape.Capsule:
                 // 나중에....
+                
                 break;
 
         }

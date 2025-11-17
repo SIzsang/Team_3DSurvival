@@ -299,7 +299,8 @@ MonoBehaviour:
   startTransform: {fileID: 2026131816958216019}
   interactionDistance: 0.57
   interactionShapeRange: 1
-  rayShape: 1
+  rayShape: 0
+  gizmosColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &6778431960594944525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,9 +314,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTransform: {fileID: 2026131816958216019}
-  interactionDistance: 1
-  interactionShapeRange: 1
-  rayShape: 0
+  interactionDistance: 0.5
+  interactionShapeRange: 0.52
+  rayShape: 2
+  gizmosColor: {r: 1, g: 0.00000025431316, b: 0, a: 1}
 --- !u!1 &7416729250926997560
 GameObject:
   m_ObjectHideFlags: 0
