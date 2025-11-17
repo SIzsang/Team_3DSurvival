@@ -46,7 +46,6 @@ public class Enemy : MonoBehaviour,ICombatable
 
 	private float playerDistance;
 	public GameObject Player;
-	public GameObject enemyPrefab;
 
 	public float fieldOfView = 120f;
 
@@ -149,7 +148,7 @@ public class Enemy : MonoBehaviour,ICombatable
 			if (Time.time - lastAttackTime > attackRate)
 			{
 				lastAttackTime = Time.time;
-				//Player.GetComponent<IDamageable>().TakePhysicalDamage(damage);
+				//Player.GetComponent<ICombatable>().TakePhysicalDamage(damage);
 				animator.speed = 1;
 				animator.SetTrigger("Attack");
 			}
@@ -188,22 +187,14 @@ public class Enemy : MonoBehaviour,ICombatable
 		return angle < fieldOfView;
 	}
 
-
-	public void SpawnEnemy()
+	void TakePhysicalDamage(int damage)  // 몬스터가 공격을 받았을때 쓰는 함수
 	{
-		for (int i = 0; i < 10; i++)
+		health -= damage;
+		if(health <= 0)
 		{
-			Vector2 pos2D = Random.insideUnitCircle.normalized * Random.Range(10.0f, 20.0f);
-			Vector3 pos3D = new Vector3(pos2D.x, 0, pos2D.y);
-
-			if (Application.isPlaying)
-			{
-				Quaternion rot = Quaternion.LookRotation(Player.transform.position - pos3D);
-				Instantiate(enemyPrefab, pos3D, rot);
-			}
-
-
+			Destroy(gameObject);
 		}
+
 	}
 
 
