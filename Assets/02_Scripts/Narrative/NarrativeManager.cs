@@ -151,6 +151,7 @@ namespace _02_Scripts.Narrative
 
         private void ShowPrologue()
         {
+            if (!isMainNarrativeOn) return;
             CheckAndProgressNarrative(prologueStory);
         }
 
