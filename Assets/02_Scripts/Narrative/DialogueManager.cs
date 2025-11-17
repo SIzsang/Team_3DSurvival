@@ -122,7 +122,7 @@ namespace _02_Scripts.Narrative
                 return;
             }
 
-            speakerName.text = line.SpeakerName;
+            speakerName.text = line.speakerName;
             _currentSentence = line.text;
 
             if (_typingCoroutine != null)
