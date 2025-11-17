@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         interactionDetector = GetComponent<InteractionDetector>();
         attackDetector = GetComponent<AttackDetector>();
 
-        inputHandler.Init(this);
+        inputHandler.Init();
     }
 
 

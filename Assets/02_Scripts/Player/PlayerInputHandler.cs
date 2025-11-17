@@ -6,10 +6,11 @@ public class PlayerInputHandler : MonoBehaviour
     private Player player;
     private InputBinder inputBinder;
     private PlayerBehaviour behaviour;
-
-    public void Init( Player _player )
+    
+    
+    public void Init()
     {
-        player = _player;
+        player = GetComponent<Player>();
         behaviour = GetComponent<PlayerBehaviour>();
         BindInputs();
     }
