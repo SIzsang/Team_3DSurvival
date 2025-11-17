@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using _02_Scripts.Core.Managers;
 using UnityEngine;
 
 public class ResourceObject : MonoBehaviour//, IInteractable
@@ -7,6 +8,9 @@ public class ResourceObject : MonoBehaviour//, IInteractable
     public ItemData giveItem;
     public int quantityPerHithit;
     public int capacity;
+    Vector3 lastPosition; // 생성 마지막 위치
+    GameManager gameManager;
+    
 
     //public float testTime;
     //private void Update()
@@ -18,6 +22,19 @@ public class ResourceObject : MonoBehaviour//, IInteractable
     //        testTime = 0;
     //    }
     //}
+    private void Awake()
+    {
+        lastPosition = transform.position;
+    }
+    private void OnEnable()
+    {
+        gameManager.OnDaytimeStart += Respown;
+    }
+
+    private void OnDisable()
+    {
+        gameManager.OnDaytimeStart -= Respown;
+    }
 
     public void OnInteract(Vector3 hitPoint, Vector3 hitNomal)
     {
@@ -30,5 +47,11 @@ public class ResourceObject : MonoBehaviour//, IInteractable
             }
         }
         Destroy(this.gameObject);
+    }
+
+    public void Respown() // 리스폰
+    {
+        Vector3 position = lastPosition;
+        Instantiate(gameObject, position, Quaternion.identity);
     }
 }
