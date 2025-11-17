@@ -22,11 +22,14 @@ namespace _02_Scripts.Core.Managers
         public event Action<GameTimestamp> OnTimeChanged;
         public event Action<int> OnDayChanged;
         public event Action<GameTimestamp> OnGameStart;
+        public event Action OnNightStart;
+        public event Action OnDaytimeStart;
         public void PauseTime() => IsTimePaused = true;
         public void ResumeTime() => IsTimePaused = false;
 
         private float _timeOfDayInMinutes;
-
+        private bool _daytimeInvoked = false;
+        private bool _nightInvoked = false;
 
         void Awake()
         {
@@ -53,12 +56,13 @@ namespace _02_Scripts.Core.Managers
                 return;
             }
             _timeOfDayInMinutes += Time.deltaTime * minutesPerSecond;
-
+            UpdateTimeProperties();
+            CheckDay();
+            CheckNight();
             if (_timeOfDayInMinutes >= Constants.Game.MinutesInADay)
             {
                 AdvanceNextDay();
             }
-            UpdateTimeProperties();
         }
 
         /// <summary>
@@ -100,7 +104,8 @@ namespace _02_Scripts.Core.Managers
             {
                 _timeOfDayInMinutes -= Constants.Game.MinutesInADay;
             }
-
+            _daytimeInvoked = false;
+            _nightInvoked = false;
             OnDayChanged?.Invoke(CurrentDay);
         }
 
@@ -132,7 +137,7 @@ namespace _02_Scripts.Core.Managers
         {
             PauseTime();
             CurrentDay = 1;
-            _timeOfDayInMinutes = 0;
+            _timeOfDayInMinutes = Constants.Game.DaytimeInHour * 60f;
             UpdateTimeProperties();
             OnGameStart?.Invoke(GetGameTimestamp());
             if(!isMainNarrativeOn)
@@ -183,6 +188,26 @@ namespace _02_Scripts.Core.Managers
             }
             canvasGroup.alpha = targetAlpha;
             canvasGroup.blocksRaycasts = targetAlpha > 0.5f;
+        }
+
+        private void CheckNight()
+        {
+            if (_nightInvoked) return;
+            if (CurrentHour == Constants.Game.NightInHour)
+            {
+                OnNightStart?.Invoke();
+                _nightInvoked = true;
+            }
+        }
+
+        private void CheckDay()
+        {
+            if(_daytimeInvoked) return;
+            if (CurrentHour == Constants.Game.DaytimeInHour)
+            {
+                OnDaytimeStart?.Invoke();
+                _daytimeInvoked = true;
+            }
         }
     }
 }

@@ -11,6 +11,8 @@ namespace _02_Scripts.Utils
         public static class Game
         {
             public const float MinutesInADay = 1440f;
+            public const int DaytimeInHour = 6;
+            public const int NightInHour = 18;
         }
     }
 }
