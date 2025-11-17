@@ -56,6 +56,16 @@ public class InputBinder : MonoBehaviour
             inputAction.canceled += action;
         }
     }
+    
+    public void BindInputEvent<TEnum>(TEnum enumValue , Action< InputAction.CallbackContext > action ) where TEnum : Enum
+    {
+        if ( actionMaps.TryGetAction( nameof( EInputMapName.Default ), enumValue.ToString(), out InputAction inputAction ) )
+        {
+            inputAction.started += action;
+            inputAction.performed += action;
+            inputAction.canceled += action;
+        }
+    }
 
     /// <summary>
     /// 해당 PlayerInput 활성/비활성화

@@ -16,6 +16,7 @@ namespace _02_Scripts.Narrative
 
         [SerializeField]private List<StoryData> stories;
         [SerializeField] private bool isMainNarrativeOn = false;
+        [SerializeField] private StoryData prologueStory;
 
         private readonly Dictionary<GameTimestamp, Story> _storyByDate = new Dictionary<GameTimestamp, Story>();
         // private readonly Dictionary<GameTimestamp, Story> _storyByInteraction = new Dictionary<GameTimestamp, Story>();
@@ -56,6 +57,7 @@ namespace _02_Scripts.Narrative
                 // }
 
             }
+            ShowPrologue();
         }
 
         void OnEnable()
@@ -145,6 +147,12 @@ namespace _02_Scripts.Narrative
             story.SetPlayed();
             _dialogueManager.StartDialogue(story);
             yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive);
+        }
+
+        private void ShowPrologue()
+        {
+            if (!isMainNarrativeOn) return;
+            CheckAndProgressNarrative(prologueStory);
         }
 
 

@@ -17,11 +17,21 @@ public class PlayerInputHandler : MonoBehaviour
     void BindInputs()
     {
         inputBinder = InputManager.Instance?.GetInputEventBinder( EInputActionAssetName.Player );
-        
-        inputBinder?.BindInputEvent( nameof( EPlayerInputActionName.Move ), OnMove );
-        inputBinder?.BindInputEvent(nameof(EPlayerInputActionName.Jump), OnJump  );
-        inputBinder?.BindInputEvent(nameof(EPlayerInputActionName.Dash), OnDash );
-        
+
+        if (inputBinder != null)
+        {
+            inputBinder.BindInputEvent(  EPlayerInputActionName.Move , OnMove );
+            inputBinder.BindInputEvent(EPlayerInputActionName.Jump, OnJump  );
+            inputBinder.BindInputEvent(EPlayerInputActionName.Dash, OnDash );
+            
+            inputBinder.BindInputEvent(EPlayerInputActionName.Interaction, OnInteraction );
+            inputBinder.BindInputEvent(EPlayerInputActionName.Attack,OnAttack);
+            
+            inputBinder.BindInputEvent(EPlayerInputActionName.Num1, OnNum1 );
+            inputBinder.BindInputEvent(EPlayerInputActionName.Num2, OnNum2 );
+            inputBinder.BindInputEvent(EPlayerInputActionName.Num3, OnNum3 );
+            inputBinder.BindInputEvent(EPlayerInputActionName.Num4, OnNum4 );
+        }
         
     }
 
@@ -36,21 +46,25 @@ public class PlayerInputHandler : MonoBehaviour
             behaviour.Jump();
     }
 
+    // 채집도 같이 해야할 듯?
     void OnAttack( InputAction.CallbackContext context )
     {
         if ( context.phase == InputActionPhase.Started )
         {
+            
+            Debug.Log("Attack");
             // 애니메이션 타이밍에 맞게 때리려면
             // 공격 애니메이션 재생?
         }
     }
-
-    // InteractionDetector 로 이동 필요
+    
     void OnInteraction( InputAction.CallbackContext context )
     {
         if ( context.phase == InputActionPhase.Started )
         {
             // InteractionDetector
+
+
         }
             
     }
@@ -67,4 +81,27 @@ public class PlayerInputHandler : MonoBehaviour
             behaviour.SetDashState( false );
         }
     }
+
+
+    void OnNum1(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    void OnNum2(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    void OnNum3(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    void OnNum4(InputAction.CallbackContext context)
+    {
+        
+    }
+    
+    
 }
