@@ -27,15 +27,15 @@ public class ResourceObject : MonoBehaviour, IInteractable
     {
         lastPosition = transform.position;
     }
-    private void OnEnable()
-    {
-        gameManager.OnDaytimeStart += Respown;
-    }
+    //private void OnEnable()
+    //{
+    //    gameManager.OnDaytimeStart += Respown;
+    //}
 
-    private void OnDisable()
-    {
-        gameManager.OnDaytimeStart -= Respown;
-    }
+    //private void OnDisable()
+    //{
+    //    gameManager.OnDaytimeStart -= Respown;
+    //}
 
     public void OnInteract()
     {
