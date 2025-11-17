@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,16 +7,16 @@ public class Condition : MonoBehaviour
     public float startValue; //시작값
     public float maxValue; //최대값
     public float passiveValue; //자동 회복
-    public Image Uibar; //ui
+    public Image uibar; //ui
     
     void Start()
     {
-        curValue = startValue;
+        curValue = maxValue;
     }
     
     void Update()
     {
-        Uibar.fillAmount = GetPercentage();
+        uibar.fillAmount = GetPercentage();
     }
     
     float GetPercentage()
@@ -32,8 +29,9 @@ public class Condition : MonoBehaviour
         curValue = Mathf.Min(curValue + value, maxValue);
     }
 
-    public void Subtractt(float value)
+    public void Subtract(float value)
     {
         curValue = Mathf.Max(curValue - value, 0);
     }
+  
 }
