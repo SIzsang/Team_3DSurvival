@@ -7,7 +7,6 @@ using UnityEngine.AI;
 
 public interface ICombatable
 {
-
 	void TakePhysicalDamage(int damage)
 	{
 

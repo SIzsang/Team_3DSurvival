@@ -18,7 +18,7 @@ public class InputManagerTestScene : MonoBehaviour
         if (inputBinder != null)
         {
             inputBinder.BindInputEvent(nameof(EInputMapName.Default), nameof(EPlayerInputActionName.Move), InputPlayerMove);
-            inputBinder.BindInputEvent(nameof(EInputMapName.Default), nameof(EPlayerInputActionName.MouseLeft), InputDefaultLeftMouse);
+            inputBinder.BindInputEvent(nameof(EInputMapName.Default), nameof(EPlayerInputActionName.Attack), InputDefaultLeftMouse);
             inputBinder.BindInputEvent(nameof(EInputMapName.UseMouse), nameof(EPlayerInputActionName.MouseLeft), InputUseMouseLeftMouse);
         }
     }
