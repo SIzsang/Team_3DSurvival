@@ -10,7 +10,12 @@ public class Player : MonoBehaviour
 
     public PlayerAnimationController PlayerAnimator => playerAnimator;
     private PlayerAnimationController playerAnimator;
+    
+    public InteractionDetector InteractionDetector => interactionDetector;
+    private InteractionDetector interactionDetector;
 
+
+    
     public Vector3 Forward => behaviour.Forward;
 
     private void Awake()
@@ -20,5 +25,8 @@ public class Player : MonoBehaviour
         playerAnimator = GetComponent< PlayerAnimationController >();
 
         inputHandler.Init( this );
+        
     }
 }
+
+
