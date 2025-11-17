@@ -261,11 +261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9441ba4409544bf988c71e3504efa823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDashing: 0
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
   playerScale: 0.2
   speed: 5
+  dashSpeedMultiplier: 1.5
   jumpForce: 5
 --- !u!114 &1319576240073962163
 MonoBehaviour:
