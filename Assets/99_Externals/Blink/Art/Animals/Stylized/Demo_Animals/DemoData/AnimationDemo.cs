@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BLINK
+namespace _99_Externals.Blink.Art.Animals.Stylized.Demo_Animals.DemoData
 {
     public class AnimationDemo : MonoBehaviour
     {

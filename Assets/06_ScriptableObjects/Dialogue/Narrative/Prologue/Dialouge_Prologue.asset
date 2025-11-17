@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb263597cbd240c7aa7060b9fe2a1610, type: 3}
+  m_Name: Dialouge_Prologue
+  m_EditorClassIdentifier: 
+  dialogueType: 1
+  dialogueLines:
+  - speakerName: 
+    text: "\uC5B4\uB450\uC6B4 \uB3D9\uAD74\uC744 \uC9C0\uB098\uC790 \uBD80\uC11C\uC9C0\uB294
+      \uD587\uC0B4\uC774 \uB098\uB97C \uB9DE\uC558\uB2E4."
+  - speakerName: 
+    text: "\uB208\uC774 \uC801\uC751 \uB418\uC790 \uBB3C\uACFC \uC218\uB85D\uC774
+      \uC6B0\uAC70\uC9C4 \uC544\uB984\uB2E4\uC6B4 \uACBD\uAD00\uC774 \uBCF4\uC600\uB2E4."
+  - speakerName: 
+    text: "\uD558\uC9C0\uB9CC \uC774\uB807\uAC8C \uB9D1\uC740 \uC790\uC5F0\uC774
+      \uC874\uC7AC\uD55C\uB2E4\uB294\uAC83\uC740 \uC0AC\uB78C\uC758 \uC190\uC774
+      \uB2FF\uC9C0 \uC54A\uB294\uB2E4\uB294\uAC83\uC774\uACE0"
+  - speakerName: 
+    text: "\uADF8 \uB9D0\uC740 \uC989 \uBAAC\uC2A4\uD130\uB4E4\uC758 \uB465\uC9C0\uAC00
+      \uC874\uC7AC\uD560 \uAC00\uB2A5\uC131\uC774 \uB192\uB2E4\uB294 \uB73B\uC774\uC5C8\uB2E4."
+  - speakerName: 
+    text: "\uBC14\uC704 \uB4A4\uC5D0\uC11C \uAE30\uCC99\uC774 \uB290\uAEF4\uC84C\uB2E4."
+  - speakerName: 
+    text: "\uB0A1\uC740 \uB85C\uBD07 \uD55C \uB300\uAC00 \uC11C \uC788\uC5C8\uB2E4.
+      \uB179\uC2A8 \uD314\uB2E4\uB9AC, \uAE08 \uAC04 \uC678\uC7A5. \uACE7 \uACE0\uC7A5
+      \uB0A0 \uAC83 \uAC19\uC740 \uBAB8\uB6B1\uC774."
+  - speakerName: FY-317
+    text: "FY-317\uC785\uB2C8\uB2E4. \uBC18\uAC11\uC2B5\uB2C8\uB2E4."
+  - speakerName: "\uB098"
+    text: "...\uB10C \uC65C \uC5EC\uAE30 \uC788\uC5B4?"
+  - speakerName: FY-317
+    text: "\uC8FC\uC778\uB2D8\uC758 \uBA85\uB839\uC73C\uB85C \uC8FC\uC778\uB2D8\uC744
+      \uAE30\uB2E4\uB9AC\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
+  - speakerName: 
+    text: "\uC544\uB9C8 \uBC84\uB824\uC9C4 \uB85C\uBD07\uC77C\uAC83\uC774\uB2E4. "
+  - speakerName: 
+    text: "\uC694\uC998 \uB85C\uBD07\uB4E4\uC740 \uAC10\uC815 \uBAA8\uB4C8\uC774
+      \uAE30\uBCF8\uC774\uB2E4. \uC678\uB85C\uC6C0\uC744 \uB2EC\uB798\uC8FC\uB294
+      \uB300\uC2E0, \uBC84\uB9B4 \uB54C \uBCF5\uC7A1\uD55C \uC808\uCC28\uC640 \uBE44\uC2FC
+      \uD3D0\uAE30 \uBE44\uC6A9\uC774 \uB4E0\uB2E4. \uADF8\uB798\uC11C \uBAB0\uB798
+      \uBC84\uB9AC\uB294 \uC778\uAC04\uB4E4\uC774 \uB9CE\uB2E4. \uC774 \uB85C\uBD07\uB3C4
+      \uADF8\uB807\uAC8C \uBC84\uB824\uC9C4 \uAC70\uACA0\uC9C0."
+  - speakerName: 
+    text: "\uC218\uD480\uC774 \uD754\uB4E4\uB838\uB2E4. \uBAAC\uC2A4\uD130 \uBB34\uB9AC\uAC00
+      \uB098\uD0C0\uB0AC\uB2E4."
+  - speakerName: "\uB098"
+    text: "\uD558\uC544... \uC5ED\uC2DC\uB098."
