@@ -9,7 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a211bb7b93a430186b97c6a0ef28145, type: 3}
-  m_Name: Temp New Character
+  m_Script: {fileID: 11500000, guid: 5b4e1801c104480e922e83536589bb7f, type: 3}
+  m_Name: Story_Event_CompleteHouse
   m_EditorClassIdentifier: 
-  characterName: "\uC8FC\uC778\uACF5"
+  gameTimestamp:
+    day: 0
+    hour: 0
+    minute: 0
+  dialogue:
+  - {fileID: 11400000, guid: 1f4c0beeaf029574f912db25e1846e56, type: 2}
+  triggerType: 0
+  needFade: 0

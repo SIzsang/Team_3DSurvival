@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb263597cbd240c7aa7060b9fe2a1610, type: 3}
-  m_Name: New Dialogue
+  m_Script: {fileID: 11500000, guid: 5b4e1801c104480e922e83536589bb7f, type: 3}
+  m_Name: Story_Event_AfterFirstBattle
   m_EditorClassIdentifier: 
-  dialogueType: 1
-  dialogueLines:
-  - Character: {fileID: 11400000, guid: 6df57b888e95c724fac1dc5eaf074549, type: 2}
-    text: "Narrative Test\uC785\uB2C8"
+  gameTimestamp:
+    day: 0
+    hour: 0
+    minute: 0
+  dialogue:
+  - {fileID: 11400000, guid: 47211356f4b23894191a71084525eedd, type: 2}
+  triggerType: 0
+  needFade: 0
