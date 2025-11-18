@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class HouseObject : MonoBehaviour, IInteractable
 {
-    public ItemData houseData;
-
     public GameObject houseObject;
-
-    public Transform housePoint;
 
     public void OnInteract()
     {
-        Instantiate(houseObject, housePoint);
+        houseObject.SetActive(true);
     }
 
     //void Update()
