@@ -49,7 +49,6 @@ public class InputManager : MonoBehaviour
                 if ( inputBinders.ContainsKey( result ) ) continue;
                 binder.SetEnableInput(true);
                 inputBinders.Add( result, binder );
-                
             }
         }
     }
@@ -60,8 +59,7 @@ public class InputManager : MonoBehaviour
             return inputBinders[ actionAssetName ];
         return null;
     }
-
-
+    
     /// <summary>
     /// ex) 캐릭터 움직임 막고 UI Input만 할 때,
     /// InputManager.Instance.SetDisable(EInputActionAssetName.Player);
@@ -94,8 +92,7 @@ public class InputManager : MonoBehaviour
             binder.SetEnableInput( false );
         }
     }
-
-
+    
     public void HideCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -106,8 +103,7 @@ public class InputManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
     
-
-
+    
     // public void OpenUI()
     // {
     //     isUIOpen = true;
