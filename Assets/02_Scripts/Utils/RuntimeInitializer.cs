@@ -20,7 +20,7 @@ namespace _02_Scripts.Utils
                 string sceneName = System.IO.Path.GetFileNameWithoutExtension(previousScene);
                 SceneLoader.SceneToLoadOverride = sceneName;
 
-                SceneManager.LoadScene(System.IO.Path.GetFileNameWithoutExtension(Constants.SceneLoader.BootstrapscenePath), LoadSceneMode.Single);
+                SceneManager.LoadScene(System.IO.Path.GetFileNameWithoutExtension(Constants.SceneLoader.BootstrapscenePath), LoadSceneMode.Additive);
             }
 #endif
         }

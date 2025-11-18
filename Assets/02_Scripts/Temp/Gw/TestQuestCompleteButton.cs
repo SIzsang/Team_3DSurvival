@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _02_Scripts.Temp.Gw
 {
-    public class TestQuestButton : MonoBehaviour
+    public class TestQuestCompleteButton : MonoBehaviour
     {
         private QuestManager _questManager;
 
@@ -12,12 +12,12 @@ namespace _02_Scripts.Temp.Gw
             _questManager = QuestManager.Instance;
         }
 
-        public void AcceptQuest()
-        {
-            Debug.Log("AcceptQuest");
-            _questManager.SetQuestProgressIfAvailable();
-        }
 
+        public void ClearQuest()
+        {
+            Debug.Log("Cleared Quest");
+            _questManager.CheckQuestClear();
+        }
 
     }
 }

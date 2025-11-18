@@ -74,6 +74,8 @@ namespace _02_Scripts.Quest
 
         public void CheckQuestProgress(QuestProcessContext context)
         {
+            Debug.Log($"CheckQuestProgress {_currentQuest.TargetItem.name}");
+            if (_currentQuest == null) return;
             if (context == null) return;
             switch (context.QuestType)
             {
@@ -82,8 +84,8 @@ namespace _02_Scripts.Quest
                     break;
                 case QuestType.Gather :
                 case QuestType.Craft :
-                    if (_currentQuest.TargetItem.type != context.TargetItem.type) return;
                     if(context.TargetItem == null) return;
+                    if (_currentQuest.TargetItem.name != context.TargetItem.name) return;
                     _currentQuest.IncreaseProgress();
                     break;
             }

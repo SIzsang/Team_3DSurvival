@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 01. Quest_Craft_PureWater
   m_EditorClassIdentifier: 
   questUnlockCondition:
-  - {fileID: 11400000, guid: 758b4e1d4c8d79848b7e8960aa420c5b, type: 2}
+  - {fileID: 0}
   questConsequence: []
   type: 1
   targetItem: {fileID: 11400000, guid: 01154c417ebd15d4c8ae66405ebc580d, type: 2}
