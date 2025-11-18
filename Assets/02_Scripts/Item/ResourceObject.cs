@@ -46,12 +46,15 @@ public class ResourceObject : MonoBehaviour, IGatherable
                 Instantiate(data.dropPrefab, spawnPos, Quaternion.identity);
             }
         }
-        Destroy(this.gameObject);
+        this.gameObject.GetComponentInChildren<Renderer>().enabled = false;
+        this.gameObject.GetComponent<Collider>().enabled = false;
     }
     public void Respown() // 리스폰
     {
         Vector3 position = lastPosition;
         Instantiate(gameObject, position, Quaternion.identity);
+        this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
+        this.gameObject.GetComponent<Collider>().enabled = true;
     }
 
 }

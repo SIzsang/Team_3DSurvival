@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "\uADF8\uB0E5 \uB098\uBB34\uC785\uB2C8\uB2E4."
   type: 2
   dropPrefab: {fileID: 2675879670696067207, guid: d226582327c395c4c9df7b5a41edbfa4, type: 3}
-  CanStack: 1
+  canStack: 1
   maxStackAmount: 99
   canAtk: 0
   AtkValue: 0
