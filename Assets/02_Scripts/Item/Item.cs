@@ -14,14 +14,9 @@ public class Item : MonoBehaviour
     public bool CanStack => canStack;
     public int MaxCount => maxCount;
 
-    public bool IsSwordHave => isSwordHave;
-    public bool IsAxHave => isAxHave;
-
     private string name;
     private string displayName;
     private string description;
-    private bool isSwordHave;
-    private bool isAxHave;
 
     private int count;
     private bool canStack;
@@ -35,5 +30,10 @@ public class Item : MonoBehaviour
         canStack = itemData.canStack;
         maxCount = itemData.maxStackAmount;
         count = _count;
+    }
+
+    public void AddCount()
+    {
+        count++;
     }
 }
