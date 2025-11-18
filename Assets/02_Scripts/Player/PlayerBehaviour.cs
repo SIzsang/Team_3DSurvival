@@ -24,13 +24,14 @@ public class PlayerBehaviour : MonoBehaviour
     // 데이터 분리되면 그걸로 쓰기
     [ Header( "Player Moving Stat" ) ]
     [ SerializeField ] private float speed;
+
     [ SerializeField ] private float dashSpeedMultiplier = 1.5f;
     [ SerializeField ] private float jumpForce;
-    
-    
-    
+
+
     private Vector2 inputDir;
-    
+    private Transform cam;
+
     private void Awake()
     {
         player = GetComponent< Player >();
@@ -38,33 +39,45 @@ public class PlayerBehaviour : MonoBehaviour
         forward = rb.transform.forward;
     }
 
+    private void Start()
+    {
+        cam = CameraManager.Instance.Cam;
+    }
+
     private void FixedUpdate()
     {
         Move();
     }
 
-    
+
     public void SetInputDirection( Vector2 _inputDir )
     {
         inputDir = _inputDir;
-      
     }
 
     void Move()
     {
-        Vector3 right = Vector3.Cross( Vector3.up, forward ).normalized;
-        Vector3 moveDir = ( forward * inputDir.y + right * inputDir.x ).normalized;
+        Vector3 camForwardFlat = Vector3.ProjectOnPlane( cam.forward, Vector3.up ).normalized;
+        Vector3 right = Vector3.Cross( Vector3.up, camForwardFlat ).normalized;
+        Vector3 moveDir = ( camForwardFlat * inputDir.y + right * inputDir.x ).normalized;
 
         float moveSpeed = speed;
-        
-        // 스태미나 생기면 따로 speed 데리고 와야하는 거 만들어야함.
-        moveSpeed = moveSpeed * (isDashing? dashSpeedMultiplier : 1.0f);
-        
-        Vector3 newPosition = rb.position + moveDir * ( moveSpeed * Time.deltaTime );
 
-        rb.Move( newPosition, rb.rotation );
+        // 스태미나 생기면 따로 speed 데리고 와야하는 거 만들어야함.
+        if ( moveDir.magnitude > 0.1f )
+        {
+            forward = moveDir;
+            moveSpeed = moveSpeed * ( isDashing ? dashSpeedMultiplier : 1.0f );
+            Vector3 newPosition = rb.position + forward * ( moveSpeed * Time.deltaTime );
+
+            rb.Move( newPosition, Quaternion.LookRotation( forward, Vector3.up ) );
+        }
     }
-    
+
+    void Rotate()
+    {
+    }
+
     public void Jump()
     {
         if ( IsGrounded() )
@@ -74,12 +87,12 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void SetDashState(bool _isDashing)
+    public void SetDashState( bool _isDashing )
     {
         isDashing = _isDashing;
     }
-    
-    
+
+
     // 바닥 체크
     bool IsGrounded()
     {

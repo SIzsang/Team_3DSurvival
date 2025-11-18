@@ -16,6 +16,7 @@ public class CameraBehaviour : MonoBehaviour
     public Transform FollowingTarget => _followingTarget;
     private Transform _followingTarget;
     
+    public Transform CamTransform => camTransform;
     public Vector3 Forward => camTransform.forward;
     
     [SerializeField] private float minXLook = -50;
