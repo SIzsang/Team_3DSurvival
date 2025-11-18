@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ICombatable
 {
     private PlayerInputHandler inputHandler;
     private PlayerBehaviour behaviour;
@@ -33,6 +33,12 @@ public class Player : MonoBehaviour
     {
         Debug.Log("때림");
         if (attackDetector.CurrentTarget != null)
-            attackDetector.CurrentTarget.TakeDamage();
+            // 일단 10으로 때려
+            attackDetector.CurrentTarget.TakePhysicalDamage(10);
+    }
+
+    public void TakePhysicalDamage( int damage )
+    {
+        // 맞음
     }
 }
