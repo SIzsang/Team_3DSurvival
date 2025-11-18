@@ -38,8 +38,7 @@ public class PlayerInputHandler
 
     void OnMove( InputAction.CallbackContext context )
     {
-        
-        //behaviour.SetInputDirection( context.ReadValue< Vector2 >() );
+        behaviour.SetInputDirection( context.ReadValue< Vector2 >() );
     }
 
     void OnJump( InputAction.CallbackContext context )
