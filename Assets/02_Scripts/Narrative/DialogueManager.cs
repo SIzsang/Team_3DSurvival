@@ -78,6 +78,25 @@ namespace _02_Scripts.Narrative
         /// <summary>
         /// 새로운 대화를 시작하고 UI를 표시합니다.
         /// </summary>
+        /// <param name="sentence">화면에 표시할 대화 내용이 담긴 문자열입니다.</param>
+        /// <remarks>
+        /// 이미 대화가 진행 중인 경우 아무 작업도 수행하지 않고 즉시 반환됩니다.
+        /// 이 메소드는 대화의 시작만 담당하며, 실제 대화 흐름은 DisplayNextLine 메소드와 사용자 입력에 의해 제어됩니다.
+        /// </remarks>
+        public void StartDialogue(string sentence)
+        {
+            if (_isDialogueActive) return;
+            dialoguePanel.SetActive(true);
+            _dialogueQueue.Clear();
+            _currentDialogue = null;
+            _dialogueQueue.Enqueue(new Dialogue(sentence));
+            _isDialogueActive = true;
+            DisplayNextLine();
+        }
+
+        /// <summary>
+        /// 새로운 대화를 시작하고 UI를 표시합니다.
+        /// </summary>
         /// <param name="dialogue">화면에 표시할 대화 내용이 담긴 Dialogue 객체입니다.</param>
         /// <remarks>
         /// 이미 대화가 진행 중인 경우 아무 작업도 수행하지 않고 즉시 반환됩니다.
@@ -96,7 +115,7 @@ namespace _02_Scripts.Narrative
 
         private void DisplayNextLine()
         {
-            if (_currentDialogue != null && _currentDialogue.IsFinished)
+            if (_currentDialogue != null && _currentDialogue.IsFinished())
             {
                 _currentDialogue = null;
             }

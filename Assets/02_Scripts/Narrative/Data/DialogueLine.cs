@@ -22,3 +22,4 @@ namespace _02_Scripts.Narrative.Data
         public string text;
     }
 }
+

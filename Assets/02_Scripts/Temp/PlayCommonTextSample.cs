@@ -12,7 +12,7 @@ namespace _02_Scripts.Temp
         public void ShowCommonText()
         {
             if(_dialogueManager == null)_dialogueManager = DialogueManager.Instance;
-            _dialogueManager.StartDialogue(dialogueData);
+            _dialogueManager.StartDialogue("abc");
         }
 
 
