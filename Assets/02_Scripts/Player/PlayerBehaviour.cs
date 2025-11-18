@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -18,8 +19,8 @@ public class PlayerBehaviour : MonoBehaviour
     public bool IsMoving => isMoving;
     private bool isMoving = false;
 
-    public float MoveSpeed => isMoving ? moveSpeed : 0;
-    public float moveSpeed = 0;
+    public float NowMoveSpeed => isMoving ? nowMoveSpeed : 0;
+    private float nowMoveSpeed = 0;
 
     public bool isDashing = false;
 
@@ -58,7 +59,9 @@ public class PlayerBehaviour : MonoBehaviour
             if (IsGrounded())
             {
                 isJumping = false;
+                player.Landing();
             }
+            
         }
     }
 
@@ -81,12 +84,14 @@ public class PlayerBehaviour : MonoBehaviour
             isMoving = true;
             forward = moveDir;
 
-            moveSpeed = speed;
-            moveSpeed = moveSpeed * (isDashing ? dashSpeedMultiplier : 1.0f);
+            nowMoveSpeed = speed;
+            nowMoveSpeed = nowMoveSpeed * (isDashing ? dashSpeedMultiplier : 1.0f);
 
-            Vector3 newPosition = rb.position + forward * (moveSpeed * Time.deltaTime);
+            Vector3 newPosition = rb.position + forward * (nowMoveSpeed * Time.deltaTime);
 
-            rb.Move(newPosition, Quaternion.LookRotation(forward, Vector3.up));
+            rb.MovePosition(newPosition);
+            rb.MoveRotation(Quaternion.LookRotation(forward, Vector3.up));
+            //rb.Move(newPosition, Quaternion.LookRotation(forward, Vector3.up));
         }
         else
         {
@@ -100,6 +105,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (IsGrounded())
         {
             isJumping = true;
+            canJump = false;
+            StartCoroutine( JumpDelayRoutine() );
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             return true;
         }
@@ -115,6 +122,8 @@ public class PlayerBehaviour : MonoBehaviour
     // 바닥 체크
     bool IsGrounded()
     {
+        if ( canJump == false ) return false;
+        
         Ray[] rays = new Ray[4]
         {
             new Ray(transform.position + (transform.forward * playerScale) + (transform.up * 0.01f), Vector3.down),
@@ -125,15 +134,22 @@ public class PlayerBehaviour : MonoBehaviour
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
+            if (Physics.Raycast(rays[i], 0.2f, groundLayerMask))
             {
-                if (isJumping) isJumping = false;
                 return true;
             }
         }
 
         return false;
     }
+
+    IEnumerator JumpDelayRoutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canJump = true;   
+    }
+    
+    
 
 
 #if UNITY_EDITOR

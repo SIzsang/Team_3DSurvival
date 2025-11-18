@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, ICombatable
 {
+    [ SerializeField ] private PlayerStatusData playerStatusData;
+    private PlayerStatus playerStatus;
+        
     private PlayerBehaviour behaviour;
     private PlayerInputHandler inputHandler;
-    private PlayerAnimationController playerAnimator;
     
     private InteractableDetector interactableDetector;
     private CombatableDetector combatableDetector;
@@ -14,7 +16,6 @@ public class Player : MonoBehaviour, ICombatable
     
     public Inventory Inventory => inventory;
     Inventory inventory;
-
     public Vector3 Forward => behaviour.Forward;
 
     public bool IsMoving
@@ -39,9 +40,18 @@ public class Player : MonoBehaviour, ICombatable
     }
     private bool isMoving;
 
+    public float NowMoveSpeed
+    {
+        get
+        {
+            return behaviour.NowMoveSpeed;
+        }
+    }
+
     public event Action OnMoveAction;
     public event Action OnIdleAction;
     public event Action OnJumpAction;
+    public event Action OnLandingAction;
     public event Action OnTryInteractAction;
     public event Action OnInteractAction;
     public event Action OnTryAttackAction;
@@ -52,7 +62,7 @@ public class Player : MonoBehaviour, ICombatable
     private void Awake()
     {
         behaviour = GetComponent<PlayerBehaviour>();
-        playerAnimator = GetComponent<PlayerAnimationController>();
+        //playerAnimator = GetComponent<PlayerAnimationController>();
         interactableDetector = GetComponent<InteractableDetector>();
         combatableDetector = GetComponent<CombatableDetector>();
         gatherableDetector = GetComponent<GatherableDetector>();
@@ -110,5 +120,9 @@ public class Player : MonoBehaviour, ICombatable
             behaviour.Jump();
         }
     }
-    
+
+    public void Landing()
+    {
+        OnLandingAction?.Invoke();
+    }
 }

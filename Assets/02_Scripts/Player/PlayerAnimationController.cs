@@ -2,20 +2,23 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-[Serializable]
-public class PlayerAnimationController :MonoBehaviour
+[ Serializable ]
+public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    [ SerializeField ] private Animator animator;
+    [ SerializeField ] private float speedMultiplier = 0.1f;
     private Player player;
 
-    private Vector3 nowPos;
-    private Vector3 prePos;
-    private float moveSpeed;
-    
+    // private Vector3 nowPos;
+    // private Vector3 prePos;
+    // private float moveSpeed;
+
+    private float nowSpeed;
+
     public void Awake()
-    {  
-        player = GetComponent<Player>();
-        
+    {
+        player = GetComponent< Player >();
+
         // 캐릭터로 바꿔서 다른 캐릭터들한테도 붙일 수 있을 듯..?
         player.OnMoveAction += OnMove;
         player.OnIdleAction += OnIdle;
@@ -23,37 +26,55 @@ public class PlayerAnimationController :MonoBehaviour
         player.OnInteractAction += OnInteract;
         player.OnTryAttackAction += OnTryAttackAction;
         player.OnHitAction += OnHit;
+        player.OnLandingAction += OnLanding;
     }
 
+    private void Update()
+    {
+        if ( player.IsMoving )
+        {
+            nowSpeed = Mathf.Lerp( nowSpeed, player.NowMoveSpeed * speedMultiplier, Time.deltaTime * 2.5f );
+            animator.SetFloat( "MoveSpeed", nowSpeed );
+        }
+        else
+        {
+            nowSpeed = 0;
+        }
+    }
 
     void OnMove()
     {
-        animator.SetBool("IsWalking", true);
+        animator.SetBool( "IsWalking", true );
     }
 
     void OnIdle()
     {
-        animator.SetBool("IsWalking", false);
+        animator.SetBool( "IsWalking", false );
     }
 
     void OnJump()
     {
-        animator.SetTrigger("Jump");
+        animator.SetTrigger( "Jump" );
+        animator.SetBool("IsJumping", true);
     }
 
     void OnInteract()
     {
-        animator.SetTrigger("Interact");
+        animator.SetTrigger( "Interact" );
     }
 
     void OnTryAttackAction()
     {
-        animator.SetTrigger("Attack");
+        animator.SetTrigger( "Attack" );
     }
 
     void OnHit()
     {
-        animator.SetTrigger("Hit");
+        animator.SetTrigger( "Hit" );
     }
-    
+
+    void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
+    }
 }
