@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using _02_Scripts.Utils;
 using UnityEngine;
@@ -33,6 +33,7 @@ namespace _02_Scripts.Core.Managers
         private bool _nightInvoked = false;
 
         [SerializeField] private Player player;
+        public Player Player => player;
 
         void Awake()
         {

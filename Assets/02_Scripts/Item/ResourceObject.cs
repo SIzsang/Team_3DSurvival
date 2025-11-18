@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
 using UnityEngine;
 
-public class ResourceObject : MonoBehaviour, ICombatable
+public class ResourceObject : MonoBehaviour, IGatherable
 {
     public ItemData data;
     public int quantityPerHithit;
@@ -14,7 +14,7 @@ public class ResourceObject : MonoBehaviour, ICombatable
     {
         lastPosition = transform.position;
     }
-    private void OnEnable()
+    private void Start()
     {
         GameManager.Instance.OnDaytimeStart += Respown;
     }
@@ -28,7 +28,7 @@ public class ResourceObject : MonoBehaviour, ICombatable
         string str = $"{data.displayName}\n{data.description}"; // player.~~~
         return str;
     }
-    public void TakePhysicalDamage(int damage)
+    public void OnGather()
     {
         for (int i = 0; i < quantityPerHithit; i++)
         {

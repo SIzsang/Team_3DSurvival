@@ -48,17 +48,17 @@ public class Enemy : MonoBehaviour,ICombatable
 	public float attackDistance;
 
 	private float playerDistance;
-	public Transform Player;
+	public Transform player;
 
 	public float fieldOfView = 120f;
 
-	private Animator animator;
+	public Animator animator;
 	private SkinnedMeshRenderer[] meshRenderers; 
 
 	private void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
-		animator = GetComponent<Animator>();
+		animator = GetComponentInChildren<Animator>();
 		meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 		
 	}
@@ -66,13 +66,14 @@ public class Enemy : MonoBehaviour,ICombatable
 	void Start()
 	{
 		SetState(AIState.Wandering);
+		player = GameManager.Instance.Player.transform;
 	
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		playerDistance = Vector3.Distance(transform.position, Player.transform.position);
+		playerDistance = Vector3.Distance(transform.position, player.transform.position);
 		animator.SetBool("Moving", aiState != AIState.Idle);
 
 		switch (aiState)
@@ -100,6 +101,7 @@ public class Enemy : MonoBehaviour,ICombatable
 			case AIState.Wandering:
 				agent.speed = walkSpeed;
 				agent.isStopped = false;
+				animator.speed = 2;
 				break;
 			case AIState.Attacking:
 				agent.speed = runSpeed;
@@ -165,9 +167,9 @@ public class Enemy : MonoBehaviour,ICombatable
 			{
 				agent.isStopped = false;
 				NavMeshPath path = new NavMeshPath();
-				if (agent.CalculatePath(Player.position, path))
+				if (agent.CalculatePath(player.position, path))
 				{
-					agent.SetDestination(Player.position);
+					agent.SetDestination(player.position);
 				}
 				else
 				{
@@ -187,7 +189,7 @@ public class Enemy : MonoBehaviour,ICombatable
 
 	bool IsPlayerInFieldOfView()
 	{
-		Vector3 directionToPlayer = Player.position - transform.position;
+		Vector3 directionToPlayer = player.position - transform.position;
 		float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
 		return angle < fieldOfView;
