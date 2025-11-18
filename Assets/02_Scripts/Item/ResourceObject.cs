@@ -28,7 +28,7 @@ public class ResourceObject : MonoBehaviour, ICombatable
         string str = $"{data.displayName}\n{data.description}"; // player.~~~
         return str;
     }
-    public void OnInteract()
+    public void TakePhysicalDamage(int damage)
     {
         for (int i = 0; i < quantityPerHithit; i++)
         {

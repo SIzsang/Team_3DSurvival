@@ -25,22 +25,22 @@ public class Inventory
     {
         List<Item> finditems = items.FindAll((i) =>
         {
-            if (item.name == i.name) return true;
+            if (item.Name == i.Name) return true;
             return false;
         });
 
-        if (finditems.Count > 0) 
+        if (finditems.Count > 0)
         {
             if (item.CanStack)
             {
-                for(int i = 0; i < finditems.Count; i++)
+                for (int i = 0; i < finditems.Count; i++)
                 {
-                    if(finditems[i].Count < finditems[i].MaxCount)
+                    if (finditems[i].Count < finditems[i].MaxCount)
                     {
                         finditems[i].AddCount();
                         return;
                     }
-                    
+
                 }
             }
         }

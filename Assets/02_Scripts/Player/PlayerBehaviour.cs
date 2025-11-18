@@ -15,6 +15,12 @@ public class PlayerBehaviour : MonoBehaviour
     public bool IsJumping => isJumping;
     private bool isJumping = false;
 
+    public bool IsMoving => isMoving;
+    private bool isMoving = false;
+
+    public float MoveSpeed =>isMoving ? moveSpeed: 0;
+    public float moveSpeed = 0;
+    
     public bool isDashing = false;
 
     [ SerializeField ] private LayerMask groundLayerMask;
@@ -27,8 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     [ SerializeField ] private float dashSpeedMultiplier = 1.5f;
     [ SerializeField ] private float jumpForce;
-
-
+    
     private Vector2 inputDir;
     private Transform cam;
 
@@ -61,30 +66,36 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 right = Vector3.Cross( Vector3.up, camForwardFlat ).normalized;
         Vector3 moveDir = ( camForwardFlat * inputDir.y + right * inputDir.x ).normalized;
 
-        float moveSpeed = speed;
 
         // 스태미나 생기면 따로 speed 데리고 와야하는 거 만들어야함.
         if ( moveDir.magnitude > 0.1f )
         {
+            isMoving = true;
             forward = moveDir;
+            
+            moveSpeed = speed;
             moveSpeed = moveSpeed * ( isDashing ? dashSpeedMultiplier : 1.0f );
+            
             Vector3 newPosition = rb.position + forward * ( moveSpeed * Time.deltaTime );
-
+            
             rb.Move( newPosition, Quaternion.LookRotation( forward, Vector3.up ) );
+        }
+        else
+        {
+            isMoving = false;
         }
     }
 
-    void Rotate()
-    {
-    }
 
-    public void Jump()
+    public bool Jump()
     {
         if ( IsGrounded() )
         {
             isJumping = true;
             rb.AddForce( Vector3.up * jumpForce, ForceMode.Impulse );
+            return true;
         }
+        return false;
     }
 
     public void SetDashState( bool _isDashing )
