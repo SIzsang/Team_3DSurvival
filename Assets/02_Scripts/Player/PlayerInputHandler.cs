@@ -6,8 +6,7 @@ public class PlayerInputHandler : MonoBehaviour
     private Player player;
     private InputBinder inputBinder;
     private PlayerBehaviour behaviour;
-    
-    
+
     public void Init()
     {
         player = GetComponent<Player>();
@@ -52,8 +51,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if ( context.phase == InputActionPhase.Started )
         {
+            
             // 애니메이션 타이밍에 맞게 때리려면
             // 공격 애니메이션 재생?
+            
+            
             player.OnAttack();
         }
     }
@@ -63,9 +65,13 @@ public class PlayerInputHandler : MonoBehaviour
         if ( context.phase == InputActionPhase.Started )
         {
             // InteractionDetector
+            
             player.OnInteraction();
+
         }
+            
     }
+
 
     void OnDash( InputAction.CallbackContext context )
     {
