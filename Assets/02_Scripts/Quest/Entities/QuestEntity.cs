@@ -1,37 +1,69 @@
+using System.Collections.Generic;
 using _02_Scripts.Narrative.Data;
 using _02_Scripts.Quest.Data;
+using _02_Scripts.Quest.Data.Consequence;
+using _02_Scripts.Quest.Data.UnlockCondition;
+using UnityEngine;
 
 namespace _02_Scripts.Quest.Entities
 {
     public class QuestEntity
     {
-        public string QuestId;
-        public QuestType QuestType;
-        public ItemData TargetItem;
-        private int _requiredAmount;
+        public QuestData Data { get; private set; }
+
         private int _currentAmount;
-        public string Description;
-        public DialogueData RequestDialogue;
-        public DialogueData ClearDialogue;
-        public bool IsClear => _currentAmount >= _requiredAmount;
-        public bool IsAccept;
-        public void Accept() => IsAccept = true;
+        public QuestState CurrentQuestState;
+
+        public string QuestId => Data.QuestId;
+        public QuestType QuestType => Data.type;
+        public ItemData TargetItem => Data.targetItem;
+        public string Description => Data.description;
+        public DialogueData RequestDialogue => Data.requestDialogue;
+        public DialogueData ClearDialogue => Data.clearDialogue;
+        public QuestType Type => Data.type;
+        public List<QuestUnlockCondition> QuestUnlockCondition => Data.questUnlockCondition;
+        public List<QuestConsequence> QuestConsequence => Data.questConsequence;
+        public bool IsClear => _currentAmount >= Data.requiredAmount;
+
 
         public QuestEntity(QuestData data)
         {
-            QuestId = data.QuestId;
-            QuestType = data.type;
-            TargetItem = data.targetItem;
-            _requiredAmount = data.requiredAmount;
+            Data = data;
             _currentAmount = 0;
-            Description = data.description;
-            RequestDialogue = data.requestDialogue;
-            ClearDialogue = data.requestDialogue;
+            CurrentQuestState = QuestState.Inactive;
         }
-
         public void IncreaseProgress(int amount)
         {
+            if (CurrentQuestState != QuestState.Progress) return;
             _currentAmount += amount;
+            _currentAmount = Mathf.Min(_currentAmount, Data.requiredAmount);
         }
+        public void SetState(QuestState newState)
+        {
+            CurrentQuestState = newState;
+        }
+
+        public void AcceptQuest()
+        {
+            if (CurrentQuestState == QuestState.Available)
+            {
+                CurrentQuestState = QuestState.Progress;
+            }
+        }
+        public void ExecuteQuestConsequence()
+        {
+            if (QuestConsequence.Count == 0) return;
+            if (CurrentQuestState != QuestState.Progress) return;
+            for (int i = 0; i < QuestConsequence.Count; i++)
+            {
+                QuestConsequence[i].Consequence();
+            }
+            CurrentQuestState = QuestState.Complete;
+        }
+    }
+
+    public enum QuestState
+    {
+        Inactive,Available, Progress, Complete
     }
 }
