@@ -3,6 +3,7 @@ using _02_Scripts.Narrative.Data;
 using _02_Scripts.Quest.Data;
 using _02_Scripts.Quest.Data.Consequence;
 using _02_Scripts.Quest.Data.UnlockCondition;
+using _02_Scripts.Utils;
 using UnityEngine;
 
 namespace _02_Scripts.Quest.Entities
@@ -32,7 +33,7 @@ namespace _02_Scripts.Quest.Entities
             _currentAmount = 0;
             CurrentQuestState = QuestState.Inactive;
         }
-        public void IncreaseProgress(int amount)
+        public void IncreaseProgress(int amount = 1)
         {
             if (CurrentQuestState != QuestState.Progress) return;
             _currentAmount += amount;

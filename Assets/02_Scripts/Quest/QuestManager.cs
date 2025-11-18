@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _02_Scripts.Narrative;
 using _02_Scripts.Narrative.Data;
+using _02_Scripts.Quest.Context;
 using _02_Scripts.Quest.Data;
 using _02_Scripts.Quest.Data.UnlockCondition;
 using _02_Scripts.Quest.Entities;
@@ -67,14 +68,23 @@ namespace _02_Scripts.Quest
             }
         }
 
-        public void CheckQuestProgress()
+        public void CheckQuestProgress(QuestProcessContext context)
         {
-
-
+            if (context == null) return;
+            switch (context.QuestType)
+            {
+                case QuestType.Kill :
+                    _currentQuest.IncreaseProgress();
+                    break;
+                case QuestType.Gather :
+                case QuestType.Craft :
+                    if (_currentQuest.TargetItem.type != context.TargetItem.type) return;
+                    if(context.TargetItem == null) return;
+                    _currentQuest.IncreaseProgress();
+                    break;
+            }
+            CheckQuestClear();
         }
-
-
-
 
         public bool IsQuestComplete(string questId)
         {

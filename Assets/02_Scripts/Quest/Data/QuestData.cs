@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _02_Scripts.Narrative.Data;
 using _02_Scripts.Quest.Data.Consequence;
+using _02_Scripts.Utils;
 using UnityEngine;
 
 namespace _02_Scripts.Quest.Data
@@ -24,8 +25,4 @@ namespace _02_Scripts.Quest.Data
 
     }
 
-    public enum QuestType
-    {
-        Gather, Craft, Kill
-    }
 }
