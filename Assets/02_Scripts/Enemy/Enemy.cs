@@ -1,4 +1,6 @@
 ﻿using _02_Scripts.Core.Managers;
+using _02_Scripts.Quest;
+using _02_Scripts.Quest.Context;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -201,7 +203,8 @@ public class Enemy : MonoBehaviour,ICombatable
 			animator.speed = 1;
 			
 			StartCoroutine(Death());
-			
+			QuestManager.Instance.CheckQuestProgress(new QuestProcessContext(QuestType.Kill));
+
 		}
 		
 	}
