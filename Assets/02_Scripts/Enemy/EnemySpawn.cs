@@ -13,7 +13,10 @@ public class EnemySpawn : MonoBehaviour
 
 	private void Start()
 	{
-		GameManager.Instance.OnNightStart += SpawnMon;
+		if(GameManager.Instance != null)
+		{
+			GameManager.Instance.OnNightStart += SpawnMon;
+		}
 	}
 
 	private void Update()
