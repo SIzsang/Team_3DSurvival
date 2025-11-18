@@ -52,13 +52,13 @@ public class Enemy : MonoBehaviour,ICombatable
 
 	public float fieldOfView = 120f;
 
-	private Animator animator;
+	public Animator animator;
 	private SkinnedMeshRenderer[] meshRenderers; 
 
 	private void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
-		animator = GetComponent<Animator>();
+		animator = GetComponentInChildren<Animator>();
 		meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 		
 	}
@@ -100,6 +100,7 @@ public class Enemy : MonoBehaviour,ICombatable
 			case AIState.Wandering:
 				agent.speed = walkSpeed;
 				agent.isStopped = false;
+				animator.speed = 2;
 				break;
 			case AIState.Attacking:
 				agent.speed = runSpeed;
