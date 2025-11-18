@@ -82,13 +82,14 @@ public class Player : MonoBehaviour, ICombatable
     public void Attack()
     {
         OnTryAttackAction?.Invoke();
+        
         if (combatableDetector.CurrentTarget != null)
         {
             OnAttackAction?.Invoke();
             combatableDetector.CurrentTarget.TakePhysicalDamage(10);
             // 일단 10으로 때려
         }
-
+        
         if (gatherableDetector.CurrentTarget != null)
         {
             gatherableDetector.CurrentTarget.OnGather();
@@ -106,7 +107,7 @@ public class Player : MonoBehaviour, ICombatable
         if (behaviour.Jump())
         {
             OnJumpAction?.Invoke();
-            
+            behaviour.Jump();
         }
     }
     
