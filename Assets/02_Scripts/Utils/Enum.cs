@@ -1,5 +1,6 @@
 namespace _02_Scripts.Utils
 {
+
 }
 
 
@@ -9,4 +10,10 @@ public enum EInteractionDetectorShape
     Sphere,
     Cube,
     Capsule,
+}
+
+
+public enum QuestType
+{
+    Gather, Craft, Kill
 }

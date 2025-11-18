@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using _02_Scripts.Narrative.Data;
+using _02_Scripts.Quest.Data.Consequence;
+using _02_Scripts.Utils;
 using UnityEngine;
 
 namespace _02_Scripts.Quest.Data
@@ -10,6 +13,9 @@ namespace _02_Scripts.Quest.Data
         {
             get { return name; }
         }
+
+        public List<QuestUnlockCondition> questUnlockCondition;
+        public List<QuestConsequence> questConsequence;
         public QuestType type;
         public ItemData targetItem;
         public int requiredAmount;
@@ -19,8 +25,4 @@ namespace _02_Scripts.Quest.Data
 
     }
 
-    public enum QuestType
-    {
-        Gather, Craft, Kill
-    }
 }
