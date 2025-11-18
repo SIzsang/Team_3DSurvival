@@ -28,10 +28,7 @@ public class EnemySpawn : MonoBehaviour
 	[ContextMenu("Test")]
 	public void SpawnMon()
 	{
-		for(int i = 0;  i < 5; i++)
-		{
-			Invoke("Spawn",5f);
-		}
+		StartCoroutine(SpawnStart());
 	}
 
 	public void Spawn()
@@ -40,5 +37,13 @@ public class EnemySpawn : MonoBehaviour
 		Instantiate(SpawnMonster, SpawnPoint[o]);
 	}
 
+	IEnumerator SpawnStart()
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			yield return new WaitForSeconds(3f);
+			Spawn();
+		}
+	}
 	 
 }

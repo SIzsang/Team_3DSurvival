@@ -1,49 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
-    [SerializeField] private TextMeshProUGUI woodText;
-    [SerializeField] private TextMeshProUGUI rockText;
-    [SerializeField] private TextMeshProUGUI waterText;
-    [SerializeField] private TextMeshProUGUI meatText;
+    public List<Item> Items => items;
+    private List<Item> items;
+    public bool IsSwordHave => isSwordHave;
+    public bool IsAxHave => isAxHave;
 
+    private bool isSwordHave = false;
 
-    [SerializeField] ItemData wood;
-    [SerializeField] ItemData rock;
-    [SerializeField] ItemData water;
-    [SerializeField] ItemData meat;
+    private bool isAxHave = false;
 
-
-
-
-    void Update()
+    public Inventory()
     {
-        SetWood();
-        SetRock();
-        SetWater();
-        SetMeat();
+        items = new List<Item>();
     }
 
-    public void SetWood()
+    public void AddItem(Item item)
     {
-        woodText.text = $"{wood.displayName}  0개";
+        List<Item> finditems = items.FindAll((i) =>
+        {
+            if (item.name == i.name) return true;
+            return false;
+        });
+
+        if (finditems.Count > 0) 
+        {
+            if (item.CanStack)
+            {
+                for(int i = 0; i < finditems.Count; i++)
+                {
+                    if(finditems[i].Count < finditems[i].MaxCount)
+                    {
+                        finditems[i].AddCount();
+                        return;
+                    }
+                    
+                }
+            }
+        }
+        items.Add(item);
     }
 
-    public void SetRock()
+    public void SetSwordHave()
     {
-        rockText.text = $"{rock.displayName}  0개";
+        isSwordHave = true;
     }
-
-    public void SetWater()
+    public void SetAxHave()
     {
-        waterText.text = $"{water.displayName}  0개";
-    }
-
-    public void SetMeat()
-    {
-        meatText.text = $"{meat.displayName}  0개";
+        isAxHave = true;
     }
 }

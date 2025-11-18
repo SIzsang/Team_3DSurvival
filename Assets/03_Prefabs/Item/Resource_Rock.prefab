@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6adaac9211159e4da9f883ef295d590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  giveItem: {fileID: 11400000, guid: 80b221f274ea2cd4ca89891473ba76ac, type: 2}
+  data: {fileID: 11400000, guid: 80b221f274ea2cd4ca89891473ba76ac, type: 2}
   quantityPerHithit: 1
   capacity: 10
 --- !u!1 &5361573200108024618
