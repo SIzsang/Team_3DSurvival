@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using _02_Scripts.Core.Managers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -45,7 +46,7 @@ public class Enemy : MonoBehaviour,ICombatable
 	public float attackDistance;
 
 	private float playerDistance;
-	public GameObject Player;
+	public Transform Player;
 
 	public float fieldOfView = 120f;
 
@@ -57,11 +58,13 @@ public class Enemy : MonoBehaviour,ICombatable
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
 		meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+		
 	}
 
 	void Start()
 	{
 		SetState(AIState.Wandering);
+		OnDrawGizmos();
 	}
 
 	// Update is called once per frame
@@ -80,6 +83,12 @@ public class Enemy : MonoBehaviour,ICombatable
 				AttackingUpdate();
 				break;
 		}
+	}
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+		Gizmos.DrawCube(transform.position, Vector3.one);
+		//Gizmos.DrawSphere(transform.position, 1f);
 	}
 	public void SetState(AIState state)
 	{
@@ -159,9 +168,9 @@ public class Enemy : MonoBehaviour,ICombatable
 			{
 				agent.isStopped = false;
 				NavMeshPath path = new NavMeshPath();
-				if (agent.CalculatePath(Player.transform.position, path))
+				if (agent.CalculatePath(Player.position, path))
 				{
-					agent.SetDestination(Player.transform.position);
+					agent.SetDestination(Player.position);
 				}
 				else
 				{
@@ -181,7 +190,7 @@ public class Enemy : MonoBehaviour,ICombatable
 
 	bool IsPlayerInFieldOfView()
 	{
-		Vector3 directionToPlayer = Player.transform.position - transform.position;
+		Vector3 directionToPlayer = Player.position - transform.position;
 		float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
 		return angle < fieldOfView;
@@ -192,9 +201,18 @@ public class Enemy : MonoBehaviour,ICombatable
 		health -= damage;
 		if(health <= 0)
 		{
-			Destroy(gameObject);
+			animator.speed = 1;
+			animator.SetTrigger("Death");
+			StartCoroutine(Death());
+			
 		}
 
+	}
+
+	IEnumerator Death()
+	{
+		yield return new WaitForSeconds(3f);
+		Destroy(gameObject);
 	}
 
 
