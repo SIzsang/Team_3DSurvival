@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void Init( Player _player )
     {
         player = _player;
-        behaviour = player.Behaviour;
+        behaviour = GetComponent<PlayerBehaviour>();
         BindInputs();
     }
 
@@ -52,9 +52,11 @@ public class PlayerInputHandler : MonoBehaviour
         if ( context.phase == InputActionPhase.Started )
         {
             
-            Debug.Log("Attack");
             // 애니메이션 타이밍에 맞게 때리려면
             // 공격 애니메이션 재생?
+            
+            
+            player.OnAttack();
         }
     }
     
@@ -63,7 +65,8 @@ public class PlayerInputHandler : MonoBehaviour
         if ( context.phase == InputActionPhase.Started )
         {
             // InteractionDetector
-
+            
+            player.OnInteraction();
 
         }
             

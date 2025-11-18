@@ -47,7 +47,9 @@ public class InputManager : MonoBehaviour
             if ( Enum.TryParse( binder.gameObject.name, out EInputActionAssetName result ) )
             {
                 if ( inputBinders.ContainsKey( result ) ) continue;
+                binder.SetEnableInput(true);
                 inputBinders.Add( result, binder );
+                
             }
         }
     }
@@ -92,8 +94,17 @@ public class InputManager : MonoBehaviour
             binder.SetEnableInput( false );
         }
     }
-    
-    
+
+
+    public void HideCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void ShowCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
     
 
 

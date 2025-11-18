@@ -1,35 +1,40 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
 
 // 이름... 
-[ RequireComponent( typeof( PlayerInput ) ) ]
 public class InputBinder : MonoBehaviour
 {
-    PlayerInput playerInput;
+    [SerializeField] InputActionAsset inputAsset;
+    
+    //PlayerInput playerInput;
     private Dictionary< string, InputActionMap > actionMaps;
 
     List< (InputAction, Action< InputAction.CallbackContext >) > nowBindingActions;
 
 
-    public string CurrenMapName => playerInput.currentActionMap.name;
+    public string CurrenMapName => currentMap.name;
+    public InputActionMap currentMap;
 
     // MonoBehaviour가 아니어도 될 것 같음...
     // 일단 고!
     private void Awake()
     {
-        playerInput = GetComponent< PlayerInput >();
-
-        ReadOnlyArray< InputActionMap > actionMap = playerInput.actions.actionMaps;
+        ReadOnlyArray< InputActionMap > assetMaps = inputAsset.actionMaps;
         actionMaps = new Dictionary< string, InputActionMap >();
-        foreach ( InputActionMap map in actionMap )
+        foreach ( InputActionMap map in assetMaps )
         {
+            if (map.name == nameof(EInputMapName.Default))
+            {
+                currentMap = map;
+                SwitchMap(currentMap.name);
+            }
             actionMaps.Add( map.name, map );
         }
-
         nowBindingActions = new();
         SceneManager.sceneUnloaded += OnUnloadScene;
     }
@@ -73,7 +78,7 @@ public class InputBinder : MonoBehaviour
     /// <param name="enable"></param>
     public void SetEnableInput( bool enable, bool allActionsEanble = true )
     {
-        playerInput.enabled = enable;
+        //playerInput.enabled = enable;
 
         if ( enable == true && allActionsEanble == true )
         {
@@ -86,11 +91,25 @@ public class InputBinder : MonoBehaviour
 
     public void SwitchMap( string mapName, bool allActionsEnable = true )
     {
-        playerInput.SwitchCurrentActionMap( mapName );
+        if (actionMaps.ContainsKey(mapName) == false) return;
+
+        foreach (var a in actionMaps.Values)
+        {
+            if (a.name != mapName)
+            {
+                a.Disable();
+            }
+            else
+            {
+                currentMap = a;
+                a.Enable();
+            }
+        }
+        
 
         if ( allActionsEnable )
         {
-            foreach ( var a in playerInput.currentActionMap.actions )
+            foreach ( var a in currentMap.actions)
             {
                 a.Enable();
             }

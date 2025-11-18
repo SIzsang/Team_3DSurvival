@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 860993288114534045}
-  - component: {fileID: 7511783576693711585}
   - component: {fileID: 4102993134981318901}
   m_Layer: 0
   m_Name: Camera
@@ -33,36 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244389904332499995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7511783576693711585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489860820210597728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ba6b54ee1a351cf4f9e5c148d4a9fa18, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &4102993134981318901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05713d9216c4894f8cb47846119fd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputAsset: {fileID: -944628639613478452, guid: ba6b54ee1a351cf4f9e5c148d4a9fa18, type: 3}
 --- !u!1 &5074841880582657084
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +54,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3260474366797229825}
-  - component: {fileID: 6762717614865925668}
   - component: {fileID: 5761224351633738462}
   m_Layer: 0
   m_Name: UI
@@ -108,36 +77,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244389904332499995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6762717614865925668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074841880582657084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f68d95fbe5673ff49b232eecc34816a5, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Default
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &5761224351633738462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05713d9216c4894f8cb47846119fd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputAsset: {fileID: -944628639613478452, guid: f68d95fbe5673ff49b232eecc34816a5, type: 3}
 --- !u!1 &5713801544611573565
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +99,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2950901600078756897}
-  - component: {fileID: 440682637424913126}
   - component: {fileID: 8846505493656385400}
   m_Layer: 0
   m_Name: Common
@@ -183,36 +122,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244389904332499995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &440682637424913126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5713801544611573565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b2c2f065498aa13448bdfd16b501e3d4, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Default
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &8846505493656385400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05713d9216c4894f8cb47846119fd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputAsset: {fileID: -944628639613478452, guid: b2c2f065498aa13448bdfd16b501e3d4, type: 3}
 --- !u!1 &7023936537693131462
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +144,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5536074701265401717}
-  - component: {fileID: 7644900721996704995}
   - component: {fileID: 7296631358652849896}
   m_Layer: 0
   m_Name: Player
@@ -258,72 +167,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244389904332499995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7644900721996704995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7023936537693131462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: c22936f313fb2234ba669b7781719652, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 86265200-7e64-4c2e-8163-7b3c4e2d2a4d
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8c6b2edf-6d7b-4262-ad20-a01c2c0b8dac
-    m_ActionName: Player/Interaction[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 46832790-1adb-4bf8-ab8d-5d5953e91a2c
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ab24a6de-a428-4f6a-825b-0fcb946765af
-    m_ActionName: Player/Attack[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2373f180-cc2e-4dc9-a577-d55e6075d244
-    m_ActionName: Player/Dash[/Keyboard/leftShift]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9d64f643-257c-47db-a406-2df0ff07dd79
-    m_ActionName: Player/UseMouse[/Keyboard/alt]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5685c139-0ec5-4b5a-9c70-f9fb730ddad3
-    m_ActionName: Player/MouseLeft[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c26b75a0-7c57-446e-9159-e3fced99581b
-    m_ActionName: Test/UseMouse[/Keyboard/alt]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ba84edd8-c8d8-491f-a2f0-b2088621668a
-    m_ActionName: Test/MouseLeft[/Mouse/leftButton]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: e841aaa3-35e1-4d1a-8c12-eee83ea517c7
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &7296631358652849896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05713d9216c4894f8cb47846119fd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputAsset: {fileID: -944628639613478452, guid: c22936f313fb2234ba669b7781719652, type: 3}
 --- !u!1 &8008805445426177888
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,8 +210,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5536074701265401717}
   - {fileID: 860993288114534045}
+  - {fileID: 5536074701265401717}
   - {fileID: 2950901600078756897}
   - {fileID: 3260474366797229825}
   m_Father: {fileID: 0}
