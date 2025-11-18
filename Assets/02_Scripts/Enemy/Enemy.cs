@@ -108,6 +108,7 @@ public class Enemy : MonoBehaviour,ICombatable
 				break;
 		}
 
+
 		animator.speed = agent.speed / walkSpeed;
 	}
 	void PassiveUpdate()
