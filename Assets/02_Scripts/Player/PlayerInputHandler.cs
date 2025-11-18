@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputHandler : MonoBehaviour
+public class PlayerInputHandler
 {
     private Player player;
     private InputBinder inputBinder;
     private PlayerBehaviour behaviour;
-
-    public void Init()
+    
+    // behaviour 말고 Player 만 가지고 있어도 될 
+    public void Init(Player _player,  PlayerBehaviour _behaviour)
     {
-        player = GetComponent<Player>();
-        behaviour = GetComponent<PlayerBehaviour>();
+        player =  _player;
+        behaviour = _behaviour;
         BindInputs();
     }
 
@@ -37,13 +38,16 @@ public class PlayerInputHandler : MonoBehaviour
 
     void OnMove( InputAction.CallbackContext context )
     {
-        behaviour.SetInputDirection( context.ReadValue< Vector2 >() );
+        
+        //behaviour.SetInputDirection( context.ReadValue< Vector2 >() );
     }
 
     void OnJump( InputAction.CallbackContext context )
     {
-        if(context.phase == InputActionPhase.Started)
-            behaviour.Jump();
+        if (context.phase == InputActionPhase.Started)
+        {
+            player.Jump();
+        }
     }
 
     // 채집도 같이 해야할 듯?
@@ -56,7 +60,7 @@ public class PlayerInputHandler : MonoBehaviour
             // 공격 애니메이션 재생?
             
             
-            player.OnAttack();
+            player.Attack();
         }
     }
     
@@ -66,7 +70,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             // InteractionDetector
             
-            player.OnInteraction();
+            player.Interaction();
 
         }
             
