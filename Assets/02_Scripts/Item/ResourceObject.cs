@@ -48,7 +48,6 @@ public class ResourceObject : MonoBehaviour, ICombatable
         }
         Destroy(this.gameObject);
     }
-    +
     public void Respown() // 리스폰
     {
         Vector3 position = lastPosition;
