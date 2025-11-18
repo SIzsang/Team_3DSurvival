@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackTestObject : MonoBehaviour
+public class AttackTestObject : MonoBehaviour,ICombatable
 {
 
-    public void TakeDamage()
+    public void TakePhysicalDamage( int damage )
     {
-        Debug.Log("아야!");
+        Debug.Log("아야! " + damage);
     }
-    
 }

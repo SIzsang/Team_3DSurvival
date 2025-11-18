@@ -1,24 +1,15 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ICombatable
 {
-    private PlayerInputHandler InputHandler => inputHandler;
     private PlayerInputHandler inputHandler;
-
-    public PlayerBehaviour Behaviour => behaviour;
     private PlayerBehaviour behaviour;
-
-    public PlayerAnimationController PlayerAnimator => playerAnimator;
     private PlayerAnimationController playerAnimator;
-
-    public InteractionDetector InteractionDetector => interactionDetector;
     private InteractionDetector interactionDetector;
-
-    public AttackDetector AttackDetector => attackDetector;
     private AttackDetector attackDetector;
-
-
+    
     public Vector3 Forward => behaviour.Forward;
+    
 
     private void Awake()
     {
@@ -28,7 +19,7 @@ public class Player : MonoBehaviour
         interactionDetector = GetComponent<InteractionDetector>();
         attackDetector = GetComponent<AttackDetector>();
 
-        inputHandler.Init(this);
+        inputHandler.Init();
     }
 
 
@@ -42,6 +33,12 @@ public class Player : MonoBehaviour
     {
         Debug.Log("때림");
         if (attackDetector.CurrentTarget != null)
-            attackDetector.CurrentTarget.TakeDamage();
+            // 일단 10으로 때려
+            attackDetector.CurrentTarget.TakePhysicalDamage(10);
+    }
+
+    public void TakePhysicalDamage( int damage )
+    {
+        // 맞음
     }
 }
