@@ -25,6 +25,9 @@ namespace _02_Scripts.Quest
         private List<QuestUnlockCondition> _questUnlockConditions = new List<QuestUnlockCondition>();
         private QuestEntity _currentQuest;
 
+        public event Action<string> OnQuestAccepted;
+        public event Action OnQuestComplete;
+
         void Awake()
         {
             if (Instance == null)
@@ -64,6 +67,7 @@ namespace _02_Scripts.Quest
             else
             {
                 _currentQuest.AcceptQuest();
+                OnQuestAccepted?.Invoke(_currentQuest.Description);
                 _dialogueManager.StartDialogue(_currentQuest.RequestDialogue);
             }
         }
@@ -96,6 +100,19 @@ namespace _02_Scripts.Quest
             if (_currentQuest.IsClear)
             {
                 AddQuestCleared(_currentQuest);
+                OnQuestComplete?.Invoke();
+            }
+        }
+
+        public string QuestProgressString()
+        {
+            if (_currentQuest == null)
+            {
+                return "진행중인 퀘스트가 없습니다.";
+            }
+            else
+            {
+                return _currentQuest.Description;
             }
         }
 

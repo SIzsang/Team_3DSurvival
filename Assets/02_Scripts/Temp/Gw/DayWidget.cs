@@ -2,9 +2,9 @@ using _02_Scripts.Core.Managers;
 using TMPro;
 using UnityEngine;
 
-namespace _02_Scripts.Temp
+namespace _02_Scripts.Temp.Gw
 {
-    public class TimeManipulationSample : MonoBehaviour
+    public class DayWidget : MonoBehaviour
     {
         private GameManager _gameManager;
 
@@ -23,10 +23,5 @@ namespace _02_Scripts.Temp
             timeText.text = _gameManager.GetFormattedTime();
         }
 
-        public void GoNextDayClicked()
-        {
-            Debug.Log($"GoNextDayClicked");
-            _gameManager.SkipToNextDay();
-        }
     }
 }
