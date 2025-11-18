@@ -83,14 +83,14 @@ namespace _02_Scripts.Quest
                     _currentQuest.IncreaseProgress();
                     break;
             }
-            CheckQuestClear();
         }
 
         public bool IsQuestComplete(string questId)
         {
             return _clearQuests.Contains(questId);
         }
-        private void CheckQuestClear()
+
+        public void CheckQuestClear()
         {
             if (_currentQuest == null) return;
             if (_currentQuest.IsClear)
@@ -98,6 +98,7 @@ namespace _02_Scripts.Quest
                 AddQuestCleared(_currentQuest);
             }
         }
+
         private void AddQuestCleared(QuestEntity quest)
         {
             _clearQuests.Add(quest.QuestId);

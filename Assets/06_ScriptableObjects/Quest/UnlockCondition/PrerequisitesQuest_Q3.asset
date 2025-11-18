@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d09b9ed8df46f189b1eaaa33cc72fc, type: 3}
-  m_Name: New PrerequisitesQuest
+  m_Name: PrerequisitesQuest_Q3
   m_EditorClassIdentifier: 
-  questData: {fileID: 0}
+  questData: {fileID: 11400000, guid: f4707d3331e0bca47b8c69cf6edff509, type: 2}

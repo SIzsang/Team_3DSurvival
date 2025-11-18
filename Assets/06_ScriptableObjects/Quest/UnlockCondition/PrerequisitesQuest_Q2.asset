@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c532d6db2246f38c9b34eeb1eda20e, type: 3}
-  m_Name: New Quest
+  m_Script: {fileID: 11500000, guid: e5d09b9ed8df46f189b1eaaa33cc72fc, type: 3}
+  m_Name: PrerequisitesQuest_Q2
   m_EditorClassIdentifier: 
-  questUnlockCondition: {fileID: 0}
-  type: 0
-  targetItem: {fileID: 0}
-  requiredAmount: 0
-  description: 
-  requestDialogue: {fileID: 0}
-  clearDialogue: {fileID: 0}
+  questData: {fileID: 11400000, guid: a2519c7536e53a241b77145333c0579d, type: 2}
