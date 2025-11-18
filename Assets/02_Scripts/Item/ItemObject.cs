@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemObject : MonoBehaviour, ICombatable
+public class ItemObject : MonoBehaviour, IInteractable
 {
     public ItemData data;
 

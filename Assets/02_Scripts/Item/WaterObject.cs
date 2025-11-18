@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterObject : MonoBehaviour, ICombatable
+public class WaterObject : MonoBehaviour, IInteractable
 {
     //public ItemData data;
 
