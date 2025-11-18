@@ -8,13 +8,12 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public string GetInteractPrompt()
     {
-        string str = $"{data.displayName}\n{data.description}";
+        string str = $"{data.displayName}\n{data.description}"; // player.~~~
         return str;
     }
 
     public void OnInteract()
     {
-        // throw new System.NotImplementedException();
         // 플레이어 인벤토리 달면 추가
         Destroy(this.gameObject);
     }

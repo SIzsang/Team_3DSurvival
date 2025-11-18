@@ -33,7 +33,7 @@ using UnityEngine;
         public GameObject dropPrefab; // 상호작용시 drop 할 프리팹
 
         [Header("Stacking")]
-        public bool CanStack; 
+        public bool canStack; 
         public int maxStackAmount; // 수량
 
         [Header("Attking")]
@@ -45,4 +45,10 @@ using UnityEngine;
 
         [Header("Equip")]
         public GameObject equipPrefab; // 장착 프리팹
+
+    public virtual Item NewItem()
+    {
+        Item newItem = new Item(this);
+        return newItem;
     }
+}

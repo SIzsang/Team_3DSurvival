@@ -3,40 +3,31 @@ using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
 using UnityEngine;
 
-public class ResourceObject : MonoBehaviour, IInteractable
+public class ResourceObject : MonoBehaviour, ICombatable
 {
-    public ItemData giveItem;
+    public ItemData data;
     public int quantityPerHithit;
     public int capacity;
     Vector3 lastPosition; // 생성 마지막 위치
-    GameManager gameManager;
     
-
-    //public float testTime;
-    //private void Update()
-    //{
-    //    testTime = Time.deltaTime;
-    //    if (testTime > 0)
-    //    {
-    //        OnInteract();
-    //        testTime = 0;
-    //    }
-    //}
-
     private void Awake()
     {
         lastPosition = transform.position;
     }
-    //private void OnEnable()
-    //{
-    //    gameManager.OnDaytimeStart += Respown;
-    //}
+    private void OnEnable()
+    {
+        GameManager.Instance.OnDaytimeStart += Respown;
+    }
 
-    //private void OnDisable()
-    //{
-    //    gameManager.OnDaytimeStart -= Respown;
-    //}
-
+    private void OnDisable()
+    {
+        GameManager.Instance.OnDaytimeStart -= Respown;
+    }
+    public string GetInteractPrompt()
+    {
+        string str = $"{data.displayName}\n{data.description}"; // player.~~~
+        return str;
+    }
     public void OnInteract()
     {
         for (int i = 0; i < quantityPerHithit; i++)
@@ -52,12 +43,12 @@ public class ResourceObject : MonoBehaviour, IInteractable
 
                 Vector3 spawnPos = transform.position + randomOffset + Vector3.up;
 
-                Instantiate(giveItem.dropPrefab, spawnPos, Quaternion.identity);
+                Instantiate(data.dropPrefab, spawnPos, Quaternion.identity);
             }
         }
         Destroy(this.gameObject);
     }
-
+    +
     public void Respown() // 리스폰
     {
         Vector3 position = lastPosition;
