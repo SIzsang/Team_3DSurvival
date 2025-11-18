@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour,ICombatable
 	void Start()
 	{
 		SetState(AIState.Wandering);
-		OnDrawGizmos();
+	
 	}
 
 	// Update is called once per frame
@@ -84,12 +84,7 @@ public class Enemy : MonoBehaviour,ICombatable
 				break;
 		}
 	}
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.blue;
-		Gizmos.DrawCube(transform.position, Vector3.one);
-		//Gizmos.DrawSphere(transform.position, 1f);
-	}
+
 	public void SetState(AIState state)
 	{
 		aiState = state;
@@ -196,25 +191,40 @@ public class Enemy : MonoBehaviour,ICombatable
 		return angle < fieldOfView;
 	}
 
-	void TakePhysicalDamage(int damage)  // 몬스터가 공격을 받았을때 쓰는 함수
+	public void TakePhysicalDamage(int damage)  // 몬스터가 공격을 받았을때 쓰는 함수
 	{
 		health -= damage;
-		if(health <= 0)
+		StartCoroutine(DamageFlash());
+
+		if (health <= 0)
 		{
 			animator.speed = 1;
-			animator.SetTrigger("Death");
+			
 			StartCoroutine(Death());
 			
 		}
-
+		
 	}
+
 
 	IEnumerator Death()
 	{
+		animator.SetTrigger("Death");
 		yield return new WaitForSeconds(3f);
 		Destroy(gameObject);
 	}
 
-
-
+	IEnumerator DamageFlash()
+	{
+		for (int i = 0; i < meshRenderers.Length; i++)
+		{
+			meshRenderers[i].material.color = new Color (1.0f,0.6f,0.6f);
+		   
+		}
+		yield return new WaitForSeconds(0.1f);
+		for(int i = 0; i < meshRenderers.Length; i++)
+		{
+			meshRenderers[i].material.color = Color.white;
+		}
+	}
 }
