@@ -19,7 +19,7 @@ public class PlayerInputHandler
     {
         inputBinder = InputManager.Instance?.GetInputEventBinder( EInputActionAssetName.Player );
 
-        if (inputBinder != null)
+        if (inputBinder != null) 
         {
             inputBinder.BindInputEvent(  EPlayerInputActionName.Move , OnMove );
             inputBinder.BindInputEvent(EPlayerInputActionName.Jump, OnJump  );

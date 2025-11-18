@@ -15,7 +15,8 @@ public class PlayerAnimationController :MonoBehaviour
     public void Awake()
     {  
         player = GetComponent<Player>();
-
+        
+        // 캐릭터로 바꿔서 다른 캐릭터들한테도 붙일 수 있을 듯..?
         player.OnMoveAction += OnMove;
         player.OnIdleAction += OnIdle;
         player.OnJumpAction += OnJump;
@@ -37,7 +38,7 @@ public class PlayerAnimationController :MonoBehaviour
 
     void OnJump()
     {
-        animator.SetBool("IsJumping", true);
+        animator.SetTrigger("Jump");
     }
 
     void OnInteract()

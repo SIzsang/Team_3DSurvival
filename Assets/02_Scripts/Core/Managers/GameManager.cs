@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using _02_Scripts.Utils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _02_Scripts.Core.Managers
 {
@@ -31,6 +32,8 @@ namespace _02_Scripts.Core.Managers
         private bool _daytimeInvoked = false;
         private bool _nightInvoked = false;
 
+        [SerializeField] private Player player;
+
         void Awake()
         {
             if (Instance == null)
@@ -41,13 +44,17 @@ namespace _02_Scripts.Core.Managers
             {
                 Destroy(gameObject);
             }
-            DontDestroyOnLoad(gameObject);
+            
+            //DontDestroyOnLoad(gameObject);
         }
 
         void Start()
         {
             GameStart();
+            
         }
+        
+        
 
         void Update()
         {

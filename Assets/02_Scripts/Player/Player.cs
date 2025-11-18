@@ -10,6 +10,9 @@ public class Player : MonoBehaviour, ICombatable
     
     private InteractableDetector interactableDetector;
     private CombatableDetector combatableDetector;
+    
+    public Inventory Inventory => inventory;
+    Inventory inventory;
 
     public Vector3 Forward => behaviour.Forward;
 
@@ -54,6 +57,8 @@ public class Player : MonoBehaviour, ICombatable
 
         inputHandler = new PlayerInputHandler();
         inputHandler.Init(this, behaviour);
+        
+        inventory = new Inventory();
     }
 
     private void Update()
