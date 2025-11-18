@@ -80,8 +80,8 @@ namespace _02_Scripts.Core.Managers
         /// <returns>형식에 맞게 변환된 시간 문자열입니다.</returns>
         public string GetFormattedTime()
         {
-            return $"Day {CurrentDay}, {CurrentHour:D2}:{CurrentMinute:D2}";
-            // return $"Day {CurrentDay}, {CurrentHour:D2}";
+            // return $"Day {CurrentDay}, {CurrentHour:D2}:{CurrentMinute:D2}";
+            return $"Day {CurrentDay}, {CurrentHour:D2}시";
         }
 
         /// <summary>
