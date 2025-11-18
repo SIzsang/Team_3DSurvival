@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, ICombatable
     
     private InteractableDetector interactableDetector;
     private CombatableDetector combatableDetector;
+    private GatherableDetector gatherableDetector;
     
     public Inventory Inventory => inventory;
     Inventory inventory;
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour, ICombatable
         playerAnimator = GetComponent<PlayerAnimationController>();
         interactableDetector = GetComponent<InteractableDetector>();
         combatableDetector = GetComponent<CombatableDetector>();
+        gatherableDetector = GetComponent<GatherableDetector>();
 
         inputHandler = new PlayerInputHandler();
         inputHandler.Init(this, behaviour);
@@ -85,6 +87,11 @@ public class Player : MonoBehaviour, ICombatable
             OnAttackAction?.Invoke();
             combatableDetector.CurrentTarget.TakePhysicalDamage(10);
             // 일단 10으로 때려
+        }
+
+        if (gatherableDetector.CurrentTarget != null)
+        {
+            gatherableDetector.CurrentTarget.OnGather();
         }
     }
 
