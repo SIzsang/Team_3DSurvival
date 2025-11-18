@@ -14,15 +14,15 @@ public class ResourceObject : MonoBehaviour, ICombatable
     {
         lastPosition = transform.position;
     }
-    private void OnEnable()
-    {
-        GameManager.Instance.OnDaytimeStart += Respown;
-    }
+    //private void OnEnable()
+    //{
+    //    GameManager.Instance.OnDaytimeStart += Respown; 
+    //}
 
-    private void OnDisable()
-    {
-        GameManager.Instance.OnDaytimeStart -= Respown;
-    }
+    //private void OnDisable()
+    //{
+    //    GameManager.Instance.OnDaytimeStart -= Respown;
+    //}
     public string GetInteractPrompt()
     {
         string str = $"{data.displayName}\n{data.description}"; // player.~~~
@@ -48,7 +48,7 @@ public class ResourceObject : MonoBehaviour, ICombatable
         }
         Destroy(this.gameObject);
     }
-    +
+    
     public void Respown() // 리스폰
     {
         Vector3 position = lastPosition;
