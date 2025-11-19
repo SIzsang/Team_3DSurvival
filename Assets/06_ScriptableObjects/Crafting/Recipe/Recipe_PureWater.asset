@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: "\uC815\uD654\uC218"
   requiredItemDecription: "\uB3CC 2 + \uBB3C 2"
-  outputItem: {fileID: 11400000, guid: 0fc27c0e628072842bb2f3563e72f055, type: 2}
+  outputItem: {fileID: 11400000, guid: 01154c417ebd15d4c8ae66405ebc580d, type: 2}
   outputCount: 1
   ingredients:
   - item: {fileID: 11400000, guid: 80b221f274ea2cd4ca89891473ba76ac, type: 2}

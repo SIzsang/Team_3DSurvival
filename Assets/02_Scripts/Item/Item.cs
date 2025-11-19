@@ -32,8 +32,8 @@ public class Item
         count = _count;
     }
 
-    public void AddCount()
+    public void AddCount(int amount)
     {
-        count++;
+        count += amount;
     }
 }
