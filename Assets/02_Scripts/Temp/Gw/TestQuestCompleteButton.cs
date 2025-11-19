@@ -16,7 +16,7 @@ namespace _02_Scripts.Temp.Gw
         public void ClearQuest()
         {
             Debug.Log("Cleared Quest");
-            _questManager.CheckQuestClear();
+            // _questManager.CheckQuestClear();
         }
 
     }

@@ -15,7 +15,7 @@ namespace _02_Scripts.Temp.Gw
         public void AcceptQuest()
         {
             Debug.Log("AcceptQuest");
-            _questManager.SetQuestProgressIfAvailable();
+            // _questManager.SetQuestProgressIfAvailable();
         }
 
 

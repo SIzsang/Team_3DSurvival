@@ -52,29 +52,20 @@ namespace _02_Scripts.Quest
             UpdateAllQuestAvailability();
         }
 
-        public void SetQuestProgressIfAvailable()
+        public void AcceptOrCompleteQuest()
         {
-            if (_currentQuest != null)
-            {
-                _dialogueManager.StartDialogue(_currentQuest.RequestDialogue);
-                return;
-            }
-            _currentQuest = SetQuestProgress();
             if (_currentQuest == null)
             {
-                _dialogueManager.StartDialogue(notExistentQuestDialogue);
+                SetQuestProgressIfAvailable();
             }
             else
             {
-                _currentQuest.AcceptQuest();
-                OnQuestAccepted?.Invoke(_currentQuest.Description);
-                _dialogueManager.StartDialogue(_currentQuest.RequestDialogue);
+                CheckQuestClear();
             }
         }
 
         public void CheckQuestProgress(QuestProcessContext context)
         {
-            Debug.Log($"CheckQuestProgress {_currentQuest.TargetItem.name}");
             if (_currentQuest == null) return;
             if (context == null) return;
             switch (context.QuestType)
@@ -95,26 +86,33 @@ namespace _02_Scripts.Quest
         {
             return _clearQuests.Contains(questId);
         }
+        private void SetQuestProgressIfAvailable()
+        {
+            if (_currentQuest != null)
+            {
+                _dialogueManager.StartDialogue(_currentQuest.RequestDialogue);
+                return;
+            }
+            _currentQuest = SetQuestProgress();
+            if (_currentQuest == null)
+            {
+                _dialogueManager.StartDialogue(notExistentQuestDialogue);
+            }
+            else
+            {
+                _currentQuest.AcceptQuest();
+                OnQuestAccepted?.Invoke(_currentQuest.Description);
+                _dialogueManager.StartDialogue(_currentQuest.RequestDialogue);
+            }
+        }
 
-        public void CheckQuestClear()
+        private void CheckQuestClear()
         {
             if (_currentQuest == null) return;
             if (_currentQuest.IsClear)
             {
                 AddQuestCleared(_currentQuest);
                 OnQuestComplete?.Invoke();
-            }
-        }
-
-        public string QuestProgressString()
-        {
-            if (_currentQuest == null)
-            {
-                return "진행중인 퀘스트가 없습니다.";
-            }
-            else
-            {
-                return _currentQuest.Description;
             }
         }
 
