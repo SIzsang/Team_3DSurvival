@@ -15,7 +15,7 @@ public class EnemyPlayerDeath : MonoBehaviour
 
     void Update()
     {
-        Invoke("Attack",6f);
+        
     }
 
 	private void OnCollisionEnter(Collision collision)
@@ -24,6 +24,7 @@ public class EnemyPlayerDeath : MonoBehaviour
 		{
 			Debug.Log("닿았다!");
 			Enemy i = collision.gameObject.GetComponent<Enemy>();
+			i.TakePhysicalDamage(5);
 			enemies.Add(i);
 		}
 
@@ -32,7 +33,7 @@ public class EnemyPlayerDeath : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
-			Debug.Log("닿았다!");
+			Debug.Log("떨어졌다!");
 			Enemy i = collision.gameObject.GetComponent<Enemy>();
 			enemies.Remove(i);
 		}
