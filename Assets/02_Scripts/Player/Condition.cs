@@ -60,12 +60,12 @@ public class Condition
 
 
 
-    public Coroutine NaturalChangeRoutine => naturalChangeRoutine;
-    private Coroutine naturalChangeRoutine;
+    public Coroutine ChangeRoutine => changeRoutine;
+    private Coroutine changeRoutine;
 
-    public void SetNaturalChnageRoutine( Coroutine routine )
+    public void SetChangeRoutine( Coroutine routine )
     {
-        naturalChangeRoutine = routine;
+        changeRoutine = routine;
     }
 
 }

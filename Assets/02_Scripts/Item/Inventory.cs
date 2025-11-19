@@ -37,7 +37,7 @@ public class Inventory
                 {
                     if (finditems[i].Count < finditems[i].MaxCount)
                     {
-                        finditems[i].AddCount();
+                        finditems[i].AddCount(finditems.Count);
                         return;
                     }
 

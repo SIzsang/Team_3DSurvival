@@ -8,9 +8,16 @@ using UnityEngine.UI;
 public class RecipeSlots : MonoBehaviour
 {
     private Recipe recipe;
+    [SerializeField] private RecipeData recipeData;    
+    
 
     public Button CreativeButton;
     public TextMeshProUGUI recipeInfoText;
+
+    private void Awake()
+    {
+        Setup(recipeData);
+    }
     public void Setup(RecipeData data)
     {
         recipe = new Recipe(data);
@@ -20,34 +27,44 @@ public class RecipeSlots : MonoBehaviour
         CreativeButton.onClick.AddListener(OnClickCreative);
     }
 
-    private void OnClickCreative()
+
+    public void OnClickCreative()
     {
         var inventory = GameManager.Instance.Player.Inventory;
         if (recipe.CanCreative(inventory))
         {
+            Debug.Log("성공 눌렸어");
             // 제작
-            //CreateItem(inventory);
+            CreateItem();
         }
         else
         {
+            Debug.Log("실패 눌렸어");
             // 제작 실패
         }
     }
 
-    // 실제 제작 처리
-    //private void CreateItem()
-    //{
-    //    var inventory = GameManager.Instance.Player.Inventory;
-    //    foreach (var ingredient in recipe.Ingredients)
-    //    {
-    //        Item invItem = inventory.Items.Find(x => x.Name == ingredient.item.name);
-    //        invItem.Count -= ingredient.count;
-    //    }
 
-    //    // 결과 아이템 지급
-    //    inventory.AddItem(recipe.OutputItem);
+    public void CreateItem()
+    {
+        var inventory = GameManager.Instance.Player.Inventory;
+        foreach (var ingredient in recipe.Ingredients)
+        {
+            Item invenItem = inventory.Items.Find(x => x.Name == ingredient.item.name);
+            invenItem.AddCount(-ingredient.count);
+        }
 
-    //    Debug.Log($"{recipe.ResipeName} 제작 완료!");
-    //}
+        // 결과 아이템 지급
+        Item item = new Item(recipe.OutputItem);
+        inventory.AddItem(item);
+
+        Debug.Log($"{recipe.ResipeName} 제작 완료!");
+    }
+
+
+    public void OnClickCreativeForTest() // 삭제 예정
+    {
+        OnClickCreative();
+    }
 }
 

@@ -26,7 +26,9 @@ public enum AIState
 public class Enemy : MonoBehaviour,ICombatable
 {
 	[Header("Stats")]
+	
 	public int health;
+	
 	public float walkSpeed;
 	public float runSpeed;
 	public ItemData dropItem;
@@ -217,11 +219,11 @@ public class Enemy : MonoBehaviour,ICombatable
 		if(health > 0)
 		{
 			health -= damage;
-			
+
 			StartCoroutine(DamageFlash());
 			SetState(AIState.Wandering);
 		}
-		else if(health <= 0 && rewarded == false )
+		if(health <= 0 && rewarded == false )
 		{
 			SetState(AIState.Death);
 			animator.speed = 1;
@@ -234,7 +236,7 @@ public class Enemy : MonoBehaviour,ICombatable
 		}
 		
 	}
-	IEnumerator Knockback()
+	/*IEnumerator Knockback()
 	{
 		
 		if (isKnockback == true)
@@ -249,7 +251,7 @@ public class Enemy : MonoBehaviour,ICombatable
 			myCoroutine = null;
 			isKnockback = false;
 		}
-	}
+	}*/
 
 	IEnumerator Death()
 	{
