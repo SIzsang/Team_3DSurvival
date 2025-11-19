@@ -11,7 +11,7 @@ public class Ingredient
     public int count;       // 필요 수량
 }
 
-[CreateAssetMenu(fileName = "new Recipe", menuName = "Scriptable Objects/Recipe")]
+[CreateAssetMenu(fileName = "new Recipe", menuName = "Scriptable Objects/Resipe")]
 public class RecipeData : ScriptableObject
 {
     [Header("UI 출력")]
