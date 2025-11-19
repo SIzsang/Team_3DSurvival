@@ -31,7 +31,6 @@ public class PlayerStatus : MonoBehaviour
     private Condition thirsty;
     private Condition hunger;
 
-
     private void Awake()
     {
         health = new Condition( playerStatusData.maxHealth, playerStatusData.healthNaturalRecovery, playerStatusData.healthNaturalRecoveryRate );
@@ -45,7 +44,7 @@ public class PlayerStatus : MonoBehaviour
         StartNaturalChangeRoutin( hunger );
     }
 
-    public void TakeDamage( int damage )
+    public void AddHealth( int damage )
     {
         health.AddCurrentValue( damage );
     }
@@ -108,10 +107,22 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+
+    public void StartOtherChangeRoutine(Condition condition)
+    {
+        
+    }
+
+    public void StopOtherChangeRoutine(Condition condition)
+    {
+        
+    }
     IEnumerator OtherChangeRoutine( Condition targetCondition, float amount, float rate )
     {
         while ( true )
         {
+            targetCondition.AddNaturalChangeValue(amount);
+            yield return new WaitForSeconds(rate);
         }
     }
 }

@@ -28,13 +28,13 @@ public class InputBinder : MonoBehaviour
         actionMaps = new Dictionary< string, InputActionMap >();
         foreach ( InputActionMap map in assetMaps )
         {
-            if (map.name == nameof(EInputMapName.Default))
-            {
-                currentMap = map;
-                SwitchMap(currentMap.name);
-            }
             actionMaps.Add( map.name, map );
         }
+        
+        
+        SwitchMap(nameof(EInputMapName.Default));
+        
+        
         nowBindingActions = new();
         SceneManager.sceneUnloaded += OnUnloadScene;
     }
@@ -76,26 +76,27 @@ public class InputBinder : MonoBehaviour
     /// 해당 PlayerInput 활성/비활성화
     /// </summary>
     /// <param name="enable"></param>
-    public void SetEnableInput( bool enable, bool allActionsEanble = true )
+    public void SetEnableInput( bool enable)
     {
         //playerInput.enabled = enable;
 
-        if ( enable == true && allActionsEanble == true )
+        if ( enable == true )
         {
-            foreach ( var a in actionMaps.Values )
-            {
-                a.Enable();
-            }
+            inputAsset.Enable();
+        }
+        else if (enable == false )
+        {
+            inputAsset.Disable();
         }
     }
 
-    public void SwitchMap( string mapName, bool allActionsEnable = true )
+    public void SwitchMap<TEnum>(TEnum mapName, bool allActionsEnable = true )
     {
-        if (actionMaps.ContainsKey(mapName) == false) return;
-
+        if (actionMaps.ContainsKey(mapName.ToString()) == false) return;
+        
         foreach (var a in actionMaps.Values)
         {
-            if (a.name != mapName)
+            if (a.name != mapName.ToString())
             {
                 a.Disable();
             }
@@ -106,7 +107,6 @@ public class InputBinder : MonoBehaviour
             }
         }
         
-
         if ( allActionsEnable )
         {
             foreach ( var a in currentMap.actions)
