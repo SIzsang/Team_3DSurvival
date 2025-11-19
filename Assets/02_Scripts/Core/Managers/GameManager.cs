@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using _02_Scripts.Narrative;
 using _02_Scripts.Utils;
+using Core.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,11 +11,14 @@ namespace _02_Scripts.Core.Managers
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+        private AudioManager _audioManager;
+        private DialogueManager _dialogueManager;
 
         [SerializeField] private float minutesPerSecond;
         [SerializeField] private float fadeDuration = 1f;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private bool isMainNarrativeOn = false;
+        [SerializeField] private Light directionalLight;
 
         public bool IsMainNarrativeOn => isMainNarrativeOn;
         public bool IsTimePaused { get; private set; }
@@ -28,7 +33,6 @@ namespace _02_Scripts.Core.Managers
         public event Action OnDaytimeStart;
         public void PauseTime() => IsTimePaused = true;
         public void ResumeTime() => IsTimePaused = false;
-
         private float _timeOfDayInMinutes;
         private bool _daytimeInvoked = false;
         private bool _nightInvoked = false;
@@ -46,7 +50,8 @@ namespace _02_Scripts.Core.Managers
             {
                 Destroy(gameObject);
             }
-            
+            _audioManager = AudioManager.Instance;
+            _dialogueManager = DialogueManager.Instance;
             //DontDestroyOnLoad(gameObject);
         }
 
@@ -60,6 +65,14 @@ namespace _02_Scripts.Core.Managers
 
         void Update()
         {
+            if (_dialogueManager.IsDialogueActive)
+            {
+                PauseTime();
+            }
+            else
+            {
+                ResumeTime();
+            }
             if (IsTimePaused)
             {
                 return;
@@ -142,6 +155,26 @@ namespace _02_Scripts.Core.Managers
             ResumeTime();
         }
 
+        public bool IsDaytime()
+        {
+            return CurrentHour >= Constants.Game.DaytimeInHour && CurrentHour <= Constants.Game.NightInHour;
+        }
+
+        public void ChangeBgmByTime(bool isDaytime)
+        {
+            if (_audioManager == null) return;
+            if (isDaytime)
+            {
+                directionalLight.color = Color.white;
+                _audioManager.PlayBgm(_audioManager.daytimeBgm);
+            }
+            else
+            {
+                _audioManager.PlayBgm(_audioManager.nighttimeBgm);
+                directionalLight.color = Color.black;
+            }
+        }
+
         private void GameStart()
         {
             PauseTime();
@@ -153,6 +186,8 @@ namespace _02_Scripts.Core.Managers
             {
                 StartCoroutine(FadeRoutine(0f));
             }
+            ChangeBgmByTime(true);
+
             ResumeTime();
         }
 
@@ -204,6 +239,7 @@ namespace _02_Scripts.Core.Managers
             if (_nightInvoked) return;
             if (CurrentHour == Constants.Game.NightInHour)
             {
+                ChangeBgmByTime(false);
                 OnNightStart?.Invoke();
                 _nightInvoked = true;
             }
@@ -214,6 +250,7 @@ namespace _02_Scripts.Core.Managers
             if(_daytimeInvoked) return;
             if (CurrentHour == Constants.Game.DaytimeInHour)
             {
+                ChangeBgmByTime(true);
                 OnDaytimeStart?.Invoke();
                 _daytimeInvoked = true;
             }

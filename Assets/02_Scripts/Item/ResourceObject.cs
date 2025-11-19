@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
+using Core.Managers;
 using UnityEngine;
 
 public class ResourceObject : MonoBehaviour, IGatherable
@@ -9,7 +10,7 @@ public class ResourceObject : MonoBehaviour, IGatherable
     public int quantityPerHithit;
     public int capacity;
     Vector3 lastPosition; // 생성 마지막 위치
-    
+
     private void Awake()
     {
         lastPosition = transform.position;
@@ -40,6 +41,16 @@ public class ResourceObject : MonoBehaviour, IGatherable
             );
             Vector3 spawnPos = transform.position + randomOffset + Vector3.up;
             Instantiate(data.dropPrefab, spawnPos, Quaternion.identity);
+            AudioManager audioManager = AudioManager.Instance;
+            switch (data.name)
+            {
+                case "Item_Water" : audioManager.PlaySfx(audioManager.getWater);
+                    break;
+                case "Item_Rock"  : audioManager.PlaySfx(audioManager.getStone);
+                    break;
+                case "Item_Wood"  : audioManager.PlaySfx(audioManager.getWood);
+                    break;
+            }
         }
         else if (capacity <= 0)
         {

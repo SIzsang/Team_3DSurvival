@@ -4,6 +4,7 @@ using _02_Scripts.Core;
 using _02_Scripts.Core.Managers;
 using _02_Scripts.Narrative.Data;
 using _02_Scripts.Narrative.Entities;
+using Core.Managers;
 using UnityEngine;
 
 namespace _02_Scripts.Narrative
@@ -13,6 +14,7 @@ namespace _02_Scripts.Narrative
         public static NarrativeManager Instance { get; private set; }
         private GameManager _gameManager;
         private DialogueManager _dialogueManager;
+        private AudioManager _audioManager;
 
         [SerializeField]private List<StoryData> stories;
         [SerializeField] private StoryData prologueStoryBeforeFade;
@@ -39,6 +41,7 @@ namespace _02_Scripts.Narrative
         {
             _gameManager = GameManager.Instance;
             _dialogueManager = DialogueManager.Instance;
+            _audioManager = AudioManager.Instance;
             Initialize();
         }
 
@@ -95,6 +98,14 @@ namespace _02_Scripts.Narrative
 
             Story story = _stories[storyData.StoryId];
             _playedStoryIds.Add(story.StoryId);
+            if (_audioManager != null)
+            {
+                if (storyData.StoryId != prologueStoryBeforeFade.StoryId && storyData.needFade)
+                {
+                    _audioManager.PlayBgm(_audioManager.recallBgm);
+                    _audioManager.IsPlayForce = true;
+                }
+            }
             if (storyData.needFade)
             {
                 yield return StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStory(storyData)));
@@ -103,6 +114,9 @@ namespace _02_Scripts.Narrative
             {
                 yield return StartCoroutine(ProgressMainStory(storyData));
             }
+            bool isDaytime = _gameManager.IsDaytime();
+            _audioManager.IsPlayForce = false;
+            _gameManager.ChangeBgmByTime(isDaytime);
         }
 
         /// <summary>

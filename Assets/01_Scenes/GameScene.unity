@@ -496,6 +496,7 @@ MonoBehaviour:
   fadeDuration: 1
   canvasGroup: {fileID: 400010595}
   isMainNarrativeOn: 0
+  directionalLight: {fileID: 1895344018}
   player: {fileID: 931066865}
 --- !u!4 &448620784
 Transform:

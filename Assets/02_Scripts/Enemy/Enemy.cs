@@ -3,6 +3,7 @@ using _02_Scripts.Quest;
 using _02_Scripts.Quest.Context;
 using System.Collections;
 using System.Collections.Generic;
+using Core.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +26,8 @@ public enum AIState
 }
 public class Enemy : MonoBehaviour,ICombatable
 {
+	private AudioManager _audioManager;
+
 	[Header("Stats")]
 	
 	public int health;
@@ -71,6 +74,7 @@ public class Enemy : MonoBehaviour,ICombatable
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponentInChildren<Animator>();
 		meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+		_audioManager = AudioManager.Instance;
 		
 	}
 
@@ -78,6 +82,10 @@ public class Enemy : MonoBehaviour,ICombatable
 	{
 		SetState(AIState.Wandering);
 		player = GameManager.Instance.Player.transform;
+		if (_audioManager != null)
+		{
+			_audioManager.PlaySfx(_audioManager.monsterIdle);
+		}
 	
 	}
 
@@ -178,6 +186,7 @@ public class Enemy : MonoBehaviour,ICombatable
 				player.GetComponent<ICombatable>().TakePhysicalDamage(damage);
 				animator.speed = 1;
 				animator.SetTrigger("Attack");
+				_audioManager.PlaySfx(_audioManager.monsterAttack);
 			}
 		}
 		else
@@ -232,6 +241,7 @@ public class Enemy : MonoBehaviour,ICombatable
 			StartCoroutine(Death());
 			
 			rewarded = true;
+			_audioManager.PlaySfx(_audioManager.monsterDie);
 
 		}
 		

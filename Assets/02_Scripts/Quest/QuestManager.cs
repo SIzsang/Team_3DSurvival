@@ -6,6 +6,7 @@ using _02_Scripts.Quest.Context;
 using _02_Scripts.Quest.Data;
 using _02_Scripts.Quest.Data.UnlockCondition;
 using _02_Scripts.Quest.Entities;
+using Core.Managers;
 using UnityEngine;
 
 namespace _02_Scripts.Quest
@@ -16,6 +17,7 @@ namespace _02_Scripts.Quest
         public static QuestManager Instance { get; private set; }
 
         private DialogueManager _dialogueManager;
+        private AudioManager _audioManager;
 
         [SerializeField]private List<QuestData> quests = new List<QuestData>();
         [SerializeField]private DialogueData notExistentQuestDialogue;
@@ -44,6 +46,7 @@ namespace _02_Scripts.Quest
         void Start()
         {
             _dialogueManager = DialogueManager.Instance;
+            _audioManager = AudioManager.Instance;
             foreach (var questData in quests)
             {
                 _questDictionary.Add(questData.QuestId, new QuestEntity(questData));
@@ -113,6 +116,7 @@ namespace _02_Scripts.Quest
             {
                 AddQuestCleared(_currentQuest);
                 OnQuestComplete?.Invoke();
+                _audioManager.PlaySfx(_audioManager.clearQuest);
             }
         }
 
