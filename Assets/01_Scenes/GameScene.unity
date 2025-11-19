@@ -166,9 +166,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7157a0a637fd4483b593540955efb3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stories: []
-  isMainNarrativeOn: 0
-  prologueStory: {fileID: 0}
+  stories:
+  - {fileID: 11400000, guid: 7c39950a05861ee48b9d81186811c9e4, type: 2}
+  - {fileID: 11400000, guid: 99e1cb2d37d582c4b945ed29b2df2d02, type: 2}
+  - {fileID: 11400000, guid: d61b9c7c7f02f7743bd6f6036903f8d6, type: 2}
+  - {fileID: 11400000, guid: 6d59214fb3eb8d145a72b6e361677c9c, type: 2}
+  - {fileID: 11400000, guid: c998a340adffe554bbcbfb5167b055dc, type: 2}
+  - {fileID: 11400000, guid: c2395c44f318c3147b13e00597668842, type: 2}
+  - {fileID: 11400000, guid: 03e3a39e2e8e4614396223d9b6473876, type: 2}
+  - {fileID: 11400000, guid: e02cf0e0364240d4d8348f3e813b5a37, type: 2}
+  prologueStoryBeforeFade: {fileID: 11400000, guid: 7c39950a05861ee48b9d81186811c9e4, type: 2}
+  prologueStoryAfterFade: {fileID: 11400000, guid: 99e1cb2d37d582c4b945ed29b2df2d02, type: 2}
 --- !u!1 &90366569
 GameObject:
   m_ObjectHideFlags: 0
