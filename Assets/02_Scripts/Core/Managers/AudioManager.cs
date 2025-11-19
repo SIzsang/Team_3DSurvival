@@ -15,8 +15,9 @@ namespace Core.Managers
         private AudioSource[] _sfxSources;
 
         public bool IsBgmPlaying => _activeSource.isPlaying;
-        public bool IsPlayForce = false;
-
+        public bool _isPlayForce = false;
+        public bool _isSfxLocked;
+        
         [Header("BGM Clips")]
         public AudioClip daytimeBgm;       // 타이틀 BGM
         public AudioClip nighttimeBgm;
@@ -36,6 +37,8 @@ namespace Core.Managers
         public AudioClip monsterIdle;
         public AudioClip monsterDie;
         public AudioClip monsterAttack;
+
+        
 
         void Awake()
         {
@@ -57,7 +60,7 @@ namespace Core.Managers
 
         public void PlayBgm(AudioClip newClip)
         {
-            if (IsPlayForce)
+            if (_isPlayForce)
             {
                 return;
             }
@@ -99,6 +102,7 @@ namespace Core.Managers
 
         public void PlaySfx(AudioClip clip)
         {
+            if(_isSfxLocked) return;
             foreach (var source in _sfxSources)
             {
                 if (!source.isPlaying)
@@ -107,6 +111,21 @@ namespace Core.Managers
                     return;
                 }
             }
+        }
+
+        public void ClearSfx()
+        {
+            _isSfxLocked = true;
+            for (int i = 0; i < _sfxSources.Length; i++)
+            {
+                _sfxSources[i].Stop();
+            }
+        }
+
+        public void SetSfxAndBgmFix(bool fix)
+        {
+            _isSfxLocked = fix;
+            _isPlayForce = fix;
         }
     }
 }

@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4e1801c104480e922e83536589bb7f, type: 3}
   m_Name: 07. Story_Event_AfterLastBattle
   m_EditorClassIdentifier: 
-  gameTimestamp:
-    day: 0
-    hour: 0
-    minute: 0
   dialogue:
   - {fileID: 11400000, guid: e655bf2f912f2df44851230159aadc34, type: 2}
-  triggerType: 0
   needFade: 0
+  nextStory: {fileID: 11400000, guid: e02cf0e0364240d4d8348f3e813b5a37, type: 2}
