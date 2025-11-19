@@ -11,9 +11,9 @@ namespace _02_Scripts.Narrative.Data
         {
             get { return name; }
         }
-        public GameTimestamp gameTimestamp;
+        // public GameTimestamp gameTimestamp;
         public List<DialogueData> dialogue;
-        public TriggerType triggerType;
+        // public TriggerType triggerType;
         public bool needFade;
     }
 

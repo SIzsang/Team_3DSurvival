@@ -15,10 +15,10 @@ namespace _02_Scripts.Narrative
         private DialogueManager _dialogueManager;
 
         [SerializeField]private List<StoryData> stories;
-        [SerializeField] private bool isMainNarrativeOn = false;
-        [SerializeField] private StoryData prologueStory;
+        [SerializeField] private StoryData prologueStoryBeforeFade;
+        [SerializeField] private StoryData prologueStoryAfterFade;
 
-        private readonly Dictionary<GameTimestamp, Story> _storyByDate = new Dictionary<GameTimestamp, Story>();
+        private readonly Dictionary<string, Story> _stories = new Dictionary<string, Story>();
         // private readonly Dictionary<GameTimestamp, Story> _storyByInteraction = new Dictionary<GameTimestamp, Story>();
         private readonly HashSet<string> _playedStoryIds = new HashSet<string>();
 
@@ -47,17 +47,18 @@ namespace _02_Scripts.Narrative
             foreach (var storyData in stories)
             {
                 Story story = new Story(storyData);
-                if (story.TriggerType == TriggerType.Date)
-                {
-                    _storyByDate[storyData.gameTimestamp] = story;
-                }
+                _stories.Add(story.StoryId, story);
+                // if (story.TriggerType == TriggerType.Date)
+                // {
+                // _stories[.gameTimestamp] = story;
+                // }
                 // else if (story.TriggerType == TriggerType.Interaction)
                 // {
                 //     _storyByInteraction[storyData.gameTimestamp] = story;
                 // }
-
             }
-            ShowPrologue();
+            StartCoroutine(ShowPrologue());
+
         }
 
         void OnEnable()
@@ -73,8 +74,8 @@ namespace _02_Scripts.Narrative
             }
             if (_gameManager != null)
             {
-                _gameManager.OnGameStart += ProgressMainStoryWithFade;
-                _gameManager.OnTimeChanged += CheckAndProgressNarrativeByTimeStamp;
+                // _gameManager.OnGameStart += ProgressMainStoryWithFade;
+                // _gameManager.OnTimeChanged += CheckAndProgressNarrativeByTimeStamp;
             }
         }
 
@@ -88,47 +89,57 @@ namespace _02_Scripts.Narrative
         /// 일회성 또는 비정기적 스토리를 처리하는 데 사용됩니다.
         /// 내부적으로는 재생된 스토리의 ID를 HashSet에 기록하여 상태를 관리합니다.
         /// </remarks>
-        public void CheckAndProgressNarrative(StoryData storyData)
+        private IEnumerator CheckAndProgressNarrative(StoryData storyData)
         {
-            Story story = new Story(storyData);
-            if (_playedStoryIds.Contains(story.StoryId))
+            if (!IsNarrativeExists(storyData.StoryId)) yield break;
+
+            Story story = _stories[storyData.StoryId];
+            _playedStoryIds.Add(story.StoryId);
+            if (storyData.needFade)
             {
-                return;
+                yield return StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStory(storyData)));
             }
-            _playedStoryIds .Add(story.StoryId);
-            _dialogueManager.StartDialogue(story);
+            else
+            {
+                yield return StartCoroutine(ProgressMainStory(storyData));
+            }
         }
 
         /// <summary>
         /// 지정된 타임스탬프에 해당하는 스토리가 존재하는지 확인하고, 존재할 경우에만 스토리를 진행합니다.
         /// </summary>
         /// <param name="timestamp">확인 및 진행할 게임의 특정 시간입니다.</param>
-        public void CheckAndProgressNarrativeByTimeStamp(GameTimestamp timestamp)
-        {
-            if (!IsNarrativeExists(TriggerType.Date, timestamp)) return;
-            StartCoroutine(ProgressMainStoryByDate(timestamp));
-        }
+        // public void CheckAndProgressNarrativeByTimeStamp(GameTimestamp timestamp)
+        // {
+            // if (!IsNarrativeExists(TriggerType.Date, timestamp)) return;
+            // StartCoroutine(ProgressMainStoryByDate(timestamp));
+        // }
+        // public void CheckAndProgressNarrative(StoryData story)
+        // {
+        // if (!IsNarrativeExists(TriggerType.Date, timestamp)) return;
+        // StartCoroutine(ProgressMainStoryByDate(timestamp));
+        // }
 
         /// <summary>
         /// 화면 페이드 효과(Fade-in/out)와 함께 메인 스토리를 진행합니다.
         /// </summary>
         /// <param name="gameTimestamp">진행할 스토리의 타임스탬프입니다.</param>
-        public void ProgressMainStoryWithFade(GameTimestamp gameTimestamp)
-        {
-            if (!isMainNarrativeOn) return;
-            StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStoryByDate(gameTimestamp)));
-        }
+        // public void ProgressMainStoryWithFade(GameTimestamp gameTimestamp)
+        // {
+            // if (!isMainNarrativeOn) return;
+            // StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStoryByDate(gameTimestamp)));
+        // }
 
         /// <summary>
         /// 특정 타임스탬프에 해당하는 메인 스토리를 실제로 진행하는 핵심 코루틴입니다.
         /// 스토리가 존재하고 아직 플레이되지 않았을 경우에만 대화를 시작하고, 대화가 끝날 때까지 대기합니다.
         /// </summary>
-        /// <param name="timestamp">재생할 스토리의 고유 타임스탬프입니다.</param>
+        /// <param name="storyData">재생할 스토리의 고유 타임스탬프입니다.</param>
         /// <returns>코루틴 실행을 위한 IEnumerator를 반환합니다.</returns>
-        public IEnumerator ProgressMainStoryByDate(GameTimestamp timestamp)
+        private IEnumerator ProgressMainStory(StoryData storyData)
         {
 
-            if (_storyByDate.Count == 0)
+            if (_stories.Count == 0)
             {
                 Initialize();
             }
@@ -136,46 +147,48 @@ namespace _02_Scripts.Narrative
             {
                 _dialogueManager = DialogueManager.Instance;
             }
-            if (!_storyByDate.TryGetValue(timestamp, out Story story))
+            if (!_stories.TryGetValue(storyData.StoryId, out Story story))
             {
                 yield break;
             }
-            if (story.HasBeenPlayed)
-            {
-                yield break;
-            }
-            story.SetPlayed();
+            // if (story.HasBeenPlayed)
+            // {
+                // yield break;
+            // }
+            // story.SetPlayed();
             _dialogueManager.StartDialogue(story);
             yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive);
         }
 
-        private void ShowPrologue()
+        private IEnumerator ShowPrologue()
         {
-            if (!isMainNarrativeOn) return;
-            CheckAndProgressNarrative(prologueStory);
+            if (!_gameManager.IsMainNarrativeOn) yield break;
+
+            yield return CheckAndProgressNarrative(prologueStoryBeforeFade);
+            yield return CheckAndProgressNarrative(prologueStoryAfterFade);
         }
 
-
-        private bool IsNarrativeExists(TriggerType triggerType, GameTimestamp timestamp)
+        private bool IsNarrativeExists(string storyId)
         {
-            if (triggerType == TriggerType.Date)
-            {
-                return _storyByDate.ContainsKey(timestamp);
-            }
+            if (_playedStoryIds.Contains(storyId)) return false;
+            // if (triggerType == TriggerType.Date)
+            // {
+                return _stories.ContainsKey(storyId);
+            // }
             // else if(triggerType == TriggerType.Interaction)
             // {
             //     return  _storyByInteraction.ContainsKey(timestamp);
             // }
-            return false;
+            // return false;
         }
 
-        void OnDisable()
-        {
-            if (_gameManager != null)
-            {
-                _gameManager.OnGameStart -= ProgressMainStoryWithFade;
-                _gameManager.OnTimeChanged -= CheckAndProgressNarrativeByTimeStamp;
-            }
-        }
+        // void OnDisable()
+        // {
+        //     if (_gameManager != null)
+        //     {
+        //         // _gameManager.OnGameStart -= ProgressMainStoryWithFade;
+        //         // _gameManager.OnTimeChanged -= CheckAndProgressNarrativeByTimeStamp;
+        //     }
+        // }
     }
 }

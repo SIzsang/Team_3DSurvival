@@ -15,6 +15,7 @@ namespace _02_Scripts.Core.Managers
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private bool isMainNarrativeOn = false;
 
+        public bool IsMainNarrativeOn => isMainNarrativeOn;
         public bool IsTimePaused { get; private set; }
         public int CurrentDay { get; private set; }
         public int CurrentHour { get; private set; }
