@@ -24,7 +24,6 @@ public enum EPlayerInputActionName
     Interaction,
     Attack,
     Dash,
-    UseMouse,
     MouseLeft,
     Num1,
     Num2,
@@ -53,5 +52,6 @@ public enum ECameraInputActionName
 public enum EUIInputActionName
 {
     Inventory,
+    UseMouse,
     Enter,
 }

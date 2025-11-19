@@ -72,12 +72,12 @@ public class InputManager : MonoBehaviour
         inputBinders[actionAssetName]?.SetEnableInput(true);
     }
 
-    public void DiableInput( EInputActionAssetName actionAssetName )
+    public void DisableInput( EInputActionAssetName actionAssetName )
     {
         inputBinders[actionAssetName]?.SetEnableInput(false);
     }
 
-    public void EnabeAllInput()
+    public void EnableAllInput()
     {
         foreach ( var binder in inputBinders.Values )
         {
@@ -102,17 +102,31 @@ public class InputManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
     }
-    
-    
-    // public void OpenUI()
-    // {
-    //     isUIOpen = true;
-    //     Cursor.lockState = CursorLockMode.None;
-    // }
-    //
-    // public void CloseUI()
-    // {
-    //     isUIOpen = false;
-    //     Cursor.lockState = CursorLockMode.Locked;
-    // }
+
+
+    public void UseCursor()
+    {
+        ShowCursor();
+        DisableInput(EInputActionAssetName.Player);
+        DisableInput(EInputActionAssetName.Camera);
+    }
+
+    public void UnuseCursor()
+    {
+        if (isUIOpen) return;
+        
+        HideCursor();
+        EnableInput(EInputActionAssetName.Player);
+        EnableInput(EInputActionAssetName.Camera);
+    }
+
+    public void OpenUI()
+    {
+        isUIOpen = true;
+    }
+
+    public void CloseUI()
+    {
+        isUIOpen = false;
+    }
 }

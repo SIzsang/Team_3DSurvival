@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -91,23 +92,23 @@ public class PlayerInputHandler
 
     void OnNum1(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("1");
     }
 
     void OnNum2(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("2");
     }
 
     void OnNum3(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("3");
     }
 
     void OnNum4(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("4");
     }
-    
-    
+
+
 }

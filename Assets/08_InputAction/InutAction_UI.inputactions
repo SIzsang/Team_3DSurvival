@@ -14,30 +14,20 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
-                    "name": "",
-                    "id": "64dd433c-bef9-42e5-9fb3-638c50ec14e6",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
+                    "name": "UseMouse",
+                    "type": "Button",
+                    "id": "2feab41a-87df-4bbf-8690-1708d986bd5a",
+                    "expectedControlType": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Narrative",
-            "id": "e1e359bf-31d6-490d-b363-2c13145d4a9f",
-            "actions": [
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
                 {
                     "name": "Enter",
                     "type": "Button",
-                    "id": "393bde13-df98-4607-9e08-481f8ce238a2",
+                    "id": "51453982-57db-495a-8a0a-d6565f66fe32",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -47,7 +37,29 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "4c3ac291-9c52-4a46-8afa-5fb3c7529220",
+                    "id": "64dd433c-bef9-42e5-9fb3-638c50ec14e6",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2567e00a-4d4b-4da2-a71a-9bdd6d927f3c",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0b6adc8-52fd-4372-8ab1-6d4e6daa8f3a",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
@@ -58,7 +70,7 @@
                 },
                 {
                     "name": "",
-                    "id": "2262c19e-3f71-49e4-8a62-f036ac1c7bb0",
+                    "id": "909341a8-073a-4919-93f5-0747e2fab5a2",
                     "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
