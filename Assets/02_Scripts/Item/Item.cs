@@ -13,6 +13,7 @@ public class Item
     public int Count => count;
     public bool CanStack => canStack;
     public int MaxCount => maxCount;
+    public bool CanEating => canEating;
 
     private string name;
     private string displayName;
@@ -21,6 +22,7 @@ public class Item
     private int count;
     private bool canStack;
     private int maxCount;
+    private bool canEating;
 
     public Item(ItemData itemData, int _count = 1)
     {
@@ -29,6 +31,7 @@ public class Item
         description = itemData.description;
         canStack = itemData.canStack;
         maxCount = itemData.maxStackAmount;
+        canEating = itemData.canEating;
         count = _count;
     }
 

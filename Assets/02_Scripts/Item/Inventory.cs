@@ -40,7 +40,6 @@ public class Inventory
                         finditems[i].AddCount(finditems.Count);
                         return;
                     }
-
                 }
             }
         }
