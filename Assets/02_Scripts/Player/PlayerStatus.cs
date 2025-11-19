@@ -62,12 +62,24 @@ public class PlayerStatus : MonoBehaviour
 
     public void StartNaturalChangeRoutin( Condition condition )
     {
-        if ( condition.NaturalChangeRoutine != null )
+        if ( condition.ChangeRoutine != null )
         {
-            StopCoroutine( condition.NaturalChangeRoutine );
+            StopCoroutine( condition.ChangeRoutine );
         }
+
         Coroutine newCoroutine = StartCoroutine( NaturalChangeRoutine( condition ) );
-        condition.SetNaturalChnageRoutine( newCoroutine );
+        condition.SetChangeRoutine( newCoroutine );
+    }
+
+    public void StartDecayRoutine( Condition condition )
+    {
+        if ( condition.ChangeRoutine != null )
+        {
+            StopCoroutine( condition.ChangeRoutine );
+        }
+
+        Coroutine newCoroutine = StartCoroutine( OtherChangeRoutine( condition, DashStaminaCost, 0.2f ) );
+        condition.SetChangeRoutine( newCoroutine );
     }
 
     IEnumerator NaturalChangeRoutine( Condition targetCondition )
@@ -88,6 +100,13 @@ public class PlayerStatus : MonoBehaviour
                 if ( targetCondition.IsUsing == false )
                     break;
             }
+        }
+    }
+
+    IEnumerator OtherChangeRoutine( Condition targetCondition, float amount, float rate )
+    {
+        while ( true )
+        {
         }
     }
 }
