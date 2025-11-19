@@ -21,7 +21,7 @@ public class ItemObject : MonoBehaviour, IInteractable
         Item item = new Item(data);
         // 플레이어 인벤토리 달면 추가
         GameManager.Instance.Player.Inventory.AddItem(item);
-        //QuestManager.Instance.CheckQuestProgress(new QuestProcessContext(QuestType.Gather, data));
+        QuestManager.Instance.CheckQuestProgress(new QuestProcessContext(QuestType.Gather, data));
         Destroy(this.gameObject);
     }
 }

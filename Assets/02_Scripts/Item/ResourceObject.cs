@@ -30,27 +30,28 @@ public class ResourceObject : MonoBehaviour, IGatherable
     }
     public void OnGather()
     {
-        for (int i = 0; i < quantityPerHithit; i++)
+        if (capacity > 0)
         {
-            if (capacity <= 0) break;
-            {
-                capacity-=1;
-                Vector3 randomOffset = new Vector3(
-                    Random.Range(-0.5f, 0.5f),// 좌우 
-                     0,                       // 높이
-                    Random.Range(-0.5f, 0.5f) // 앞뒤
-                );
-                Vector3 spawnPos = transform.position + randomOffset + Vector3.up;
-                Instantiate(data.dropPrefab, spawnPos, Quaternion.identity);
-            }
+            capacity -= 1;
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-0.5f, 0.5f),// 좌우 
+                    0,                       // 높이
+                Random.Range(-0.5f, 0.5f) // 앞뒤
+            );
+            Vector3 spawnPos = transform.position + randomOffset + Vector3.up;
+            Instantiate(data.dropPrefab, spawnPos, Quaternion.identity);
         }
-        this.gameObject.GetComponentInChildren<Renderer>().enabled = false;
-        this.gameObject.GetComponent<Collider>().enabled = false;
+        else if (capacity <= 0)
+        {
+            this.gameObject.GetComponentInChildren<Renderer>().enabled = false;
+            this.gameObject.GetComponent<Collider>().enabled = false;
+        }
+
     }
     public void Respown() // 리스폰
     {
         Vector3 position = lastPosition;
-        Instantiate(gameObject, position, Quaternion.identity);
+        // Instantiate(gameObject, position, Quaternion.identity);
         this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
         this.gameObject.GetComponent<Collider>().enabled = true;
     }
