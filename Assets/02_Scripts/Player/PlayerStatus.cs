@@ -21,6 +21,11 @@ public class PlayerStatus : MonoBehaviour
     public float NowHunger => hunger.CurrentValue;
 
 
+    public Condition HealthCondition => health;
+    public Condition StaminaCondition => stamina;
+    public Condition ThirstyCondition => thirsty;
+    public Condition HungerCondition => hunger;
+    
     private Condition health;
     private Condition stamina;
     private Condition thirsty;
