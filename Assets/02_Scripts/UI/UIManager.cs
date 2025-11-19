@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using _02_Scripts.Core.Managers;
 using UnityEngine;
 
@@ -10,10 +10,11 @@ namespace _02_Scripts.UI
         private Player _player;
         private GameManager _gameManager;
 
-        
+
+        private UIInputHandler Input=>_inputHandler;
         UIInputHandler _inputHandler;
-        public RecipeUI RecipeUI => _recipeUI;
-        [SerializeField] private RecipeUI _recipeUI;
+        public GameObject RecipeUI => _recipeUI;
+        [SerializeField] private GameObject _recipeUI;
 
         void Awake()
         {
@@ -26,13 +27,13 @@ namespace _02_Scripts.UI
             {
                 Destroy(gameObject);
             }
-            // DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
         {
             _gameManager = GameManager.Instance;
             _player = _gameManager.Player;
+            
             _inputHandler.OnTabDownAction += OpenRecipeUI;
             _inputHandler.OnTabUpAction += CloseRecipeUI;
 
@@ -41,12 +42,12 @@ namespace _02_Scripts.UI
 
         public void OpenRecipeUI()
         {
-            _recipeUI.gameObject.SetActive(true);
+            _recipeUI.SetActive(true);
         }
 
         public void CloseRecipeUI()
         {
-            _recipeUI.gameObject.SetActive(false);
+            _recipeUI.SetActive(false);
         }
     }
 }

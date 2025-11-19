@@ -55,10 +55,8 @@ public class PlayerInputHandler
     {
         if ( context.phase == InputActionPhase.Started )
         {
-            
             // 애니메이션 타이밍에 맞게 때리려면
             // 공격 애니메이션 재생?
-            
             
             player.Attack();
         }
@@ -79,7 +77,7 @@ public class PlayerInputHandler
 
     void OnDash( InputAction.CallbackContext context )
     {
-        if ( context.phase == InputActionPhase.Performed )
+        if ( context.phase == InputActionPhase.Started )
         {
             behaviour.SetDashState(true);
         }
@@ -92,26 +90,29 @@ public class PlayerInputHandler
 
     void OnNum1(InputAction.CallbackContext context)
     {
-        Debug.Log("1");
-        player.EquipAx();
+
+        if (context.phase == InputActionPhase.Started)
+        {
+            player.EquipAx();
+        }
     }
 
     void OnNum2(InputAction.CallbackContext context)
     {
-        Debug.Log("2");
-        player.EquipSword();
+        if (context.phase == InputActionPhase.Started)
+            player.EquipSword();
     }
 
     void OnNum3(InputAction.CallbackContext context)
     {
-        Debug.Log("3");
-        player.EatFood();
+        if (context.phase == InputActionPhase.Started)
+            player.EatFood();
     }
 
     void OnNum4(InputAction.CallbackContext context)
     {
-        Debug.Log("4");
-        player.DrinkWater();
+        if (context.phase == InputActionPhase.Started)
+            player.DrinkWater();
     }
 
 

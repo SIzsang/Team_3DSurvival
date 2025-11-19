@@ -21,7 +21,12 @@ public class Player : MonoBehaviour, ICombatable
 
     public Inventory Inventory => inventory;
     Inventory inventory;
+
+    Item equippedItem;
+    [SerializeField] private GameObject swordEquipObject;
+    [SerializeField] private GameObject axEquipObject;
     public Vector3 Forward => behaviour.Forward;
+
 
     public bool IsMoving
     {
@@ -101,7 +106,7 @@ public class Player : MonoBehaviour, ICombatable
         OnTryAttackAction?.Invoke();
         status.AddStamina(-status.AttackStaminaCost);
         StartAttackDelayRoutine();
-        
+
         if (combatableDetector.CurrentTarget != null)
         {
             OnAttackAction?.Invoke();
@@ -120,7 +125,7 @@ public class Player : MonoBehaviour, ICombatable
     public void TakePhysicalDamage(int damage)
     {
         OnHitAction?.Invoke();
-        
+
         status.AddHealth(damage);
         // 맞음
     }
@@ -148,34 +153,86 @@ public class Player : MonoBehaviour, ICombatable
     public void StopDash()
     {
         status.StopDash();
-        
+
     }
 
 
     public void EatFood()
     {
-        
+        Item food = inventory.Items.Find(i => i.DisplayName == "식량");
+        if (food != null)
+        {
+            if (food.Count > 0)
+            {
+                food.AddCount(-1);
+                status.AddHunger(20);
+            }
+        }
     }
 
     public void DrinkWater()
     {
-        
+        Item water = inventory.Items.Find(i => i.DisplayName == "정화수");
+        if (water != null)
+        {
+            if (water.Count > 0)
+            {
+                water.AddCount(-1);
+                status.AddThirsty(20);
+            }
+        }
     }
 
 
     public void EquipAx()
     {
-        
+        // Item 이 가지고있는 EquipItem을 쓰고 싶어용
+        // attack 도 없어용
+        if (equippedItem != null)
+        {
+            if (equippedItem.DisplayName == "도끼")
+            {
+                UnEquip();
+                return;
+            }
+        }
+
+        Item ax = inventory.Items.Find(i => i.DisplayName == "도끼");
+        if (ax != null)
+        { 
+            equippedItem = ax;
+            axEquipObject.SetActive(true);
+            swordEquipObject.SetActive(false);
+        }
     }
 
     public void EquipSword()
     {
-        
+        // Item 이 가지고있는 EquipItem을 쓰고 싶어용
+        // attack 도 없어용
+        if (equippedItem != null)
+        {
+            if (equippedItem.DisplayName == "칼")
+            {
+                UnEquip();
+                return;
+            }
+        }
+
+        Item sword = inventory.Items.Find(i => i.DisplayName == "칼");
+        if (sword != null)
+        { 
+            equippedItem = sword;
+            swordEquipObject.SetActive(true);
+            axEquipObject.SetActive(false);
+            
+        }
     }
 
     public void UnEquip()
     {
-        
+        swordEquipObject.SetActive(false);
+        axEquipObject.SetActive(false);
     }
 
     private bool canAttack = true;
