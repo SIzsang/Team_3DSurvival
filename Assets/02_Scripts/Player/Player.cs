@@ -3,20 +3,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [ RequireComponent( typeof( PlayerBehaviour ) ) ]
-[ RequireComponent( typeof( PlayerInputHandler ) ) ]
 [ RequireComponent( typeof( PlayerStatus ) ) ]
 public class Player : MonoBehaviour, ICombatable
 {
-    private PlayerBehaviour behaviour;
     private PlayerInputHandler inputHandler;
 
+    private PlayerBehaviour behaviour;
+    public PlayerStatus Status => status;
+    private PlayerStatus status;
+    
     private InteractableDetector interactableDetector;
     private CombatableDetector combatableDetector;
     private GatherableDetector gatherableDetector;
-
-    public PlayerStatus Status => status;
-    private PlayerStatus status;
-
+    
     public Inventory Inventory => inventory;
     Inventory inventory;
     public Vector3 Forward => behaviour.Forward;
