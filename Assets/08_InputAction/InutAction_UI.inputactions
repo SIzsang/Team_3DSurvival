@@ -25,7 +25,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Enter",
+                    "name": "HandleContinue",
                     "type": "Button",
                     "id": "51453982-57db-495a-8a0a-d6565f66fe32",
                     "expectedControlType": "",
@@ -64,7 +64,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Enter",
+                    "action": "HandleContinue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -75,7 +75,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Enter",
+                    "action": "HandleContinue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b96c873-12b6-4cb4-a699-e78bdb43bb7f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HandleContinue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

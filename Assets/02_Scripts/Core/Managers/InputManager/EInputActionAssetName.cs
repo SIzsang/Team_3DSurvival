@@ -53,5 +53,5 @@ public enum EUIInputActionName
 {
     Inventory,
     UseMouse,
-    Enter,
+    HandleContinue,
 }

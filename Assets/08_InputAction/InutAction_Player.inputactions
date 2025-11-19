@@ -59,6 +59,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Num1",
+                    "type": "Button",
+                    "id": "5a558ec0-0176-4384-a93e-211165d4b6f3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Num2",
+                    "type": "Button",
+                    "id": "cdf8cd09-d099-4fd5-86c4-152a3d2ed075",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Num3",
+                    "type": "Button",
+                    "id": "74274f8a-8f48-4416-872d-fa4929e41dbf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Num4",
+                    "type": "Button",
+                    "id": "a688f786-f3fc-4d16-923d-327a16bb3c7a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -226,6 +262,50 @@
                     "action": "UseMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0983ae0b-d212-45dc-8b73-b8fd554f1997",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Num1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a47703b1-c34b-4818-a873-cc220b7fbace",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Num2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5469df9-2db2-4bf1-8966-a3e0d973e474",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Num3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c66a5e7e-25c9-4a4a-9f59-da3508dd758c",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Num4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -282,42 +362,6 @@
             "id": "ca75d68c-1b34-4f96-8031-79f7d8395361",
             "actions": [
                 {
-                    "name": "Num1",
-                    "type": "Button",
-                    "id": "9fa19d47-3a78-4bd5-ae51-78dfaee96f55",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Num2",
-                    "type": "Button",
-                    "id": "d391c9e3-1d49-4e0c-933d-47efc8d53ba4",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Num3",
-                    "type": "Button",
-                    "id": "745ce6cc-931c-4583-a280-9fabf39261cd",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Num4",
-                    "type": "Button",
-                    "id": "30b3c3b1-0b22-403b-a35c-8da631654fa6",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Num5",
                     "type": "Button",
                     "id": "00c3f305-c9c1-47af-8d83-0b972d180af2",
@@ -373,50 +417,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "19cf83db-9fde-4a21-b422-abdd45565d93",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Num1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6604c88b-e4ff-464f-980a-628f2bd9b095",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Num2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8bb9d024-cb66-42d3-9d5d-7ab06103cc1b",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Num3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "891dc3ea-644b-48d8-983a-26e9b4334419",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Num4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "36f86487-b563-4763-ab6a-2bf7ea3baf89",
