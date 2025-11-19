@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResipeUI : MonoBehaviour
+public class RecipeUI : MonoBehaviour
 {
-    ResipeData resipe;
+    Recipe recipe;
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Resipe
+public class Recipe
 {
     public string ResipeName => resipeName;
     public string RequiredItemDescription => requiredItemDecription;
@@ -22,7 +22,7 @@ public class Resipe
 
     private List<Ingredient> ingredients = new List<Ingredient>();
 
-    public Resipe(ResipeData reipeData)
+    public Recipe(RecipeData reipeData)
     {
         resipeName = reipeData.recipeName;
         requiredItemDecription = reipeData.requiredItemDecription;
