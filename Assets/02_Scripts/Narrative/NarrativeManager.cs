@@ -61,23 +61,23 @@ namespace _02_Scripts.Narrative
 
         }
 
-        void OnEnable()
-        {
-            if (_gameManager == null)
-            {
-                _gameManager = GameManager.Instance;
-            }
-
-            if (_dialogueManager == null)
-            {
-                _dialogueManager = DialogueManager.Instance;
-            }
-            if (_gameManager != null)
-            {
-                // _gameManager.OnGameStart += ProgressMainStoryWithFade;
-                // _gameManager.OnTimeChanged += CheckAndProgressNarrativeByTimeStamp;
-            }
-        }
+        // void OnEnable()
+        // {
+        //     if (_gameManager == null)
+        //     {
+        //         _gameManager = GameManager.Instance;
+        //     }
+        //
+        //     if (_dialogueManager == null)
+        //     {
+        //         _dialogueManager = DialogueManager.Instance;
+        //     }
+        //     if (_gameManager != null)
+        //     {
+        //         // _gameManager.OnGameStart += ProgressMainStoryWithFade;
+        //         // _gameManager.OnTimeChanged += CheckAndProgressNarrativeByTimeStamp;
+        //     }
+        // }
 
         /// <summary>
         /// 지정된 StoryData를 기반으로 스토리를 진행합니다.
@@ -89,7 +89,7 @@ namespace _02_Scripts.Narrative
         /// 일회성 또는 비정기적 스토리를 처리하는 데 사용됩니다.
         /// 내부적으로는 재생된 스토리의 ID를 HashSet에 기록하여 상태를 관리합니다.
         /// </remarks>
-        private IEnumerator CheckAndProgressNarrative(StoryData storyData)
+        public IEnumerator CheckAndProgressNarrative(StoryData storyData)
         {
             if (!IsNarrativeExists(storyData.StoryId)) yield break;
 
@@ -171,9 +171,10 @@ namespace _02_Scripts.Narrative
         private bool IsNarrativeExists(string storyId)
         {
             if (_playedStoryIds.Contains(storyId)) return false;
+            return _stories.ContainsKey(storyId);
             // if (triggerType == TriggerType.Date)
             // {
-                return _stories.ContainsKey(storyId);
+                // return _stories.ContainsKey(storyId);
             // }
             // else if(triggerType == TriggerType.Interaction)
             // {

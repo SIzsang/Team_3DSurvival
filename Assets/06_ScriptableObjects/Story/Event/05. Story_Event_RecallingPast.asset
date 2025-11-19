@@ -10,13 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b4e1801c104480e922e83536589bb7f, type: 3}
-  m_Name: Story_Event_AfterFirstBattle
+  m_Name: 05. Story_Event_RecallingPast
   m_EditorClassIdentifier: 
-  gameTimestamp:
-    day: 0
-    hour: 0
-    minute: 0
   dialogue:
-  - {fileID: 11400000, guid: 47211356f4b23894191a71084525eedd, type: 2}
-  triggerType: 0
-  needFade: 0
+  - {fileID: 11400000, guid: b0db90094e49e9d46b693f1d4eb3972a, type: 2}
+  needFade: 1

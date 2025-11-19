@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b4e1801c104480e922e83536589bb7f, type: 3}
-  m_Name: Story_Event_CompleteHouse
+  m_Name: 06. Story_Event_AfterRecalling
   m_EditorClassIdentifier: 
   gameTimestamp:
     day: 0
     hour: 0
     minute: 0
   dialogue:
-  - {fileID: 11400000, guid: 1f4c0beeaf029574f912db25e1846e56, type: 2}
+  - {fileID: 11400000, guid: 1be74ba30c008234ca7a5496c6ae1859, type: 2}
   triggerType: 0
   needFade: 0
