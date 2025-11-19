@@ -40,9 +40,7 @@ public class ResourceObject : MonoBehaviour, IGatherable
                      0,                       // 높이
                     Random.Range(-0.5f, 0.5f) // 앞뒤
                 );
-
                 Vector3 spawnPos = transform.position + randomOffset + Vector3.up;
-
                 Instantiate(data.dropPrefab, spawnPos, Quaternion.identity);
             }
         }
