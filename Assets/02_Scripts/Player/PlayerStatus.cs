@@ -31,7 +31,6 @@ public class PlayerStatus : MonoBehaviour
     private Condition thirsty;
     private Condition hunger;
 
-
     private void Awake()
     {
         health = new Condition( playerStatusData.maxHealth, playerStatusData.healthNaturalRecovery, playerStatusData.healthNaturalRecoveryRate );
@@ -45,7 +44,7 @@ public class PlayerStatus : MonoBehaviour
         StartNaturalChangeRoutin( hunger );
     }
 
-    public void TakeDamage( int damage )
+    public void AddHealth( int damage )
     {
         health.AddCurrentValue( damage );
     }
@@ -76,24 +75,13 @@ public class PlayerStatus : MonoBehaviour
         condition.SetChangeRoutine( newCoroutine );
     }
 
-    public void StartDecayRoutine( Condition condition )
-    {
-        if ( condition.ChangeRoutine != null )
-        {
-            StopCoroutine( condition.ChangeRoutine );
-        }
-
-        Coroutine newCoroutine = StartCoroutine( OtherChangeRoutine( condition, DashStaminaCost, 0.2f ) );
-        condition.SetChangeRoutine( newCoroutine );
-    }
-
     IEnumerator NaturalChangeRoutine( Condition targetCondition )
     {
         while ( true )
         {
-            targetCondition.AddNaturalChangeValue( targetCondition.NaturalChangeValue );
             yield return new WaitForSeconds( targetCondition.NaturalChangeRate );
-
+            targetCondition.AddNaturalChangeValue( targetCondition.NaturalChangeValue );
+            
             while ( true )
             {
                 if ( targetCondition.IsUsing == true )
@@ -107,11 +95,44 @@ public class PlayerStatus : MonoBehaviour
             }
         }
     }
+    
+    public void StartOtherChangeRoutine(Condition condition, float amount, float rate)
+    {
+        if ( condition.ChangeRoutine != null )
+        {
+            StopCoroutine( condition.ChangeRoutine );
+        }
 
+        Coroutine newCoroutine = StartCoroutine( OtherChangeRoutine( condition, amount, rate) );
+        condition.SetChangeRoutine( newCoroutine );
+    }
+
+    public void StopOtherChangeRoutine(Condition condition)
+    {
+        if ( condition.ChangeRoutine != null )
+        {
+            StopCoroutine( condition.ChangeRoutine );
+        }
+        
+        StartNaturalChangeRoutin( condition );
+    }
+    
     IEnumerator OtherChangeRoutine( Condition targetCondition, float amount, float rate )
     {
         while ( true )
         {
+            targetCondition.AddNaturalChangeValue(amount);
+            yield return new WaitForSeconds(rate);
         }
+    }
+
+    public void StartDash()
+    {
+        StartOtherChangeRoutine(stamina, -DashStaminaCost, playerStatusData.DashStaminaRate);
+    }
+
+    public void StopDash()
+    {
+        StopOtherChangeRoutine(stamina);
     }
 }

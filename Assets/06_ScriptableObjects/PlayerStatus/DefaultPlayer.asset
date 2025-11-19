@@ -19,15 +19,16 @@ MonoBehaviour:
   staminaNaturalRecoveryRate: 0.5
   staminaNaturalRecovery: 1
   maxThirsty: 50
-  thristyDecayRate: 3
-  thristyDecay: -1
+  thirstyDecayRate: 3
+  thirstyDecay: -1
   maxHunger: 50
   hungerDecayRate: 5
   hungerDecay: -1
   defaultAtk: 2
   moveSpeed: 5
   jumpForce: 5
+  dashMultiplier: 1.5
   DashStaminaCost: 2
   JumpStaminaCost: 3
   AttackStaminaCost: 1
-  AtaackDelay: 0.5
+  AttackDelay: 0.6

@@ -22,7 +22,10 @@ public class PlayerBehaviour : MonoBehaviour
     public float NowMoveSpeed => isMoving ? nowMoveSpeed : 0;
     private float nowMoveSpeed = 0;
 
-    public bool isDashing = false;
+    bool isDashInput = false;
+    private bool isDashing = false;
+    
+    
 
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask wallLayerMask;
@@ -89,7 +92,25 @@ public class PlayerBehaviour : MonoBehaviour
         {
             isMoving = true;
             nowMoveSpeed = player.Status.MoveSpeed;
-            nowMoveSpeed = nowMoveSpeed * (isDashing ? player.Status.DashMultiplier : 1.0f);
+
+            if (isDashInput && player.Status.NowStamina > 0)
+            {
+                nowMoveSpeed = nowMoveSpeed * player.Status.DashMultiplier;
+
+                if (isDashing == false)
+                {
+                    isDashing = true;
+                    player.StartDash();
+                }
+            }
+            else
+            {
+                if (isDashing == true)
+                {
+                    isDashing = false;
+                    player.StopDash();                    
+                }
+            }
 
             Vector3 newPosition = rb.position + forward * (nowMoveSpeed * Time.deltaTime);
 
@@ -124,9 +145,9 @@ public class PlayerBehaviour : MonoBehaviour
         return true;
     }
 
-    public void SetDashState(bool _isDashing)
+    public void SetDashState(bool _isDashInput)
     {
-        isDashing = _isDashing;
+        isDashInput = _isDashInput;
     }
 
 

@@ -34,6 +34,7 @@ public class PlayerStatusData : ScriptableObject
 
     [Space(5)]
     public float DashStaminaCost = 2.0f;
+    public float DashStaminaRate = 0.5f;
     public float JumpStaminaCost = 3.0f;
     public float AttackStaminaCost = 1.0f;
 
