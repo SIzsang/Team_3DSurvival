@@ -25,10 +25,11 @@ MonoBehaviour:
   hungerDecayRate: 5
   hungerDecay: -1
   defaultAtk: 2
-  moveSpeed: 5
+  moveSpeed: 10
   jumpForce: 5
   dashMultiplier: 1.5
   DashStaminaCost: 2
+  DashStaminaRate: 0.5
   JumpStaminaCost: 3
   AttackStaminaCost: 1
-  AttackDelay: 0.6
+  AttackDelay: 0.1
