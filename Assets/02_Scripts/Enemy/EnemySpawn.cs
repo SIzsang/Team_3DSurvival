@@ -11,10 +11,6 @@ public class EnemySpawn : MonoBehaviour
 	public Transform[] SpawnPoint;
 	public List<GameObject> addMon = new List<GameObject>();
 
-	private void Start()
-	{
-
-	}
 	private void OnEnable()
 	{
 		if (GameManager.Instance != null)

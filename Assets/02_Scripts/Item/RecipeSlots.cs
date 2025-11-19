@@ -17,6 +17,8 @@ public class RecipeSlots : MonoBehaviour
     private void Awake()
     {
         Setup(recipeData);
+        gameObject.SetActive(false);
+
     }
     public void Setup(RecipeData data)
     {
@@ -33,9 +35,10 @@ public class RecipeSlots : MonoBehaviour
         var inventory = GameManager.Instance.Player.Inventory;
         if (recipe.CanCreative(inventory))
         {
-            Debug.Log("성공 눌렸어");
+            
             // 제작
             CreateItem();
+            Debug.Log("성공 눌렸어");
         }
         else
         {
@@ -65,6 +68,16 @@ public class RecipeSlots : MonoBehaviour
     public void OnClickCreativeForTest() // 삭제 예정
     {
         OnClickCreative();
+    }
+
+    public void DisableUI()
+    {
+        CreativeButton.interactable = false;  // 클릭 X
+    }
+
+    public void EnableUI()
+    {
+        CreativeButton.interactable = true;
     }
 }
 
