@@ -13,18 +13,31 @@ public class EnemySpawn : MonoBehaviour
 
 	private void Start()
 	{
-		if(GameManager.Instance != null)
+
+	}
+	private void OnEnable()
+	{
+		if (GameManager.Instance != null)
 		{
 			GameManager.Instance.OnNightStart += SpawnMon;
+			GameManager.Instance.OnDaytimeStart += DestroyaddMon;
 		}
-	}
+    }
+    private void OnDisable()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnNightStart -= SpawnMon;
+            GameManager.Instance.OnDaytimeStart -= DestroyaddMon;
+        }
+    }
 
-	private void Update()
+    private void Update()
 	{
-		if (Input.GetKeyDown("a"))
-		{
-			SpawnMon();
-		}
+		//if (Input.GetKeyDown("a"))
+		//{
+		//	SpawnMon();
+		//}
 	}
 
 
@@ -38,7 +51,7 @@ public class EnemySpawn : MonoBehaviour
 	{
 		int o = Random.Range(0, SpawnPoint.Length);
 		GameObject spawnMon = Instantiate(SpawnMonster, SpawnPoint[o]);
-		addMon.Add(SpawnMonster);
+		addMon.Add(spawnMon);
 	}
 
 	IEnumerator SpawnStart()
