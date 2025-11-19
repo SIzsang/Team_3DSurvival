@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class Condition
+{
+    public float CurrentValue => curValue;
+    public float MaxValue => maxValue;
+    public float NaturalChangeValue => naturalChangeValue;
+    public float NaturalChangeRate => naturalChangeRate;
+
+
+    public bool IsUsing => isUsing;
+    private bool isUsing;
+
+    private float curValue;
+    private float maxValue;
+    private float naturalChangeValue;
+    private float naturalChangeRate;
+    
+
+
+    public Condition( float _max, float _naturalChangeValue, float _naturalChangeRate )
+    {
+        maxValue = _max;
+        naturalChangeValue = _naturalChangeValue;
+        naturalChangeRate = _naturalChangeRate;
+        curValue = maxValue;
+    }
+
+
+    public void AddNaturalChangeValue( float amount )
+    {
+        curValue = Mathf.Clamp( curValue + amount, 0f, maxValue );
+    }
+
+    public void AddCurrentValue( float amount )
+    {
+        curValue = Mathf.Clamp( curValue + amount, 0f, maxValue );
+        isUsing = true;
+    }
+
+    public void SetCurrentValue( float amount )
+    {
+        curValue = Mathf.Clamp( amount, 0f, maxValue );
+        isUsing = true;
+    }
+
+    public float GetPercentage()
+    {
+        return curValue / maxValue;
+    }
+
+    public void SetUsingCondition( bool _isUsing )
+    {
+        isUsing = _isUsing;
+    }
+
+
+
+    public Coroutine NaturalChangeRoutine => naturalChangeRoutine;
+    private Coroutine naturalChangeRoutine;
+
+    public void SetNaturalChnageRoutine( Coroutine routine )
+    {
+        naturalChangeRoutine = routine;
+    }
+
+}

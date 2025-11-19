@@ -2,18 +2,21 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[ RequireComponent( typeof( PlayerBehaviour ) ) ]
+[ RequireComponent( typeof( PlayerInputHandler ) ) ]
+[ RequireComponent( typeof( PlayerStatus ) ) ]
 public class Player : MonoBehaviour, ICombatable
 {
-    [ SerializeField ] private PlayerStatusData playerStatusData;
-    private PlayerStatus playerStatus;
-        
     private PlayerBehaviour behaviour;
     private PlayerInputHandler inputHandler;
-    
+
     private InteractableDetector interactableDetector;
     private CombatableDetector combatableDetector;
     private GatherableDetector gatherableDetector;
-    
+
+    public PlayerStatus Status => status;
+    private PlayerStatus status;
+
     public Inventory Inventory => inventory;
     Inventory inventory;
     public Vector3 Forward => behaviour.Forward;
@@ -23,10 +26,10 @@ public class Player : MonoBehaviour, ICombatable
         get => isMoving;
         set
         {
-            if (isMoving == value) return;
+            if ( isMoving == value ) return;
             else
             {
-                if (value == false)
+                if ( value == false )
                 {
                     OnIdleAction.Invoke();
                 }
@@ -34,19 +37,15 @@ public class Player : MonoBehaviour, ICombatable
                 {
                     OnMoveAction.Invoke();
                 }
+
                 isMoving = value;
             }
         }
     }
+
     private bool isMoving;
 
-    public float NowMoveSpeed
-    {
-        get
-        {
-            return behaviour.NowMoveSpeed;
-        }
-    }
+    public float NowMoveSpeed => behaviour.NowMoveSpeed;
 
     public event Action OnMoveAction;
     public event Action OnIdleAction;
@@ -61,15 +60,17 @@ public class Player : MonoBehaviour, ICombatable
 
     private void Awake()
     {
-        behaviour = GetComponent<PlayerBehaviour>();
-        //playerAnimator = GetComponent<PlayerAnimationController>();
-        interactableDetector = GetComponent<InteractableDetector>();
-        combatableDetector = GetComponent<CombatableDetector>();
-        gatherableDetector = GetComponent<GatherableDetector>();
+        behaviour = GetComponent< PlayerBehaviour >();
+
+        interactableDetector = GetComponent< InteractableDetector >();
+        combatableDetector = GetComponent< CombatableDetector >();
+        gatherableDetector = GetComponent< GatherableDetector >();
+
+        status = GetComponent< PlayerStatus >();
 
         inputHandler = new PlayerInputHandler();
-        inputHandler.Init(this, behaviour);
-        
+        inputHandler.Init( this, behaviour );
+
         inventory = new Inventory();
     }
 
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour, ICombatable
     public void Interaction()
     {
         OnTryInteractAction?.Invoke();
-        if (interactableDetector.CurrentTarget != null)
+        if ( interactableDetector.CurrentTarget != null )
         {
             OnInteractAction?.Invoke();
             interactableDetector.CurrentTarget.OnInteract();
@@ -92,21 +93,21 @@ public class Player : MonoBehaviour, ICombatable
     public void Attack()
     {
         OnTryAttackAction?.Invoke();
-        
-        if (combatableDetector.CurrentTarget != null)
+
+        if ( combatableDetector.CurrentTarget != null )
         {
             OnAttackAction?.Invoke();
-            combatableDetector.CurrentTarget.TakePhysicalDamage(10);
+            combatableDetector.CurrentTarget.TakePhysicalDamage( 10 );
             // 일단 10으로 때려
         }
-        
-        if (gatherableDetector.CurrentTarget != null)
+
+        if ( gatherableDetector.CurrentTarget != null )
         {
             gatherableDetector.CurrentTarget.OnGather();
         }
     }
 
-    public void TakePhysicalDamage(int damage)
+    public void TakePhysicalDamage( int damage )
     {
         OnHitAction?.Invoke();
         // 맞음
@@ -114,10 +115,11 @@ public class Player : MonoBehaviour, ICombatable
 
     public void Jump()
     {
-        if (behaviour.Jump())
+        if ( behaviour.Jump() )
         {
             OnJumpAction?.Invoke();
             behaviour.Jump();
+            status.AddStamina( -status.JumpStaminaCost );
         }
     }
 
