@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 4895301708739143864}
   - component: {fileID: 6778431960594944525}
   - component: {fileID: 8535990876565709968}
+  - component: {fileID: 9090373748016327610}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -135,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24cb797e1bf369441b626997ac9eac9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatusData: {fileID: 0}
 --- !u!114 &5325522030717606171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,10 +152,11 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   playerScale: 0.2
-  speed: 5
-  dashSpeedMultiplier: 1.5
-  jumpForce: 5
+  groundTest: 0.4
 --- !u!114 &1319576240073962163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +225,19 @@ MonoBehaviour:
   rayShape: 2
   isUpdateCheck: 0
   gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &9090373748016327610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405298067544781782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805dd5474bf82664f8c4b04d79e4c3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStatusData: {fileID: 11400000, guid: 1cdf4ba04d2ab024daf67a77ca0e2c79, type: 2}
 --- !u!1 &7416729250926997560
 GameObject:
   m_ObjectHideFlags: 0
