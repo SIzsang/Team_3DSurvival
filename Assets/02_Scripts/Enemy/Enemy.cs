@@ -20,7 +20,8 @@ public enum AIState
 {
 	Idle,
 	Wandering,
-	Attacking
+	Attacking,
+	Death
 }
 public class Enemy : MonoBehaviour,ICombatable
 {
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour,ICombatable
 	public int health;
 	public float walkSpeed;
 	public float runSpeed;
-	//public ItemData[] dropOnDeath;
+	public ItemData dropItem;
 
 	[Header("AI")]
 	private NavMeshAgent agent;
@@ -46,9 +47,17 @@ public class Enemy : MonoBehaviour,ICombatable
 	public float attackRate;
 	private float lastAttackTime;
 	public float attackDistance;
+	private Coroutine myCoroutine;
+	public bool isKnockback = false;
+
+	[Header("Death")]
+	bool rewarded = false;
+	
+	
 
 	private float playerDistance;
 	public Transform player;
+	
 
 	public float fieldOfView = 120f;
 
@@ -85,6 +94,9 @@ public class Enemy : MonoBehaviour,ICombatable
 			case AIState.Attacking:
 				AttackingUpdate();
 				break;
+			case AIState.Death:
+				
+				break;
 		}
 	}
 
@@ -106,6 +118,10 @@ public class Enemy : MonoBehaviour,ICombatable
 			case AIState.Attacking:
 				agent.speed = runSpeed;
 				agent.isStopped = false;
+				break;
+			case AIState.Death:
+				agent.isStopped = true;
+				
 				break;
 		}
 
@@ -157,7 +173,7 @@ public class Enemy : MonoBehaviour,ICombatable
 			if (Time.time - lastAttackTime > attackRate)
 			{
 				lastAttackTime = Time.time;
-				//Player.GetComponent<ICombatable>().TakePhysicalDamage(damage);
+				player.GetComponent<ICombatable>().TakePhysicalDamage(damage);
 				animator.speed = 1;
 				animator.SetTrigger("Attack");
 			}
@@ -190,7 +206,7 @@ public class Enemy : MonoBehaviour,ICombatable
 
 	bool IsPlayerInFieldOfView()
 	{
-		Vector3 directionToPlayer = player.position - transform.position;
+		Vector3 directionToPlayer = player.position - gameObject.transform.position;
 		float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
 		return angle < fieldOfView;
@@ -198,24 +214,54 @@ public class Enemy : MonoBehaviour,ICombatable
 
 	public void TakePhysicalDamage(int damage)  // 몬스터가 공격을 받았을때 쓰는 함수
 	{
-		health -= damage;
-		StartCoroutine(DamageFlash());
-
-		if (health <= 0)
+		if(health > 0)
 		{
-			animator.speed = 1;
+			health -= damage;
 			
+			StartCoroutine(DamageFlash());
+			SetState(AIState.Wandering);
+		}
+		else if(health <= 0 && rewarded == false )
+		{
+			SetState(AIState.Death);
+			animator.speed = 1;
+			animator.SetTrigger("Death");
+			Instantiate(dropItem.dropPrefab, gameObject.transform.position, Quaternion.LookRotation(gameObject.transform.position, Vector3.up));
 			StartCoroutine(Death());
-			QuestManager.Instance.CheckQuestProgress(new QuestProcessContext(QuestType.Kill));
+			
+			rewarded = true;
 
 		}
 		
 	}
-
+	IEnumerator Knockback()
+	{
+		if (myCoroutine != null && isKnockback == true)
+		{
+			isKnockback = false;
+			myCoroutine = null;
+		}
+		else
+		{
+			isKnockback = true;
+		}
+		if (isKnockback == true)
+		{
+			Quaternion rot = Quaternion.LookRotation(player.position - gameObject.transform.position);
+			Vector3 rocation = gameObject.transform.position + (rot * (Vector3.back * 0.2f));
+			while (gameObject.transform.position != rocation)
+			{
+				gameObject.transform.position += (rot * (Vector3.back * 0.2f)) * Time.deltaTime;
+				yield return null;
+			}
+			myCoroutine = null;
+			isKnockback = false;
+		}
+	}
 
 	IEnumerator Death()
 	{
-		animator.SetTrigger("Death");
+		QuestManager.Instance.CheckQuestProgress(new QuestProcessContext(QuestType.Kill));
 		yield return new WaitForSeconds(3f);
 		Destroy(gameObject);
 	}
