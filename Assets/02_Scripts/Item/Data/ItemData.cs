@@ -26,25 +26,28 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Item", menuName = "Scriptable Objects/Item")]
     public class ItemData : ScriptableObject
     {
-        [Header("Info")]
-        public string displayName; // 이름
-        public string description; // 설명
-        public ItemType type; // 타입
-        public GameObject dropPrefab; // 상호작용시 drop 할 프리팹
+    [Header("Info")]
+    public string displayName; // 이름
+    public string description; // 설명
+    public ItemType type; // 타입
+    public GameObject dropPrefab; // 상호작용시 drop 할 프리팹
 
-        [Header("Stacking")]
-        public bool canStack; 
-        public int maxStackAmount; // 수량
+    [Header("Stacking")]
+    public bool canStack; 
+    public int maxStackAmount; // 수량
 
-        [Header("Attking")]
-        public bool canAtk;
-        public int AtkValue;
+    [Header("Eating")]
+    public bool canEating; // 가공된 음식 = 섭취 가능
 
-        [Header("Consumable")]
-        public ItemDataConsumable[] consumables; // 회복 타입, 값
+    [Header("Attking")]
+    public bool canAtk;
+    public int AtkValue;
 
-        [Header("Equip")]
-        public GameObject equipPrefab; // 장착 프리팹
+    [Header("Consumable")]
+    public ItemDataConsumable[] consumables; // 회복 타입, 값
+
+    [Header("Equip")]
+    public GameObject equipPrefab; // 장착 프리팹
 
     public virtual Item NewItem()
     {

@@ -18,9 +18,13 @@ public class InventoryUI : MonoBehaviour
     {
         var items = GameManager.Instance.Player.Inventory.Items;
         string itemText = "";
-        for (int i  = 0; i < items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            itemText += $"{items[i].DisplayName} {items[i].Count}개\n";
+            if (!items[i].CanEating)
+            {
+                itemText += $"{items[i].DisplayName} {items[i].Count}개\n";
+            }
+
         }
         quantityText.text = itemText;
     }
