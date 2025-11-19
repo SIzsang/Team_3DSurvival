@@ -17,7 +17,7 @@ public class RecipeSlots : MonoBehaviour
     private void Awake()
     {
         Setup(recipeData);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
 
     }
     public void Setup(RecipeData data)
@@ -65,10 +65,10 @@ public class RecipeSlots : MonoBehaviour
     }
 
 
-    public void OnClickCreativeForTest() // 삭제 예정
-    {
-        OnClickCreative();
-    }
+    //public void OnClickCreativeForTest() // 삭제 예정
+    //{
+    //    OnClickCreative();
+    //}
 
     public void DisableUI()
     {

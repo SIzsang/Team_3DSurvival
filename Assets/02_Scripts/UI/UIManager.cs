@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using _02_Scripts.Core.Managers;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ namespace _02_Scripts.UI
             {
                 Destroy(gameObject);
             }
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
 
         private void Start()

@@ -1,4 +1,4 @@
-using _02_Scripts.Narrative.Data;
+﻿using _02_Scripts.Narrative.Data;
 using _02_Scripts.Narrative.Entities;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,6 +41,7 @@ namespace _02_Scripts.Narrative
 
         void Update()
         {
+            if (dialoguePanel == null) return;
             if (!dialoguePanel.activeInHierarchy) return;
 
             if (Input.GetKeyDown(KeyCode.Space))

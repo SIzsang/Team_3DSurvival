@@ -61,6 +61,7 @@ public class ResourceObject : MonoBehaviour, IGatherable
     }
     public void Respown() // 리스폰
     {
+        capacity = 10;
         Vector3 position = lastPosition;
         // Instantiate(gameObject, position, Quaternion.identity);
         this.gameObject.GetComponentInChildren<Renderer>().enabled = true;

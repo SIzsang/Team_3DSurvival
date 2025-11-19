@@ -10,15 +10,17 @@ public class EnemySpawn : MonoBehaviour
     public GameObject SpawnMonster;
 	public Transform[] SpawnPoint;
 	public List<GameObject> addMon = new List<GameObject>();
+	public Coroutine coroutine;
 
-	private void OnEnable()
-	{
-		if (GameManager.Instance != null)
-		{
-			GameManager.Instance.OnNightStart += SpawnMon;
-			GameManager.Instance.OnDaytimeStart += DestroyaddMon;
-		}
+    private void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnDaytimeStart += DestroyaddMon;
+            GameManager.Instance.OnNightStart += SpawnMon;
+        }
     }
+
     private void OnDisable()
     {
         if (GameManager.Instance != null)
@@ -40,6 +42,7 @@ public class EnemySpawn : MonoBehaviour
 	[ContextMenu("Test")]
 	public void SpawnMon()
 	{
+		coroutine = 
 		StartCoroutine(SpawnStart());
 	}
 
@@ -61,10 +64,15 @@ public class EnemySpawn : MonoBehaviour
 
 	public void DestroyaddMon()
 	{
+
 		for( int i = 0; i < addMon.Count; i++)
 		{
 			Destroy(addMon[i].gameObject);
 		}
+		if(coroutine != null)
+		{
+            StopCoroutine(coroutine);
+        }
 	}
 
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Recipe_Food
   m_EditorClassIdentifier: 
   recipeName: "\uC2DD\uB7C9"
-  requiredItemDecription: "\uACE0\uAE30 2"
+  requiredItemDecription: "\uACE0\uAE30 2 + \uB3CC 2"
   outputItem: {fileID: 11400000, guid: b571a8e410e9dec4290f7bba58b6506c, type: 2}
   outputCount: 1
   ingredients:
