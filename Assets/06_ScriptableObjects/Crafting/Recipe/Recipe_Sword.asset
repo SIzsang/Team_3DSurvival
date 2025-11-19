@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 125f94e510f2a1543a155cb3f3aff242, type: 3}
-  m_Name: Resipe_Sword
+  m_Name: Recipe_Sword
   m_EditorClassIdentifier: 
   recipeName: "\uAC80"
   requiredItemDecription: "\uB3CC 3 + \uB098\uBB34 1"

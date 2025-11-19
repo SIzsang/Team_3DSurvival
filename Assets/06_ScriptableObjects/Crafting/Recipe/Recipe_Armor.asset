@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 125f94e510f2a1543a155cb3f3aff242, type: 3}
-  m_Name: Resipe_Ax
+  m_Name: Recipe_Armor
   m_EditorClassIdentifier: 
-  recipeName: "\uB3C4\uB07C"
-  requiredItemDecription: "\uB3CC 2 + \uB098\uBB34 1"
-  outputItem: {fileID: 11400000, guid: 3790807857a1b7f46bcd7edc7fc8bd58, type: 2}
+  recipeName: "\uAC11\uC637"
+  requiredItemDecription: "\uB098\uBB34 10"
+  outputItem: {fileID: 11400000, guid: 0fc27c0e628072842bb2f3563e72f055, type: 2}
   outputCount: 1
   ingredients:
-  - item: {fileID: 11400000, guid: 80b221f274ea2cd4ca89891473ba76ac, type: 2}
-    count: 2
   - item: {fileID: 11400000, guid: cc5823b8f941dbd42b20d6a95caaecce, type: 2}
-    count: 1
+    count: 10
