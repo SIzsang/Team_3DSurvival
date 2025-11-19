@@ -236,15 +236,7 @@ public class Enemy : MonoBehaviour,ICombatable
 	}
 	IEnumerator Knockback()
 	{
-		if (myCoroutine != null && isKnockback == true)
-		{
-			isKnockback = false;
-			myCoroutine = null;
-		}
-		else
-		{
-			isKnockback = true;
-		}
+		
 		if (isKnockback == true)
 		{
 			Quaternion rot = Quaternion.LookRotation(player.position - gameObject.transform.position);
