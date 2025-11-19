@@ -34,10 +34,12 @@ public class UIInputHandler : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             OnTabDownAction?.Invoke();
+            InputManager.Instance.UseCursor();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             OnTabUpAction?.Invoke();
+            InputManager.Instance.UnuseCursor();
         }
     }
 

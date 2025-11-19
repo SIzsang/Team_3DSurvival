@@ -140,6 +140,43 @@ public class Player : MonoBehaviour, ICombatable
         OnLandingAction?.Invoke();
     }
 
+    public void StartDash()
+    {
+        status.StartDash();
+    }
+
+    public void StopDash()
+    {
+        status.StopDash();
+        
+    }
+
+
+    public void EatFood()
+    {
+        
+    }
+
+    public void DrinkWater()
+    {
+        
+    }
+
+
+    public void EquipAx()
+    {
+        
+    }
+
+    public void EquipSword()
+    {
+        
+    }
+
+    public void UnEquip()
+    {
+        
+    }
 
     private bool canAttack = true;
     private Coroutine attackDelayRoutin;

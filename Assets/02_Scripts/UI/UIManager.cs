@@ -10,11 +10,17 @@ namespace _02_Scripts.UI
         private Player _player;
         private GameManager _gameManager;
 
+        
+        UIInputHandler _inputHandler;
+        public RecipeUI RecipeUI => _recipeUI;
+        [SerializeField] private RecipeUI _recipeUI;
+
         void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
+                _inputHandler = GetComponent<UIInputHandler>();
             }
             else
             {
@@ -27,6 +33,20 @@ namespace _02_Scripts.UI
         {
             _gameManager = GameManager.Instance;
             _player = _gameManager.Player;
+            _inputHandler.OnTabDownAction += OpenRecipeUI;
+            _inputHandler.OnTabUpAction += CloseRecipeUI;
+
+        }
+
+
+        public void OpenRecipeUI()
+        {
+            _recipeUI.gameObject.SetActive(true);
+        }
+
+        public void CloseRecipeUI()
+        {
+            _recipeUI.gameObject.SetActive(false);
         }
     }
 }

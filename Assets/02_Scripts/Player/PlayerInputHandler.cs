@@ -93,21 +93,25 @@ public class PlayerInputHandler
     void OnNum1(InputAction.CallbackContext context)
     {
         Debug.Log("1");
+        player.EquipAx();
     }
 
     void OnNum2(InputAction.CallbackContext context)
     {
         Debug.Log("2");
+        player.EquipSword();
     }
 
     void OnNum3(InputAction.CallbackContext context)
     {
         Debug.Log("3");
+        player.EatFood();
     }
 
     void OnNum4(InputAction.CallbackContext context)
     {
         Debug.Log("4");
+        player.DrinkWater();
     }
 
 

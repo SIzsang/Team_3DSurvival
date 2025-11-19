@@ -10,6 +10,9 @@ public class PlayerItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI mealCountText;
     [SerializeField] private TextMeshProUGUI waterCountText;
 
+
+    [Header("Debug")]
+    [SerializeField] private ItemData water;
     // 인벤토리에 아이템 추가할 때 이벤트가 있으면 좋게따!
     private Inventory inventory;
     
@@ -26,7 +29,19 @@ public class PlayerItemUI : MonoBehaviour
     {
         // 돌려~~~
         UpdateSlot();
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            inventory.SetAxHave();
+            inventory.SetSwordHave();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            inventory.AddItem(new Item(water));
+        }
     }
+    
 
     void UpdateSlot()
     {
@@ -44,12 +59,11 @@ public class PlayerItemUI : MonoBehaviour
         {
             if (inventory.Items[i].DisplayName == "정화수")
             {
-                
-                //mealCountText.text = inventory.Items[i].Count.ToString();
+                waterCountText.text = inventory.Items[i].Count.ToString();
             }
             else if (inventory.Items[i].DisplayName == "식량")
             {
-                //waterCountText.text = inventory.Items[i].Count.ToString();
+                mealCountText.text = inventory.Items[i].Count.ToString();
             }
         }
         

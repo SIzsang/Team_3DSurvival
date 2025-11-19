@@ -65,9 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '99
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b0209cf0e22f924b9acfddb6f264c0a, type: 2}
   m_sharedMaterial: {fileID: -7031857775404610152, guid: 3b0209cf0e22f924b9acfddb6f264c0a, type: 2}
@@ -278,9 +276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '99
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b0209cf0e22f924b9acfddb6f264c0a, type: 2}
   m_sharedMaterial: {fileID: -7031857775404610152, guid: 3b0209cf0e22f924b9acfddb6f264c0a, type: 2}
@@ -810,7 +806,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5164203476445808404}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -868,6 +864,7 @@ MonoBehaviour:
   swordNotExistSign: {fileID: 8670455430644924802}
   mealCountText: {fileID: 6666708532431368856}
   waterCountText: {fileID: 5453833976498508103}
+  water: {fileID: 11400000, guid: 01154c417ebd15d4c8ae66405ebc580d, type: 2}
 --- !u!1 &5441661893438987063
 GameObject:
   m_ObjectHideFlags: 0
