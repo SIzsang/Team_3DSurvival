@@ -18,6 +18,7 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+        Debug.Log($" Interact! Item: {data.displayName}");
         Item item = new Item(data);
         // 플레이어 인벤토리 달면 추가
         GameManager.Instance.Player.Inventory.AddItem(item);

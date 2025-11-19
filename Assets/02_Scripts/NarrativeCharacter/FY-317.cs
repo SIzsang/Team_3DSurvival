@@ -9,6 +9,8 @@ namespace _02_Scripts.NarrativeCharacter
 
         public void OnInteract()
         {
+            if(_questManager == null) _questManager = QuestManager.Instance;
+            Debug.Log($" Interact! Fy317");
             _questManager.AcceptOrCompleteQuest();
         }
     }

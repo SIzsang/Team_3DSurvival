@@ -104,6 +104,7 @@ namespace _02_Scripts.Narrative
         /// </remarks>
         public void StartDialogue(DialogueData dialogue)
         {
+
             if (_isDialogueActive) return;
             dialoguePanel.SetActive(true);
             _dialogueQueue.Clear();
