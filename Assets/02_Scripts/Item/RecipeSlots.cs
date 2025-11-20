@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
+using _02_Scripts.Quest;
+using _02_Scripts.Quest.Context;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,6 +61,7 @@ public class RecipeSlots : MonoBehaviour
 
         // 결과 아이템 지급
         Item item = new Item(recipe.OutputItem);
+        QuestManager.Instance.CheckQuestProgress(new QuestProcessContext(QuestType.Craft, recipe.OutputItem));
         inventory.AddItem(item);
 
         Debug.Log($"{recipe.ResipeName} 제작 완료!");
