@@ -15,9 +15,9 @@ MonoBehaviour:
   maxHealth: 100
   healthNaturalRecoveryRate: 1
   healthNaturalRecovery: 0
-  maxStamina: 50
+  maxStamina: 100
   staminaNaturalRecoveryRate: 0.5
-  staminaNaturalRecovery: 1
+  staminaNaturalRecovery: 2
   maxThirsty: 50
   thirstyDecayRate: 3
   thirstyDecay: -1

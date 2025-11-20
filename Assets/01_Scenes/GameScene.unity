@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a362e29c9404294a59e2819f07ccc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minutesPerSecond: 50
+  minutesPerSecond: 10
   fadeDuration: 1
   canvasGroup: {fileID: 400010595}
   isMainNarrativeOn: 1

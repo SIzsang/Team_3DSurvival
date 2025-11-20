@@ -19,6 +19,9 @@ public class ResourceObject : MonoBehaviour, IGatherable
     }
     private void Start()
     {
+        this.gameObject.GetComponentInChildren<Renderer>().enabled = false;
+        this.gameObject.GetComponent<Collider>().enabled = false;
+        Respown();
         GameManager.Instance.OnDaytimeStart += Respown;
     }
 
@@ -63,7 +66,7 @@ public class ResourceObject : MonoBehaviour, IGatherable
     }
     public void Respown() // 리스폰
     {
-        if(GetComponentInChildren<Renderer>().enabled == false)
+        if(GetComponentInChildren<Renderer>().enabled == false && this.gameObject.GetComponent<Collider>().enabled == false)
         {
             capacity = 10;
             Vector3 position = lastPosition;
