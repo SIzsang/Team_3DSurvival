@@ -16,9 +16,10 @@ MonoBehaviour:
   description: "\uB3CC\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uB3C4\uB07C\uC785\uB2C8\uB2E4"
   type: 0
   dropPrefab: {fileID: 0}
-  CanStack: 0
+  canStack: 0
   maxStackAmount: 0
+  canEating: 0
   canAtk: 1
-  AtkValue: 10
+  atkValue: 5
   consumables: []
   equipPrefab: {fileID: 5675870974208443932, guid: f4753d5107cfec240a408ee5eff3c97c, type: 3}

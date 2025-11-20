@@ -10,7 +10,7 @@ public class Recipe
     public ItemData OutputItem => outputItem;
     public int OutputCount => outputCount;
     public List<Ingredient> Ingredients => ingredients;
-    
+    public bool IsCreative => isCreative;
 
 
     private string resipeName;
@@ -18,17 +18,19 @@ public class Recipe
 
     private ItemData outputItem; // 제작 결과 아이템
     private int outputCount = 1;
+    private bool isCreative;
 
 
     private List<Ingredient> ingredients = new List<Ingredient>();
 
-    public Recipe(RecipeData reipeData)
+    public Recipe(RecipeData recipeData)
     {
-        resipeName = reipeData.recipeName;
-        requiredItemDecription = reipeData.requiredItemDecription;
-        outputItem = reipeData.outputItem;
-        outputCount = reipeData.outputCount;
-        ingredients = reipeData.ingredients;
+        resipeName = recipeData.recipeName;
+        requiredItemDecription = recipeData.requiredItemDecription;
+        outputItem = recipeData.outputItem;
+        outputCount = recipeData.outputCount;
+        isCreative = recipeData.isCreative;
+        ingredients = recipeData.ingredients;
     }
 
     public bool CanCreative(Inventory inventory)

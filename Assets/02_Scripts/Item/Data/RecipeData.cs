@@ -20,6 +20,7 @@ public class RecipeData : ScriptableObject
     public string requiredItemDecription;
 
     [Header("출력")]
+    public bool isCreative;
     public ItemData outputItem; // 제작 결과 아이템
     public int outputCount = 1;
 
