@@ -461,7 +461,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rogue_Hooded
+  m_Name: Rogue_Hooded_notblended
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: MoveSpeed
