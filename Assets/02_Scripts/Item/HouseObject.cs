@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
 using _02_Scripts.Narrative;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,12 +13,16 @@ public class HouseObject : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+        string message = "";
+        DialogueManager dialogueManager = DialogueManager.Instance;
         var inventory = GameManager.Instance.Player.Inventory;
-        Item wood = inventory.Items.Find(x => x.Name == "나무");
+        Item wood = inventory.Items.Find(x => x.DisplayName == "나무");
 
-        if (wood == null || wood.Count < 10)
+        if (wood == null || wood.Count < 30)
         {
+            message = "나무가 부족합니다. (필요: 10개)";
             Debug.Log("나무가 부족합니다. (필요: 10개)");
+            dialogueManager.StartDialogue(message);
             return;
         }
 
@@ -27,6 +32,7 @@ public class HouseObject : MonoBehaviour, IInteractable
         // 3. 집 생성
         houseObject.SetActive(true);
         NarrativeManager.Instance.ProgressAfterHouseComplete();
+        dialogueManager.StartDialogue(message);
     }
 
     //void Update()

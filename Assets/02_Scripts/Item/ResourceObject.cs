@@ -9,14 +9,19 @@ public class ResourceObject : MonoBehaviour, IGatherable
     public ItemData data;
     public int quantityPerHithit;
     public int capacity;
+    private Vector3 baseScale;
     Vector3 lastPosition; // 생성 마지막 위치
 
     private void Awake()
     {
         lastPosition = transform.position;
+        baseScale = transform.localScale;
     }
     private void Start()
     {
+        this.gameObject.GetComponentInChildren<Renderer>().enabled = false;
+        this.gameObject.GetComponent<Collider>().enabled = false;
+        Respown();
         GameManager.Instance.OnDaytimeStart += Respown;
     }
 
@@ -61,11 +66,23 @@ public class ResourceObject : MonoBehaviour, IGatherable
     }
     public void Respown() // 리스폰
     {
-        capacity = 10;
-        Vector3 position = lastPosition;
-        // Instantiate(gameObject, position, Quaternion.identity);
-        this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-        this.gameObject.GetComponent<Collider>().enabled = true;
+        if(this.gameObject.GetComponentInChildren<Renderer>().enabled == true && this.gameObject.GetComponent<Collider>().enabled == true)
+        {
+            return;
+        }
+        else
+        {
+            if (GetComponentInChildren<Renderer>().enabled == false && this.gameObject.GetComponent<Collider>().enabled == false)
+            {
+                capacity = 10;
+                Vector3 position = lastPosition;
+                // Instantiate(gameObject, position, Quaternion.identity);
+                float randomScale = Random.Range(1.0f, 3f);
+                transform.localScale = baseScale * randomScale;
+                this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
+                this.gameObject.GetComponent<Collider>().enabled = true;
+            }
+        }
     }
 
 }

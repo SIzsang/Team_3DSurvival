@@ -9,6 +9,7 @@ namespace _02_Scripts.Quest.Data.UnlockCondition
 
         public override bool IsMet()
         {
+            if(questData == null) return true;
             return QuestManager.Instance.IsQuestComplete(questData.QuestId);
         }
     }

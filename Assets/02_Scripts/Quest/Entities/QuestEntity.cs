@@ -13,6 +13,10 @@ namespace _02_Scripts.Quest.Entities
         public QuestData Data { get; private set; }
 
         private int _currentAmount;
+
+        public int CurrentAmount => _currentAmount;
+        public int RequiredAmount => Data.requiredAmount;
+
         public QuestState CurrentQuestState;
 
         public string QuestId => Data.QuestId;

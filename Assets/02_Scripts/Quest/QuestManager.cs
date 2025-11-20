@@ -29,6 +29,7 @@ namespace _02_Scripts.Quest
 
         public event Action<string> OnQuestAccepted;
         public event Action OnQuestComplete;
+        public event Action<string> OnQuestProcess;
 
         void Awake()
         {
@@ -71,6 +72,7 @@ namespace _02_Scripts.Quest
         {
             if (_currentQuest == null) return;
             if (context == null) return;
+            if(context.QuestType != _currentQuest.QuestType) return;
             switch (context.QuestType)
             {
                 case QuestType.Kill :
@@ -83,11 +85,27 @@ namespace _02_Scripts.Quest
                     _currentQuest.IncreaseProgress();
                     break;
             }
+            OnQuestProcess?.Invoke(GetProgressString());
         }
 
         public bool IsQuestComplete(string questId)
         {
             return _clearQuests.Contains(questId);
+        }
+
+        private string GetProgressString()
+        {
+            string result = "";
+            if (_currentQuest == null) return result;
+            if (_currentQuest.QuestType == QuestType.Kill)
+            {
+                result = $"\n처치 : {_currentQuest.CurrentAmount} / {_currentQuest.RequiredAmount}";
+            }
+            else
+            {
+                result = $"\n진행상황 : {_currentQuest.TargetItem.displayName} {_currentQuest.CurrentAmount} / {_currentQuest.RequiredAmount}";
+            }
+            return result;
         }
         private void SetQuestProgressIfAvailable()
         {
@@ -117,6 +135,9 @@ namespace _02_Scripts.Quest
                 AddQuestCleared(_currentQuest);
                 OnQuestComplete?.Invoke();
                 _audioManager.PlaySfx(_audioManager.clearQuest);
+            }else
+            {
+                _dialogueManager.StartDialogue(_currentQuest.RequestDialogue);
             }
         }
 
