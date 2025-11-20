@@ -53,14 +53,17 @@ public class EnemySpawn : MonoBehaviour
 		addMon.Add(spawnMon);
 	}
 
-	IEnumerator SpawnStart()
-	{
-		for (int i = 0; i < 5; i++)
-		{
-			yield return new WaitForSeconds(3f);
-			Spawn();
-		}
-	}
+    IEnumerator SpawnStart()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+            Spawn();
+        }
+        // for (int i = 0; i < 5; i++)
+        // {
+        // }
+    }
 
 	public void DestroyaddMon()
 	{
