@@ -64,6 +64,9 @@ public class ResourceObject : MonoBehaviour, IGatherable
         capacity = 10;
         Vector3 position = lastPosition;
         // Instantiate(gameObject, position, Quaternion.identity);
+        Vector3 originalScale = transform.localScale;
+        float randomScale = Random.Range(1.0f, 3f);
+        transform.localScale = originalScale * randomScale;
         this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
         this.gameObject.GetComponent<Collider>().enabled = true;
     }
