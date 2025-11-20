@@ -20,7 +20,7 @@ public class InventoryUI : MonoBehaviour
         string itemText = "";
         for (int i = 0; i < items.Count; i++)
         {
-            if (!items[i].CanEating)
+            if (!items[i].CanEating && items[i].CanStack)
             {
                 itemText += $"{items[i].DisplayName} {items[i].Count}개\n";
             }
