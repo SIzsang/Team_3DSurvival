@@ -196,10 +196,11 @@ public class Player : MonoBehaviour, ICombatable
                 return;
             }
         }
+        
 
         Item ax = inventory.Items.Find(i => i.DisplayName == "도끼");
         if (ax != null)
-        { 
+        {
             equippedItem = ax;
             axEquipObject.SetActive(true);
             swordEquipObject.SetActive(false);
@@ -221,11 +222,11 @@ public class Player : MonoBehaviour, ICombatable
 
         Item sword = inventory.Items.Find(i => i.DisplayName == "칼");
         if (sword != null)
-        { 
+        {
             equippedItem = sword;
             swordEquipObject.SetActive(true);
             axEquipObject.SetActive(false);
-            
+
         }
     }
 
@@ -233,6 +234,7 @@ public class Player : MonoBehaviour, ICombatable
     {
         swordEquipObject.SetActive(false);
         axEquipObject.SetActive(false);
+        equippedItem = null;
     }
 
     private bool canAttack = true;
