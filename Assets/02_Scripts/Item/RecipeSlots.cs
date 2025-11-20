@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
+using _02_Scripts.Narrative;
 using _02_Scripts.Quest;
 using _02_Scripts.Quest.Context;
 using TMPro;
@@ -35,18 +36,18 @@ public class RecipeSlots : MonoBehaviour
     public void OnClickCreative()
     {
         var inventory = GameManager.Instance.Player.Inventory;
+        string resultMessage = "";
+        DialogueManager dialogueManager = DialogueManager.Instance;
         if (recipe.CanCreative(inventory))
         {
-            
-            // 제작
+            resultMessage = $"{recipe.ResipeName}제작의 성공했습니다.";
             CreateItem();
-            Debug.Log("성공 눌렸어");
         }
         else
         {
-            Debug.Log("실패 눌렸어");
-            // 제작 실패
+            resultMessage = "제작의 실패했습니다.";
         }
+        dialogueManager.StartDialogue(resultMessage);
     }
 
 
