@@ -30,16 +30,6 @@ public class PlayerItemUI : MonoBehaviour
         // 돌려~~~
         UpdateSlot();
 
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            inventory.SetAxHave();
-            inventory.SetSwordHave();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            inventory.AddItem(new Item(water));
-        }
     }
     
 
@@ -48,16 +38,18 @@ public class PlayerItemUI : MonoBehaviour
         if(inventory ==null) return;
         
         
-        if (inventory.IsAxHave) axNotExistSign.SetActive(false);
-        else axNotExistSign.SetActive(true);
-        
-        if(inventory.IsSwordHave) swordNotExistSign.SetActive(false);
-        else swordNotExistSign.SetActive(true);
-
         // 나중에 inventory 에서 원하는 아이템의 갯수를 뽑을 수 있는 함수를 만들어 주시면 너무 좋을 것 같슴당
         for (int i = 0; i < inventory.Items.Count; i++)
         {
-            if (inventory.Items[i].DisplayName == "정화수")
+            if (inventory.Items[i].DisplayName == "도끼")
+            {
+                axNotExistSign.SetActive(false);
+            }
+            else if (inventory.Items[i].DisplayName == "칼")
+            {
+                swordNotExistSign.SetActive(false);
+            }
+            else if (inventory.Items[i].DisplayName == "정화수")
             {
                 waterCountText.text = inventory.Items[i].Count.ToString();
             }

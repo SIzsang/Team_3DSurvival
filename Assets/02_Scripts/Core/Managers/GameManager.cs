@@ -87,6 +87,15 @@ namespace _02_Scripts.Core.Managers
             }
         }
 
+        public void ProcessEnding()
+        {
+            PauseTime();
+            ChangeBgmByTime(true);
+            _audioManager.ClearSfx();
+            _audioManager.SetSfxAndBgmFix(true);
+            StartCoroutine(FadeRoutine(1f));
+        }
+
         /// <summary>
         /// 현재 게임 시간을 문자열로 변환하여 반환합니다.
         /// 시간과 분은 항상 두 자리로 표시됩니다 (예: 07:05).
@@ -146,13 +155,18 @@ namespace _02_Scripts.Core.Managers
         /// </summary>
         /// <param name="work">페이드 효과 중간에 실행할 다른 코루틴입니다.</param>
         /// <returns>코루틴 실행을 위한 IEnumerator를 반환합니다.</returns>
-        public IEnumerator ExecuteWithFade(IEnumerator work)
+        public IEnumerator ExecuteWithFade(IEnumerator work, bool isEnding = false)
         {
             PauseTime();
             yield return FadeRoutine(1f);
             yield return work;
-            yield return FadeRoutine(0f);
-            ResumeTime();
+            if (!isEnding)
+            {
+                yield return FadeRoutine(0f);
+                ResumeTime();
+            }
+
+
         }
 
         public bool IsDaytime()

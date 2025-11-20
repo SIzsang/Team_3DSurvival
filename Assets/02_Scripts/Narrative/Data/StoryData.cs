@@ -15,6 +15,8 @@ namespace _02_Scripts.Narrative.Data
         public List<DialogueData> dialogue;
         // public TriggerType triggerType;
         public bool needFade;
+        public StoryData nextStory;
+        public bool isEnding;
     }
 
     public enum TriggerType

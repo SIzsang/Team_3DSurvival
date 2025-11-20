@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _02_Scripts.Core;
 using _02_Scripts.Core.Managers;
+using _02_Scripts.Enemy;
 using _02_Scripts.Narrative.Data;
 using _02_Scripts.Narrative.Entities;
 using Core.Managers;
@@ -16,13 +17,20 @@ namespace _02_Scripts.Narrative
         private DialogueManager _dialogueManager;
         private AudioManager _audioManager;
 
-        [SerializeField]private List<StoryData> stories;
+        [SerializeField] private List<StoryData> stories;
         [SerializeField] private StoryData prologueStoryBeforeFade;
         [SerializeField] private StoryData prologueStoryAfterFade;
+        [SerializeField] private StoryData afterFirstBattleStory;
+        [SerializeField] private StoryData afterCompleteHouseStory;
+        [SerializeField] private NarrativeEnemySpawner enemySpawner;
 
         private readonly Dictionary<string, Story> _stories = new Dictionary<string, Story>();
         // private readonly Dictionary<GameTimestamp, Story> _storyByInteraction = new Dictionary<GameTimestamp, Story>();
         private readonly HashSet<string> _playedStoryIds = new HashSet<string>();
+
+
+        private bool _isFirstBattleFinished;
+        private bool _isLasttBattleFinished;
 
         void Awake()
         {
@@ -61,6 +69,8 @@ namespace _02_Scripts.Narrative
                 // }
             }
             StartCoroutine(ShowPrologue());
+            enemySpawner.OnBattleFinished += ShowFirstBattleFinish;
+            enemySpawner.OnBattleFinished += ShowLastBattleFinish;
 
         }
 
@@ -94,6 +104,8 @@ namespace _02_Scripts.Narrative
         /// </remarks>
         public IEnumerator CheckAndProgressNarrative(StoryData storyData)
         {
+            InputManager.Instance.OpenUI();
+            InputManager.Instance.UseCursor();
             if (!IsNarrativeExists(storyData.StoryId)) yield break;
 
             Story story = _stories[storyData.StoryId];
@@ -102,21 +114,34 @@ namespace _02_Scripts.Narrative
             {
                 if (storyData.StoryId != prologueStoryBeforeFade.StoryId && storyData.needFade)
                 {
+                    _audioManager.ClearSfx();
                     _audioManager.PlayBgm(_audioManager.recallBgm);
-                    _audioManager.IsPlayForce = true;
+                    _audioManager.SetSfxAndBgmFix(true);
                 }
             }
-            if (storyData.needFade)
+            if (storyData.needFade || storyData.isEnding)
             {
-                yield return StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStory(storyData)));
+                bool isEnding = storyData.isEnding;
+                yield return StartCoroutine(_gameManager.ExecuteWithFade(ProgressMainStory(storyData),isEnding));
             }
             else
             {
                 yield return StartCoroutine(ProgressMainStory(storyData));
             }
             bool isDaytime = _gameManager.IsDaytime();
-            _audioManager.IsPlayForce = false;
+            _audioManager.SetSfxAndBgmFix(false);
             _gameManager.ChangeBgmByTime(isDaytime);
+            if (storyData.nextStory != null)
+            {
+                yield return CheckAndProgressNarrative(storyData.nextStory);
+            }
+
+            if (storyData.isEnding)
+            {
+                _gameManager.ProcessEnding();
+            }
+            InputManager.Instance.CloseUI();
+            InputManager.Instance.UnuseCursor();
         }
 
         /// <summary>
@@ -180,6 +205,25 @@ namespace _02_Scripts.Narrative
 
             yield return CheckAndProgressNarrative(prologueStoryBeforeFade);
             yield return CheckAndProgressNarrative(prologueStoryAfterFade);
+            yield return enemySpawner.SpawnEnemyBulk();
+        }
+
+        private void ShowFirstBattleFinish()
+        {
+            if(_isFirstBattleFinished) return;
+            StartCoroutine(CheckAndProgressNarrative(afterFirstBattleStory));
+            _isFirstBattleFinished = true;
+        }
+
+        public void ProgressAfterHouseComplete()
+        {
+            StartCoroutine(CheckAndProgressNarrative(afterCompleteHouseStory));
+        }
+
+        private void ShowLastBattleFinish()
+        {
+            if (!_isFirstBattleFinished) return;
+
         }
 
         private bool IsNarrativeExists(string storyId)

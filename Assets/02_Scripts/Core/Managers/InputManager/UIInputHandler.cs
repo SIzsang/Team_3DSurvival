@@ -13,8 +13,8 @@ public class UIInputHandler : MonoBehaviour
     public event Action OnAltDownAction;
     public event Action OnAltUpAction;
 
-    public event Action OnEnterDownAction;
-    public event Action OnEnterUpAction;
+    public event Action OnHandleContinueDownAction;
+    public event Action OnHandleContinueUpAction;
 
     public void Start()
     {
@@ -26,7 +26,7 @@ public class UIInputHandler : MonoBehaviour
         InputBinder inputBinder = InputManager.Instance?.GetInputEventBinder(EInputActionAssetName.UI);
         inputBinder.BindInputEvent(EUIInputActionName.Inventory, OnTabInput);
         inputBinder.BindInputEvent(EUIInputActionName.UseMouse, OnAltInput);
-        inputBinder.BindInputEvent(EUIInputActionName.Enter, OnEnterInput);
+        inputBinder.BindInputEvent(EUIInputActionName.HandleContinue, OnHandleContinueInput);
     }
 
     void OnTabInput(InputAction.CallbackContext context)
@@ -57,16 +57,16 @@ public class UIInputHandler : MonoBehaviour
         }
     }
 
-    void OnEnterInput(InputAction.CallbackContext context)
+    void OnHandleContinueInput(InputAction.CallbackContext context)
     {
 
         if (context.phase == InputActionPhase.Started)
         {
-            OnEnterDownAction?.Invoke();
+            OnHandleContinueDownAction?.Invoke();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            OnEnterUpAction?.Invoke();
+            OnHandleContinueUpAction?.Invoke();
         }
     }
 
