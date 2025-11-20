@@ -5369,6 +5369,10 @@ PrefabInstance:
       value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 7874173943424455961, guid: efda28b8cf13a504982b2ff414934c0a, type: 3}
+      propertyPath: m_text
+      value: "\uC9D1\uD130\n\uB098\uBB34 30"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874173943424455961, guid: efda28b8cf13a504982b2ff414934c0a, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}

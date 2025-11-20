@@ -18,7 +18,7 @@ public class HouseObject : MonoBehaviour, IInteractable
         var inventory = GameManager.Instance.Player.Inventory;
         Item wood = inventory.Items.Find(x => x.DisplayName == "나무");
 
-        if (wood == null || wood.Count < 10)
+        if (wood == null || wood.Count < 30)
         {
             message = "나무가 부족합니다. (필요: 10개)";
             Debug.Log("나무가 부족합니다. (필요: 10개)");
