@@ -33,7 +33,12 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if ( player.IsMoving )
         {
-            nowSpeed = Mathf.Lerp( nowSpeed, player.NowMoveSpeed * speedMultiplier, Time.deltaTime * 2.5f );
+            
+            float walkSpeed =  player.Status.MoveSpeed;
+            float runSpeed  = walkSpeed * player.Status.DashMultiplier; // 예: 1.5f
+            float blend = Mathf.InverseLerp(walkSpeed, runSpeed, player.NowMoveSpeed);
+            
+            nowSpeed = Mathf.Lerp( nowSpeed, blend, Time.deltaTime * 2.5f );
             animator.SetFloat( "MoveSpeed", nowSpeed );
         }
         else
