@@ -45,6 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: ba6b54ee1a351cf4f9e5c148d4a9fa18, type: 3}
+  currentMap:
+    m_Name: Current Map
+    m_Id: 24f527f0-f9d7-44e4-953d-6b555aa7daaa
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
 --- !u!1 &5074841880582657084
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +96,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: f68d95fbe5673ff49b232eecc34816a5, type: 3}
+  currentMap:
+    m_Name: 
+    m_Id: 
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
 --- !u!1 &5713801544611573565
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +147,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: b2c2f065498aa13448bdfd16b501e3d4, type: 3}
+  currentMap:
+    m_Name: 
+    m_Id: 
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
 --- !u!1 &7023936537693131462
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: c22936f313fb2234ba669b7781719652, type: 3}
+  currentMap:
+    m_Name: 
+    m_Id: 
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
 --- !u!1 &8008805445426177888
 GameObject:
   m_ObjectHideFlags: 0

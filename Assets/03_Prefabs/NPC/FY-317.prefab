@@ -48,10 +48,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3973921061982853274, guid: f13e3f9b0ba409646bea6840cfb7f5bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28644833ec1549642a4a3b6ebc1ea180, type: 2}
+    - target: {fileID: -2687250319064130145, guid: f13e3f9b0ba409646bea6840cfb7f5bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28644833ec1549642a4a3b6ebc1ea180, type: 2}
     - target: {fileID: 919132149155446097, guid: f13e3f9b0ba409646bea6840cfb7f5bf, type: 3}
       propertyPath: m_Name
-      value: Mannequin_Medium
+      value: FY-317
       objectReference: {fileID: 0}
+    - target: {fileID: 3787167365416348659, guid: f13e3f9b0ba409646bea6840cfb7f5bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28644833ec1549642a4a3b6ebc1ea180, type: 2}
+    - target: {fileID: 5093572723955298445, guid: f13e3f9b0ba409646bea6840cfb7f5bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28644833ec1549642a4a3b6ebc1ea180, type: 2}
+    - target: {fileID: 5682848617724987359, guid: f13e3f9b0ba409646bea6840cfb7f5bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28644833ec1549642a4a3b6ebc1ea180, type: 2}
+    - target: {fileID: 6699509228976672724, guid: f13e3f9b0ba409646bea6840cfb7f5bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28644833ec1549642a4a3b6ebc1ea180, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -29,7 +29,6 @@ public class PlayerItemUI : MonoBehaviour
     {
         // 돌려~~~
         UpdateSlot();
-
     }
     
 
