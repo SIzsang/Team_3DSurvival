@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 786936500671982059}
   - component: {fileID: 2948093447848411162}
   - component: {fileID: 6305854932047107660}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: (Meat)Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8860876697991285665}
   - component: {fileID: 3490063874301048187}
   - component: {fileID: 334358873025179945}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Item_Meat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -20,7 +20,7 @@ public class HouseObject : MonoBehaviour, IInteractable
 
         if (wood == null || wood.Count < 30)
         {
-            message = "나무가 부족합니다. (필요: 10개)";
+            message = "나무가 부족합니다. (필요: 30개)";
             Debug.Log("나무가 부족합니다. (필요: 10개)");
             dialogueManager.StartDialogue(message);
             return;
