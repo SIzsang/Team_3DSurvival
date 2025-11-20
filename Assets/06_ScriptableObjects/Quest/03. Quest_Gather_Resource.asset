@@ -15,7 +15,7 @@ MonoBehaviour:
   questUnlockCondition:
   - {fileID: 11400000, guid: 503841a3cf3ecdb49af281046ddd9f28, type: 2}
   questConsequence: []
-  type: 1
+  type: 0
   targetItem: {fileID: 11400000, guid: cc5823b8f941dbd42b20d6a95caaecce, type: 2}
   requiredAmount: 10
   description: "\uB098\uBB34 10\uAC1C\uB97C \uCC44\uCDE8\uD558\uC138\uC694."

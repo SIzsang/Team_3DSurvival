@@ -10,14 +10,18 @@ namespace _02_Scripts.Temp.Gw
         private QuestManager _questManager;
         [SerializeField] private TextMeshProUGUI questText;
         private readonly string _noneQuestText = "진행중인 퀘스트가 없습니다.";
+        private string _currentQuest;
+        private string _processString;
 
         void Start()
         {
             _questManager = QuestManager.Instance;
             _questManager.OnQuestComplete += CompleteQuestWidget;
             _questManager.OnQuestAccepted += UpdateQuestWidget;
+            _questManager.OnQuestProcess += UpdateQuestProcess;
             questText.text = _noneQuestText;
         }
+
 
         private void CompleteQuestWidget()
         {
@@ -26,13 +30,21 @@ namespace _02_Scripts.Temp.Gw
 
         private void UpdateQuestWidget(string description = null)
         {
+            _currentQuest = description;
             questText.text = description;
+        }
+
+        private void UpdateQuestProcess(string process = null)
+        {
+            _processString = process;
+            questText.text = _currentQuest + _processString;
         }
 
         void OnDestroy()
         {
             _questManager.OnQuestComplete -= CompleteQuestWidget;
             _questManager.OnQuestAccepted -= UpdateQuestWidget;
+            _questManager.OnQuestProcess -= UpdateQuestProcess;
         }
     }
 }
