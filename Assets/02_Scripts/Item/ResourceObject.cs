@@ -66,15 +66,22 @@ public class ResourceObject : MonoBehaviour, IGatherable
     }
     public void Respown() // 리스폰
     {
-        if(GetComponentInChildren<Renderer>().enabled == false && this.gameObject.GetComponent<Collider>().enabled == false)
+        if(this.gameObject.GetComponentInChildren<Renderer>().enabled == true && this.gameObject.GetComponent<Collider>().enabled == true)
         {
-            capacity = 10;
-            Vector3 position = lastPosition;
-            // Instantiate(gameObject, position, Quaternion.identity);
-            float randomScale = Random.Range(1.0f, 3f);
-            transform.localScale = baseScale * randomScale;
-            this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-            this.gameObject.GetComponent<Collider>().enabled = true;
+            return;
+        }
+        else
+        {
+            if (GetComponentInChildren<Renderer>().enabled == false && this.gameObject.GetComponent<Collider>().enabled == false)
+            {
+                capacity = 10;
+                Vector3 position = lastPosition;
+                // Instantiate(gameObject, position, Quaternion.identity);
+                float randomScale = Random.Range(1.0f, 3f);
+                transform.localScale = baseScale * randomScale;
+                this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
+                this.gameObject.GetComponent<Collider>().enabled = true;
+            }
         }
     }
 
