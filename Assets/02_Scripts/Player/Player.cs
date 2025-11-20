@@ -126,7 +126,7 @@ public class Player : MonoBehaviour, ICombatable
     {
         OnHitAction?.Invoke();
 
-        status.AddHealth(damage);
+        status.AddHealth(-damage);
         // 맞음
     }
 
