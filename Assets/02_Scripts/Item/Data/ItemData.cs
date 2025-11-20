@@ -41,7 +41,7 @@ using UnityEngine;
 
     [Header("Attking")]
     public bool canAtk;
-    public int AtkValue;
+    public int atkValue;
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables; // 회복 타입, 값

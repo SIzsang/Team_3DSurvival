@@ -14,12 +14,17 @@ public class Item
     public bool CanStack => canStack;
     public int MaxCount => maxCount;
     public bool CanEating => canEating;
+    public bool CanAtk => canAtk;
+    public int AtkCalue => atkValue;
+
 
     private string name;
     private string displayName;
     private string description;
 
     private int count;
+    private bool canAtk;
+    private int atkValue;
     private bool canStack;
     private int maxCount;
     private bool canEating;
@@ -30,6 +35,8 @@ public class Item
         displayName = itemData.displayName;
         description = itemData.description;
         canStack = itemData.canStack;
+        canAtk = itemData.canAtk;
+        atkValue = itemData.atkValue;
         maxCount = itemData.maxStackAmount;
         canEating = itemData.canEating;
         count = _count;
