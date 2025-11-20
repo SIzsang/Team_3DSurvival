@@ -9,11 +9,13 @@ public class ResourceObject : MonoBehaviour, IGatherable
     public ItemData data;
     public int quantityPerHithit;
     public int capacity;
+    private Vector3 baseScale;
     Vector3 lastPosition; // 생성 마지막 위치
 
     private void Awake()
     {
         lastPosition = transform.position;
+        baseScale = transform.localScale;
     }
     private void Start()
     {
@@ -64,9 +66,8 @@ public class ResourceObject : MonoBehaviour, IGatherable
         capacity = 10;
         Vector3 position = lastPosition;
         // Instantiate(gameObject, position, Quaternion.identity);
-        Vector3 originalScale = transform.localScale;
         float randomScale = Random.Range(1.0f, 3f);
-        transform.localScale = originalScale * randomScale;
+        transform.localScale = baseScale * randomScale;
         this.gameObject.GetComponentInChildren<Renderer>().enabled = true;
         this.gameObject.GetComponent<Collider>().enabled = true;
     }
