@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using _02_Scripts.Core.Managers;
+using _02_Scripts.Narrative;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,27 +13,20 @@ public class HouseObject : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         var inventory = GameManager.Instance.Player.Inventory;
-        foreach (var ingredient in recipe.Ingredients)
-        {
-            Item invenItem = inventory.Items.Find(x => x.Name == ingredient.item.name);
+        Item wood = inventory.Items.Find(x => x.Name == "나무");
 
-            if (invenItem == null || invenItem.Count < ingredient.count)
-            {
-                Debug.Log("재료가 부족합니다.");
-                return;
-            }
+        if (wood == null || wood.Count < 10)
+        {
+            Debug.Log("나무가 부족합니다. (필요: 10개)");
+            return;
         }
 
         // 3. 재료 감소
-        foreach (var ingredient in recipe.Ingredients)
-        {
-            Item invenItem = inventory.Items.Find(x => x.Name == ingredient.item.name);
-            invenItem.AddCount(-ingredient.count);
-        }
+        wood.AddCount(-10);
 
-        // 결과 아이템 지급
-        Item item = new Item(recipe.OutputItem);
+        // 3. 집 생성
         houseObject.SetActive(true);
+        NarrativeManager.Instance.ProgressAfterHouseComplete();
     }
 
     //void Update()
