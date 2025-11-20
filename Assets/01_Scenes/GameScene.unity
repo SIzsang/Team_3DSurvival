@@ -231,9 +231,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e02cf0e0364240d4d8348f3e813b5a37, type: 2}
   prologueStoryBeforeFade: {fileID: 11400000, guid: 7c39950a05861ee48b9d81186811c9e4, type: 2}
   prologueStoryAfterFade: {fileID: 11400000, guid: 99e1cb2d37d582c4b945ed29b2df2d02, type: 2}
-  afterFirstBattleStory: {fileID: 0}
-  afterCompleteHouseStory: {fileID: 0}
-  enemySpawner: {fileID: 0}
+  afterFirstBattleStory: {fileID: 11400000, guid: d61b9c7c7f02f7743bd6f6036903f8d6, type: 2}
+  afterCompleteHouseStory: {fileID: 11400000, guid: 6d59214fb3eb8d145a72b6e361677c9c, type: 2}
+  enemySpawner: {fileID: 6924445465644798950}
 --- !u!1 &90366569
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,6 +3040,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71d99ae89c7fff94e8492b5a28d3ce3c, type: 3}
+--- !u!114 &6924445465644798950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2396206700081011883, guid: 71d99ae89c7fff94e8492b5a28d3ce3c, type: 3}
+  m_PrefabInstance: {fileID: 6924445465644798949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b70300833a94b38a8e51e579283b67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8791206098657666946
 PrefabInstance:
   m_ObjectHideFlags: 0
