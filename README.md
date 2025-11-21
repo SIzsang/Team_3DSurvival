@@ -3,7 +3,7 @@
 ## 1. 프로젝트 개요
 
 > FY-317은 3D 월드에서 전투, 자원채집, 제작, 스토리를 즐길수 있는 종합게임입니다.
-> 주인공은 우연히 방랑도중 우연히 만나게 된 버려진 로봇을 통해 과거를 떠올리게 됩니다.
+> 주인공은 방랑도중 우연히 만나게 된 버려진 로봇을 통해 과거를 떠올리게 됩니다.
 
 <br>
 
@@ -14,7 +14,8 @@
 
 ## 3. 와이어프레임
 
-<img width="819" height="711" alt="image" src="https://github.com/user-attachments/assets/96fa0ee8-6ec7-481f-8b52-a46182716f7a" />
+<img width="835" height="328" alt="image" src="https://github.com/user-attachments/assets/b4ad47f3-fdab-40bc-ba7e-dda1c1a7596b" />
+
 
 ## 4. 프로젝트 구조
 
