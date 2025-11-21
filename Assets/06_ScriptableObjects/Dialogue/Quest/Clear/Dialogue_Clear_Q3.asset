@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb263597cbd240c7aa7060b9fe2a1610, type: 3}
+  m_Name: Dialogue_Clear_Q3
+  m_EditorClassIdentifier: 
+  dialogueType: 0
+  dialogueLines:
+  - speakerName: "\uB098"
+    text: "\uC774\uC815\uB3C4\uBA74 \uCDA9\uBD84\uD558\uACA0\uC9C0"
+  - speakerName: 
+    text: "\uD018\uC2A4\uD2B8 \uD074\uB9AC\uC5B4!"

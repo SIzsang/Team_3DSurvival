@@ -1,0 +1,145 @@
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.SceneManagement;
+
+// 이름... 
+public class InputBinder : MonoBehaviour
+{
+    [SerializeField] InputActionAsset inputAsset;
+    
+    //PlayerInput playerInput;
+    private Dictionary< string, InputActionMap > actionMaps;
+
+    List< (InputAction, Action< InputAction.CallbackContext >) > nowBindingActions;
+
+
+    public string CurrenMapName => currentMap.name;
+    public InputActionMap currentMap;
+
+    // MonoBehaviour가 아니어도 될 것 같음...
+    // 일단 고!
+    private void Awake()
+    {
+        ReadOnlyArray< InputActionMap > assetMaps = inputAsset.actionMaps;
+        actionMaps = new Dictionary< string, InputActionMap >();
+        foreach ( InputActionMap map in assetMaps )
+        {
+            actionMaps.Add( map.name, map );
+        }
+        
+        
+        SwitchMap(nameof(EInputMapName.Default));
+        
+        
+        nowBindingActions = new();
+        SceneManager.sceneUnloaded += OnUnloadScene;
+    }
+
+
+    public void BindInputEvent( string mapName, string actionName, Action< InputAction.CallbackContext > action )
+    {
+        if ( actionMaps.TryGetAction( mapName, actionName, out InputAction inputAction ) )
+        {
+            inputAction.started += action;
+            inputAction.performed += action;
+            inputAction.canceled += action;
+
+            nowBindingActions.Add( ( inputAction, action ) );
+        }
+    }
+
+    public void BindInputEvent( string actionName, Action< InputAction.CallbackContext > action )
+    {
+        if ( actionMaps.TryGetAction( nameof( EInputMapName.Default ), actionName, out InputAction inputAction ) )
+        {
+            inputAction.started += action;
+            inputAction.performed += action;
+            inputAction.canceled += action;
+        }
+    }
+    
+    public void BindInputEvent<TEnum>(TEnum enumValue , Action< InputAction.CallbackContext > action ) where TEnum : Enum
+    {
+        if ( actionMaps.TryGetAction( nameof( EInputMapName.Default ), enumValue.ToString(), out InputAction inputAction ) )
+        {
+            inputAction.started += action;
+            inputAction.performed += action;
+            inputAction.canceled += action;
+        }
+    }
+
+    /// <summary>
+    /// 해당 PlayerInput 활성/비활성화
+    /// </summary>
+    /// <param name="enable"></param>
+    public void SetEnableInput( bool enable)
+    {
+        //playerInput.enabled = enable;
+
+        if ( enable == true )
+        {
+            inputAsset.Enable();
+        }
+        else if (enable == false )
+        {
+            inputAsset.Disable();
+        }
+    }
+
+    public void SwitchMap<TEnum>(TEnum mapName, bool allActionsEnable = true )
+    {
+        if (actionMaps.ContainsKey(mapName.ToString()) == false) return;
+        
+        foreach (var a in actionMaps.Values)
+        {
+            if (a.name != mapName.ToString())
+            {
+                a.Disable();
+            }
+            else
+            {
+                currentMap = a;
+                a.Enable();
+            }
+        }
+        
+        if ( allActionsEnable )
+        {
+            foreach ( var a in currentMap.actions)
+            {
+                a.Enable();
+            }
+        }
+    }
+
+    /// <summary>
+    /// map 안의 action 만 따로 enable, disable 할 수 있도록
+    /// </summary>
+    /// <param name="mapName"></param>
+    /// <param name="enable"></param>
+    public void SetEnableInputAction( string mapName, string actionName, bool enable )
+    {
+        if ( actionMaps.TryGetAction( mapName, actionName, out InputAction action ) )
+        {
+            if ( enable )
+                action.Enable();
+            else
+                action.Disable();
+        }
+    }
+
+    public void OnUnloadScene( Scene scene )
+    {
+        for ( int i = nowBindingActions.Count - 1; i >= 0; i-- )
+        {
+            nowBindingActions[ i ].Item1.started -= nowBindingActions[ i ].Item2;
+            nowBindingActions[ i ].Item1.performed -= nowBindingActions[ i ].Item2;
+            nowBindingActions[ i ].Item1.canceled -= nowBindingActions[ i ].Item2;
+            nowBindingActions.Remove( nowBindingActions[ i ] );
+        }
+    }
+}

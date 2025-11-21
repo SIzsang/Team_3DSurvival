@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c532d6db2246f38c9b34eeb1eda20e, type: 3}
+  m_Name: 03. Quest_Gather_Resource
+  m_EditorClassIdentifier: 
+  questUnlockCondition:
+  - {fileID: 11400000, guid: 503841a3cf3ecdb49af281046ddd9f28, type: 2}
+  questConsequence: []
+  type: 0
+  targetItem: {fileID: 11400000, guid: cc5823b8f941dbd42b20d6a95caaecce, type: 2}
+  requiredAmount: 10
+  description: "\uB098\uBB34 10\uAC1C\uB97C \uCC44\uCDE8\uD558\uC138\uC694."
+  requestDialogue: {fileID: 11400000, guid: 701c8b94b7cb08549b9b32bb1c89f2d5, type: 2}
+  clearDialogue: {fileID: 11400000, guid: 6f616e3b42d9f9745be5f1a1263d1918, type: 2}

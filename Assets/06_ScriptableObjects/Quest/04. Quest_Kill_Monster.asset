@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c532d6db2246f38c9b34eeb1eda20e, type: 3}
+  m_Name: 04. Quest_Kill_Monster
+  m_EditorClassIdentifier: 
+  questUnlockCondition:
+  - {fileID: 11400000, guid: 758b4e1d4c8d79848b7e8960aa420c5b, type: 2}
+  questConsequence: []
+  type: 2
+  targetItem: {fileID: 0}
+  requiredAmount: 10
+  description: "\uBAAC\uC2A4\uD130\uB97C 10\uB9C8\uB9AC \uCC98\uCE58\uD558\uC138\uC694"
+  requestDialogue: {fileID: 11400000, guid: 97d84980854713f4e998fc8e5e59b1b6, type: 2}
+  clearDialogue: {fileID: 11400000, guid: 1ae0565b749455949a3711dbbb14a52b, type: 2}

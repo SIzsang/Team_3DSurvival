@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e1801c104480e922e83536589bb7f, type: 3}
+  m_Name: 06. Story_Event_AfterRecalling
+  m_EditorClassIdentifier: 
+  dialogue:
+  - {fileID: 11400000, guid: 1be74ba30c008234ca7a5496c6ae1859, type: 2}
+  needFade: 0
+  nextStory: {fileID: 11400000, guid: 03e3a39e2e8e4614396223d9b6473876, type: 2}

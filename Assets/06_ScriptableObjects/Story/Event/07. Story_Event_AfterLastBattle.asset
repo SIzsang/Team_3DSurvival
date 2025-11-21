@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e1801c104480e922e83536589bb7f, type: 3}
+  m_Name: 07. Story_Event_AfterLastBattle
+  m_EditorClassIdentifier: 
+  dialogue:
+  - {fileID: 11400000, guid: e655bf2f912f2df44851230159aadc34, type: 2}
+  needFade: 0
+  nextStory: {fileID: 11400000, guid: e02cf0e0364240d4d8348f3e813b5a37, type: 2}
