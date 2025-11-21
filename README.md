@@ -8,8 +8,8 @@
 <br>
 
 ## 2. 팀원 소개
+<img width="1909" height="1069" alt="image" src="https://github.com/user-attachments/assets/911a1c5f-393d-4490-89d6-8793d5f0d833" />
 
-<img width="1254" height="609" alt="image" src="https://github.com/user-attachments/assets/3928405c-ae66-468b-9414-c486eeeb3e3e" />
 
 
 ## 3. 와이어프레임
