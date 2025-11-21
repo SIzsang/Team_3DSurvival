@@ -10,8 +10,6 @@ public abstract class RayDetector< T > : MonoBehaviour
     [ SerializeField ] protected float interactionDistance = 1.0f;
     [ SerializeField ] protected float interactionShapeRange = 1.0f;
     [ SerializeField ] protected EInteractionDetectorShape rayShape;
-    [ SerializeField ] private bool isUpdateCheck;
-
     private List<RaycastHit> hitsList = new List<RaycastHit>();
     
 
@@ -19,7 +17,7 @@ public abstract class RayDetector< T > : MonoBehaviour
     {
         get
         {
-            if ( isUpdateCheck == false ) UpdateTarget();
+            UpdateTarget();
             List< T > result = GetAllTarget();
             return result;
         }
@@ -29,7 +27,7 @@ public abstract class RayDetector< T > : MonoBehaviour
     {
         get
         {
-            if ( isUpdateCheck == false ) UpdateTarget();
+            UpdateTarget();
             return currentTarget;
         }
     }
@@ -44,11 +42,6 @@ public abstract class RayDetector< T > : MonoBehaviour
     private void Awake()
     {
         hitsList = new List<RaycastHit>();
-    }
-
-    private void Update()
-    {
-        if ( isUpdateCheck == false ) return;
     }
 
     protected void UpdateTarget()
@@ -78,6 +71,8 @@ public abstract class RayDetector< T > : MonoBehaviour
         if ( hits.Length > 0 )
         {
             List< RaycastHit > hitsList = hits.ToList();
+            
+            // 대상에 RayDetector 를 가지고있는 본인도 들어갈 수 있으니 제거
             hitsList.RemoveAll( ( h ) =>
             {
                 if ( h.collider.gameObject == this.gameObject ) return true;

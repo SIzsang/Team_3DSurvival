@@ -34,9 +34,9 @@ public class PlayerStatus : MonoBehaviour
     private void Awake()
     {
         health = new Condition( playerStatusData.maxHealth, playerStatusData.healthNaturalRecovery, playerStatusData.healthNaturalRecoveryRate );
-        stamina = new Condition( playerStatusData.maxStamina, playerStatusData.staminaNaturalRecovery, playerStatusData.staminaNaturalRecoveryRate );
-        thirsty = new Condition( playerStatusData.maxThirsty, playerStatusData.thirstyDecay, playerStatusData.thirstyDecayRate );
-        hunger = new Condition( playerStatusData.maxHunger, playerStatusData.hungerDecay, playerStatusData.hungerDecayRate );
+        stamina = new Condition(playerStatusData.maxStamina, playerStatusData.staminaNaturalRecovery, playerStatusData.staminaNaturalRecoveryRate);
+        thirsty = new Condition(playerStatusData.maxThirsty, playerStatusData.thirstyDecay, playerStatusData.thirstyDecayRate, true, health);
+        hunger = new Condition( playerStatusData.maxHunger, playerStatusData.hungerDecay, playerStatusData.hungerDecayRate ,true,health);
 
         StartNaturalChangeRoutin( health );
         StartNaturalChangeRoutin( stamina );
@@ -56,11 +56,30 @@ public class PlayerStatus : MonoBehaviour
 
     public void AddThirsty( float amount )
     {
+        if (thirsty.CurrentValue > 0 && thirsty.CurrentValue + amount <= 0)
+        {
+            Debug.Log("하이");
+            StartOtherChangeRoutine(health,-1f,1f);
+        }
+        else if (thirsty.CurrentValue <= 0 && thirsty.CurrentValue + amount >= 0)
+        {
+            StopOtherChangeRoutine(health);
+        }
+        
         thirsty.AddCurrentValue( amount );
     }
 
     public void AddHunger( float amount )
     {
+        if (hunger.CurrentValue > 0 && hunger.CurrentValue + amount <= 0)
+        {
+            StartOtherChangeRoutine(health,-1f,1f);
+        }
+        else if (hunger.CurrentValue <= 0 && hunger.CurrentValue + amount >= 0)
+        {
+            StopOtherChangeRoutine(health);
+        }
+        
         hunger.AddCurrentValue( amount );
     }
 

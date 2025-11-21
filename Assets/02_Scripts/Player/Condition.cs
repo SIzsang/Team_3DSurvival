@@ -19,32 +19,37 @@ public class Condition
     private float maxValue;
     private float naturalChangeValue;
     private float naturalChangeRate;
-    
+
+    private bool isZeroEffective;
+    private Condition zeroTargetCondition;
 
 
-    public Condition( float _max, float _naturalChangeValue, float _naturalChangeRate )
+    public Condition(float _max, float _naturalChangeValue, float _naturalChangeRate, bool _isZeroEffective = false, Condition _zeroTargetCondition = null)
     {
         maxValue = _max;
         naturalChangeValue = _naturalChangeValue;
         naturalChangeRate = _naturalChangeRate;
         curValue = maxValue;
+        
+        isZeroEffective = _isZeroEffective;
+        zeroTargetCondition = _zeroTargetCondition;
     }
 
 
-    public void AddNaturalChangeValue( float amount )
+    public void AddNaturalChangeValue(float amount)
     {
-        curValue = Mathf.Clamp( curValue + amount, 0f, maxValue );
+        curValue = Mathf.Clamp(curValue + amount, 0f, maxValue);
     }
 
-    public void AddCurrentValue( float amount )
+    public void AddCurrentValue(float amount)
     {
-        curValue = Mathf.Clamp( curValue + amount, 0f, maxValue );
+        curValue = Mathf.Clamp(curValue + amount, 0f, maxValue);
         isUsing = true;
     }
 
-    public void SetCurrentValue( float amount )
+    public void SetCurrentValue(float amount)
     {
-        curValue = Mathf.Clamp( amount, 0f, maxValue );
+        curValue = Mathf.Clamp(amount, 0f, maxValue);
         isUsing = true;
     }
 
@@ -53,17 +58,16 @@ public class Condition
         return curValue / maxValue;
     }
 
-    public void SetUsingCondition( bool _isUsing )
+    public void SetUsingCondition(bool _isUsing)
     {
         isUsing = _isUsing;
     }
 
 
-
     public Coroutine ChangeRoutine => changeRoutine;
     private Coroutine changeRoutine;
 
-    public void SetChangeRoutine( Coroutine routine )
+    public void SetChangeRoutine(Coroutine routine)
     {
         changeRoutine = routine;
     }
