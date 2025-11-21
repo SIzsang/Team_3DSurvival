@@ -185,7 +185,7 @@ Assets
 
 ## 7. 플레이영상
 
-https://youtu.be/XqZdjBzFv14
+[https://youtu.be/XqZdjBzFv14](https://www.youtube.com/watch?v=ihw-PfTpVHs)
 
 ## 8. 사용 스택
 언어 (Language): C#
