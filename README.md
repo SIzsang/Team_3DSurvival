@@ -51,16 +51,16 @@
 -   `ItemData`, `RecipeData` 등 ScriptableObject를 통해 아이템과 제작법 정보를 관리합니다.
 -   `Inventory` 클래스는 플레이어의 소지 아이템을 관리하며, `Recipe` 클래스는 `Inventory`의 아이템을 기반으로 제작 가능 여부를 판단합니다.
 
-
-📂 프로젝트 구조 (Scripts)
+```
 Assets
 └── 📂 02_Scripts
-    ├── 📂 Camera                 # 카메라 로직 관련
+    │
+    ├── 📂 Camera                                    # 카메라 로직 관련
     │   ├── CameraBehaviour.cs
     │   ├── CameraInputHandler.cs
     │   └── CameraManager.cs
     │
-    ├── 📂 Core                   # 게임의 핵심 로직 및 매니저
+    ├── 📂 Core                                      # 게임의 핵심 로직 및 매니저
     │   ├── GameTimestamp.cs
     │   └── 📂 Managers
     │       ├── AudioManager.cs
@@ -72,18 +72,18 @@ Assets
     │           ├── InputManager.cs
     │           └── UIInputHandler.cs
     │
-    ├── 📂 Enemy                  # 적(Enemy) 관련 로직
+    ├── 📂 Enemy                                     # 적(Enemy) 관련 로직
     │   ├── Enemy.cs
     │   ├── EnemyHealthBar.cs
     │   ├── EnemyPlayerDeath.cs
     │   ├── EnemySpawn.cs
     │   └── NarrativeEnemySpawner.cs
     │
-    ├── 📂 Interface              # 상호작용을 위한 인터페이스
+    ├── 📂 Interface                                 # 상호작용을 위한 인터페이스
     │   ├── IGatherable.cs
     │   └── IInteractable.cs
     │
-    ├── 📂 Item                   # 아이템, 인벤토리, 제작 관련
+    ├── 📂 Item                                      # 아이템, 인벤토리, 제작 관련
     │   ├── HouseObject.cs
     │   ├── Inventory.cs
     │   ├── InventoryUI.cs
@@ -98,7 +98,7 @@ Assets
     │       ├── ItemData.cs
     │       └── RecipeData.cs
     │
-    ├── 📂 Narrative              # 내러티브, 대화, 스토리 진행
+    ├── 📂 Narrative                                 # 내러티브, 대화, 스토리 진행
     │   ├── DialogueManager.cs
     │   ├── NarrativeManager.cs
     │   ├── 📂 Data
@@ -109,10 +109,10 @@ Assets
     │       ├── Dialogue.cs
     │       └── Story.cs
     │
-    ├── 📂 NarrativeCharacter     # 내러티브에 등장하는 특정 캐릭터
+    ├── 📂 NarrativeCharacter                        # 내러티브에 등장하는 특정 캐릭터
     │   └── FY-317.cs
     │
-    ├── 📂 Player                 # 플레이어 캐릭터 관련
+    ├── 📂 Player                                    # 플레이어 캐릭터 관련
     │   ├── Character.cs
     │   ├── Condition.cs
     │   ├── Player.cs
@@ -122,46 +122,47 @@ Assets
     │   ├── PlayerStatus.cs
     │   └── PlayerStatusData.cs
     │
-    ├── 📂 Quest                  # 퀘스트 시스템 관련
+    ├── 📂 Quest                                     # 퀘스트 시스템 관련
     │   ├── QuestManager.cs
     │   ├── 📂 Context
     │   │   └── QuestProcessContext.cs
     │   ├── 📂 Data
     │   │   ├── QuestData.cs
-    │   │   ├── 📂 Consequence          # 퀘스트 결과
+    │   │   ├── 📂 Consequence                       # 퀘스트 결과
     │   │   │   ├── ConsequenceSubmitItem.cs
     │   │   │   ├── ConsequenceUnlockRecipe.cs
     │   │   │   └── QuestConsequence.cs
-    │   │   └── 📂 UnlockCondition     # 퀘스트 잠금 해제 조건
+    │   │   └── 📂 UnlockCondition                   # 퀘스트 잠금 해제 조건
     │   │       ├── PrerequisitesQuest.cs
     │   │       └── QuestUnlockCondition.cs
     │   └── 📂 Entities
     │       └── QuestEntity.cs
     │
-    ├── 📂 RayDetector            # Raycast를 이용한 오브젝트 감지
+    ├── 📂 RayDetector                               # Raycast를 이용한 오브젝트 감지
     │   ├── CombatableDetector.cs
     │   ├── GatherableDetector.cs
     │   ├── InteractableDetector.cs
     │   └── RayDetector.cs
     │
-    ├── 📂 Temp                   # 임시 테스트용 스크립트
+    ├── 📂 Temp                                      # 임시 테스트용 스크립트
     │   ├── 📂 Gw
     │   │   ├── DayWidget.cs
-    │   │   ├── ... (Test Scripts)
+    │   │   └── ... (Test Scripts)
     │   └── 📂 Sura
     │       ├── AttackTestObject.cs
     │       └── ... (Test Scripts)
     │
-    ├── 📂 UI                     # UI 로직 및 관리
+    ├── 📂 UI                                        # UI 로직 및 관리
     │   ├── ConditionUI.cs
     │   ├── PlayerStatusUI.cs
     │   └── UIManager.cs
     │
-    └── 📂 Utils                  # 프로젝트 전반에서 사용되는 유틸리티
+    └── 📂 Utils                                     # 프로젝트 전반에서 사용되는 유틸리티
         ├── Constants.cs
         ├── Enum.cs
         ├── RuntimeInitializer.cs
         └── SceneLoader.cs
+```
 
 ## 5. 조작법
 
@@ -186,6 +187,6 @@ Assets
 https://youtu.be/XqZdjBzFv14
 
 ## 8. 사용 스택
-C#
-Rider, VisualStudio, Unity 2022
-NavMesh
+언어 (Language): C#
+개발 환경 (Engine & Tools): Unity 2022, Rider, Visual Studio
+핵심 기능 (Core Features): NavMesh
