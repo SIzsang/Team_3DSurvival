@@ -6,6 +6,8 @@ public class CameraManager : MonoBehaviour
     CameraBehaviour behaviour;
 
     public Vector3 Forward => behaviour.Forward;
+    public Vector3 FlatForward => Vector3.ProjectOnPlane(Forward, Vector3.up);
+    
     public Transform Cam => behaviour.CamTransform;
 
 

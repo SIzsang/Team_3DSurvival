@@ -28,7 +28,7 @@ public class CameraBehaviour : MonoBehaviour
     private float camCurRotX;
     private float camCurRotY;
     
-    private void LateUpdate()
+    private void Update()
     {
         MoveCamera();
         RotateCamera();

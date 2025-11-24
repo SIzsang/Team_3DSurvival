@@ -63,7 +63,9 @@ public class Player : MonoBehaviour, ICombatable
     public event Action OnTryAttackAction;
     public event Action OnAttackAction;
     public event Action OnHitAction;
-
+    
+    
+    
 
     private void Awake()
     {
@@ -85,7 +87,6 @@ public class Player : MonoBehaviour, ICombatable
     {
         IsMoving = behaviour.IsMoving;
     }
-
 
     public void Interaction()
     {
